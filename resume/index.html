@@ -67,6 +67,7 @@
     <div class="container" id="pagecontents">
 
         <div class="experiences">
+            <h2>Education</h2>
             <div class="experience row">
                 <div class="col-md-4">
                     <h4>North Carolina State University</h4>
@@ -94,8 +95,6 @@
                     </p>
                 </div>
             </div>
-
-
             <div class="experience row">
                 <div class="col-md-4">
                     <h4>Jay M Robinson High School</h4>
@@ -114,6 +113,28 @@
                         </span>
                     </p>
                 </div>
+            </div>
+        </div>
+        <hr>
+        <h2>Work</h2>
+
+        <div class="experience row">
+            <div class="col-md-4"><img class="link" onclick="openInNewTab('https://ipipeline.com');" src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/ipipeline.png" />
+                <p class="experience-period">
+                    December 2013 - Current </p>
+            </div>
+            <div class="col-md-8">
+                <p>
+                    <strong>Software Development Intern / Software Configuration Specialist</strong>
+                    <span class="hidden-phone">
+					</span>
+                    <br>
+                    <span class="experience-details">
+                        Worked with .NET Framework Desktop applications for Config File management, helped implement Automated Deployment<br>
+					<span class="location">
+						<span class="glyphicon glyphicon-map-marker"></span> Huntersville, North Carolina </span>
+                    </span>
+                </p>
             </div>
         </div>
         <div id="abilities" class="container">
@@ -183,6 +204,10 @@
                             <span class="glyphicon glyphicon-star "></span>
                             </span>
                         </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="no-bullets">
                         <li class="mg-lg animated fadeInUp animDelay06">
                             <span class="ability-title">Angular</span>
                             <span class="ability-score">			
@@ -193,10 +218,6 @@
                             <span class="glyphicon glyphicon-star"></span>
                             </span>
                         </li>
-                    </ul>
-                </div>
-                <div class="col-md-6">
-                    <ul class="no-bullets">
                         <li class="mg-lg animated fadeInUp animDelay06">
                             <span class="ability-title">Python</span>
                             <span class="ability-score">			
@@ -220,7 +241,7 @@
                         <li class="mg-lg animated fadeInUp animDelay06">
                             <span class="ability-title">JSP</span>
                             <span class="ability-score">			
-													<span class="glyphicon glyphicon-star filled"></span>
+                                <span class="glyphicon glyphicon-star filled"></span>
                             <span class="glyphicon glyphicon-star filled"></span>
                             <span class="glyphicon glyphicon-star filled"></span>
                             <span class="glyphicon glyphicon-star filled"></span>
@@ -290,6 +311,10 @@
                             <span class="glyphicon glyphicon-star "></span>
                             </span>
                         </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="no-bullets">
                         <li class="mg-lg animated fadeInUp animDelay06">
                             <span class="ability-title">Intellij</span>
                             <span class="ability-score">
@@ -300,10 +325,6 @@
                             <span class="glyphicon glyphicon-star"></span>
                             </span>
                         </li>
-                    </ul>
-                </div>
-                <div class="col-md-6">
-                    <ul class="no-bullets">
                         <li class="mg-lg animated fadeInUp animDelay02">
                             <span class="ability-title">Eclipse</span>
                             <span class="ability-score">
@@ -340,8 +361,8 @@
                         <br>
                         <br>Click to show a live preview
                         <br>
-                        <a href="https://keithmackay.com/clock/" class="btn btn-raised btn-info">Visit live version</a>
                     </p>
+                    <button onclick="openInNewTab('https://keithmackay.com/clock/')" class="btn btn-raised btn-info">Visit live version</button>
                 </div>
                 <div class="col-md-4 project-view" onclick="showResumePreview();">
                     <span class="project-icon"><img src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/clock-128.ico" alt="Clock Icon"></span>
@@ -356,7 +377,8 @@
                     <p class="project-desc">This resume, which uses a number of javascript libraries
                         <br>
                         <br>Click to show a live preview</p>
-                    <br><a href="https://keithmackay.com/calc/" class="btn btn-raised btn-info">Visit live version</a>
+                    <br>
+                    <button onclick="openInNewTab('https://keithmackay.com/calc/')" class="btn btn-raised btn-info">Visit live version</button>
                 </div>
             </div>
             <script>
@@ -429,7 +451,7 @@
         <hr id="resume-doc">
         <script>
             //Adding the frames after a timeout so that they aren't loaded first
-            function delayAddFrames() {   
+            function delayAddFrames() {
                 $('#displayRow').append('<iframe class="page page-hidden" id="clockFrame" src="../clock/"></iframe><iframe class="page page-hidden" id="resumeFrame" src="../resume/"></iframe><iframe class="page page-hidden" id="calcFrame" src="../calc/"></iframe>');
             }
 
@@ -453,17 +475,6 @@
             });
 
         </script>
-
-        <form class="form-horizontal bs-component">
-            <fieldset>
-                <div class="form-group">
-                    <label class="control-label" for="inputDefault">Number</label>
-                    <input type="text" class="form-control" id="inputDefault">
-                </div>
-
-                <button class="btn btn-lg btn-block btn-raised btn-primary" type="submit">Calculate</button>
-            </fieldset>
-        </form>
     </div>
 </body>
 
