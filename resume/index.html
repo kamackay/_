@@ -340,7 +340,7 @@
                         <br>
                         <br>Click to show a live preview
                         <br>
-                        <a href="https://kamackay.github.io/Clock/" class="btn btn-raised btn-info">Visit live version</a>
+                        <a href="https://keithmackay.com/clock/" class="btn btn-raised btn-info">Visit live version</a>
                     </p>
                 </div>
                 <div class="col-md-4 project-view" onclick="showResumePreview();">
@@ -356,7 +356,7 @@
                     <p class="project-desc">This resume, which uses a number of javascript libraries
                         <br>
                         <br>Click to show a live preview</p>
-                    <br><a href="https://kamackay.github.io/calc/" class="btn btn-raised btn-info">Visit live version</a>
+                    <br><a href="https://keithmackay.com/calc/" class="btn btn-raised btn-info">Visit live version</a>
                 </div>
             </div>
             <script>
@@ -424,12 +424,7 @@
                 }
 
             </script>
-            <div class="row" id="displayRow">
-                <iframe class="page page-hidden" id="clockFrame" src="https://kamackay.github.io/Clock/"></iframe>
-                <iframe class="page page-hidden" id="resumeFrame" src="https://kamackay.github.io/Resume/"></iframe>
-                <iframe class="page page-hidden" id="calcFrame" src="https://kamackay.github.io/calc/"></iframe>
-
-            </div>
+            <div class="row" id="displayRow"></div>
         </div>
         <hr id="resume-doc">
         <script>
@@ -437,6 +432,15 @@
                 var win = window.open(url, '_blank');
                 win.focus();
             }
+
+            //Adding the frames after a timeout so that they aren't loaded first
+            function delayAddFrames() {
+                $('#displayRow').append('<iframe class="page page-hidden" id="clockFrame" src="../clock/"></iframe><iframe class="page page-hidden" id="resumeFrame" src="../resume/"></iframe><iframe class="page page-hidden" id="calcFrame" src="../calc/"></iframe>');
+            }
+
+            $(document).ready(function() {
+                setTimeout(delayAddFrames, 1000);
+            });
 
         </script>
         <div class="well well-lg">
