@@ -428,13 +428,8 @@
         </div>
         <hr id="resume-doc">
         <script>
-            function openInNewTab(url) {
-                var win = window.open(url, '_blank');
-                win.focus();
-            }
-
             //Adding the frames after a timeout so that they aren't loaded first
-            function delayAddFrames() {
+            function delayAddFrames() {   
                 $('#displayRow').append('<iframe class="page page-hidden" id="clockFrame" src="../clock/"></iframe><iframe class="page page-hidden" id="resumeFrame" src="../resume/"></iframe><iframe class="page page-hidden" id="calcFrame" src="../calc/"></iframe>');
             }
 
