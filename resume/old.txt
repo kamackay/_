@@ -1,0 +1,173 @@
+
+        
+        <!--
+<div id="home" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li href="#myCarousel1" data-slide-to="0" class="active"></li>
+            <li href="#myCarousel2" data-slide-to="1"></li>          
+            <li href="#myCarousel3" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="item active" id="myCarousel1">
+                <div class="carousel-logo"><img class="centerImage" src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/android_robot.png"></div>
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Android Development Skills</h1>
+                        <p>Created Several Android Applications, which can be viewed in their GitHub Repositories Below</p>
+                        <p><a class="btn btn-lg btn-primary" href="#android" role="button">View Android Projects</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="item" id="myCarousel2">
+                <div class="carousel-logo"><img class="centerImage" src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/visual-studio.png"></div>
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Skill in almost all .NET application types</h1>
+                        <p>Knowledge Using ViewForms, Creating Custom UI elements, Using the Windows Notification Tray Icons, Using Windows System Hooks to listen for global keypresses, and more. Projects can be viewed in the Windows Projects shown below</p>
+                        <p><a class="btn btn-lg btn-primary" href="#windows" role="button">Go to Windows Projects</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="item" id="myCarousel3">
+                <div class="carousel-logo"><img class="centerImage" src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/bootstrap.png"></div>
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1 style="color:white;">Web Development Knowledge</h1>
+                        <p>Knowledge of how to use Web Development tools and platforms including HTML5, Twitter Bootstrap (and jQuery), javascript, JSP, ASP, and Java Servlets</p>
+                        <p><a class="btn btn-lg btn-primary" href="#web-dev" role="button">Go to Web Development Projects</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container marketing">
+        <div class="row">
+            <div class="col-lg-4">
+                <img class="img-circle" src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/ncsu_logo.png" alt="Generic placeholder image" width="140" height="140">
+                <h2>North Carolina State University</h2>
+                <p>Class of 2016 - Computer Science</p>
+                <p>Major GPA: 3.0</p>
+                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div>
+            <div class="col-lg-4">
+                <img class="img-circle" src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/github.png" alt="Github Logo" width="140" height="140">
+                <h2>Extensive Github Knowledge</h2>
+                <p>Experienced Git user, along with high-level knowledge of other version control systems, such as&nbsp;<a style="cursor:pointer;" onclick="openInNewTab('https://www.visualstudio.com/en-us/products/tfs-overview-vs.aspx')">Team Foundation Server</a></p>
+                <p><a class="btn btn-default" href="https://github.ncsu.edu/kamackay" role="button">View Github Account &raquo;</a></p>
+            </div>
+            <div class="col-lg-4">
+                <img class="img-circle" src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/eagle.png" alt="Eagle Scout Image" width="140" height="140">
+                <h2>Eagle Scout</h2>
+                <p>Earned the Eagle Scout award from the Boy Scouts of America at the age of 14</p>
+                <p><a class="btn btn-default" href="#" role="button">View Information&raquo;</a></p>
+            </div>
+        </div>
+        <hr class="featurette-divider" id="windows">
+
+        <h1 class="featurette-heading">Windows Platform Projects:</h1>
+        <div class="row"><img src=""></div>
+        <hr class="featurette-divider" id="jeeves">
+        <div class="row featurette">
+            <div class="col-md-7 col-md-push-5">
+                <h2 class="featurette-heading">Jeeves - Windows Automated System Manager<span class="text-muted"><br/>C# Background Service</span></h2>
+                <p class="lead">Shows a Windows Notification Icon in the System Tray and allows for certain commands to be run. If a Process ceases to respond, or excceeds a RAM limit, shows that process in a popup and allows that process to be killed, or added to a WhiteList of processes that are allowed to have higher system Usage.</p>
+                <p class="lead">Periodically Checks specified folders and deletes outdated and unused files to avoid too much system clutter.</p>
+                <p class="lead"></p>
+                <button style="cursor:pointer;" onclick="openInNewTab('https://github.ncsu.edu/kamackay/Manager')" class="github_button_background">
+                    <img class="github_button_image" align="left" height="30" padding-right="20" src="images/github.png" />
+                    <p class="github_button_text">View In GitHub</p>
+                </button>
+            </div>
+            <div class="col-md-5 col-md-pull-7">
+                <img class="featurette-image img-responsive center-block" src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/Jeeves.png" alt="Jeeves Icon">
+            </div>
+        </div>
+        <hr class="featurette-divider" id="photo-viewer">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Windows Photo Viewer Application<span class="text-muted"><br/>C# ViewForms</span></h2>
+                <p class="lead">Simplistic Photo Viewer that shows the image on a resizable frame and has a right-click menu to allow specific commands to be run on the images, such as opening another image, saving this image to a new location, re-coloring the image's transparent background, etc.</p>
+                <button style="cursor:pointer;" onclick="openInNewTab('https://github.ncsu.edu/kamackay/PhotoViewer')" class="github_button_background">
+                    <img class="github_button_image" align="left" height="30" padding-right="20" src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/github.png" />
+                    <p class="github_button_text">View In GitHub</p>
+                </button>
+            </div>
+            <div class="col-md-5">
+                <img class="featurette-image img-responsive center-block" src="images/image-viewer.png" alt="Image Viewer Icon">
+            </div>
+        </div>
+        <hr class="featurette-divider">
+        <form name="autocompleteForm">
+        </form>
+        <hr class="featurette-divider" id="android">
+        <h1 class="featurette-heading">Android Platform Projects:</h1>
+        <hr class="featurette-divider" id="android-jeeves">
+        <div class="row featurette">
+            <div class="col-md-7 col-md-push-5">
+                <h2 class="featurette-heading">Jeeves - Android Automated Assistant<span class="text-muted"><br/>Android/Java</span></h2>
+                <p class="lead">Creates a persistant notification with an attached Background Service that allows the user to switch between customizable modes that control Audio settings, WiFi state, and Bluetooth state.</p>
+                <p class="lead">Listens to and logs some system events, and can be used to view quick information on all running background processes.</p>
+                <p class="lead">Uses APIs:
+                    <br/>
+                </p>
+                <ul>
+                    <li style="cursor: pointer;" onclick="openInNewTab('https://github.com/jjoe64/GraphView')">Graph View</li>
+                    <li style="cursor:pointer;" onclick="openInNewTab('https://developers.google.com/android/guides/overview')">Google Play Services</li>
+                    <li style="cursor:pointer;" onclick="openInNewTab('https://java.net/projects/javamail/pages/Home')">Oracle's JavaMail</li>
+                </ul>
+                <button style="cursor:pointer;" onclick="openInNewTab('https://github.ncsu.edu/kamackay/AndroidJeeves')" class="github_button_background">
+                    <img class="github_button_image" align="left" height="30" padding-right="20" src="images/github.png" />
+                    <p class="github_button_text">View In GitHub</p>
+                </button>
+                <img onclick="openInNewTab('https://play.google.com/store/apps/details?id=keithapps.mobile.com.jeeves')" src="images/play-store.png" class="play_store_button" />
+            </div>
+            <div class="col-md-5 col-md-pull-7">
+                <img class="featurette-image img-responsive center-block" src="images/Jeeves.png" alt="Jeeves Icon">
+            </div>
+        </div>
+        <hr class="featurette-divider" id="android-drinkinggames">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">Drinking Games<span class="text-muted"><br/>Android/Java</span></h2>
+                <p class="lead">Drinking Games Application that emulates several well-known drinking games:</p>
+                <ul>
+                    <li>
+                        <a style="cursor:pointer;" onclick="openInNewTab('https://en.wikipedia.org/wiki/Kings_(game)')">Circle of Death / Kings / King's Cup</a>
+                    </li>
+                    <li>
+                        <a style="cursor:pointer;" onclick="openInNewTab('https://en.wikipedia.org/wiki/Ride_the_bus')">Ride the Bus</a>
+                    </li>
+                    <li>
+                        <a style="cursor:pointer;" onclick="openInNewTab('https://en.wikipedia.org/wiki/Biscuit_(game)')">Biscuit</a>
+                    </li>
+                </ul>
+                <p class="lead">Without needing to have a deck of cards or dice</p>
+                <p class="smaller-lead">Implements the Circle Layout from&nbsp;
+                    <a style="cursor:pointer;" onclick="openInNewTab('https://github.com/dmitry-zaitsev/CircleLayout')">Dmitry Zaitsev's GitHub Page Here.</a>
+                </p>
+                <button style="cursor:pointer;" onclick="openInNewTab('https://github.ncsu.edu/kamackay/DrinkingGames')" class="github_button_background">
+                    <img class="github_button_image" align="left" height="30" padding-right="20" src="images/github.png" />
+                    <p class="github_button_text">View In GitHub</p>
+                </button>
+                <img onclick="openInNewTab('https://play.google.com/store/apps/details?id=mobile.keithapps.drinkinggames')" src="images/play-store.png" class="play_store_button" />
+            </div>
+            <div class="col-md-5">
+                <img class="featurette-image img-responsive center-block" src="images/drinking_games.png" alt="Jeeves Icon">
+            </div>
+        </div>
+        <hr class="featurette-divider" id="web-dev">
+        <h1 class="featurette-heading">Web Development Projects:</h1>
+        <hr class="featurette-divider" id="resume-site">
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">This Webpage<span class="text-muted"><br/>HTML5 / CSS / jQuery / Bootstrap</span></h2>
+                <p class="lead">This resume page was built using&nbsp;<a style="cursor:pointer;" onclick="openInNewTab('http://getbootstrap.com/')">Twitter Bootstrap's</a>&nbsp;Carousel styling</p>
+                <button style="cursor:pointer;" onclick="openInNewTab('https://github.ncsu.edu/kamackay/Resume/tree/gh-pages')" class="github_button_background">
+                    <img class="github_button_image" align="left" height="30" padding-right="20" src="images/github.png" />
+                    <p class="github_button_text">View In GitHub</p>
+                </button>
+            </div>
+            <div class="col-md-5">
+                <img class="featurette-image img-responsive center-block" src="images/resume.png" alt="Jeeves Icon">
+            </div>
+        </div><!---->

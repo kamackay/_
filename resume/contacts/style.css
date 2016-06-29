@@ -1,0 +1,163 @@
+@font-face {
+            font-family: "Roboto";
+            src: url(fonts/Roboto-Regular.ttf) format("truetype");
+        }
+        
+        .play_store_button {
+            height: 60px;
+            cursor: pointer;
+        }
+        
+        .github_button_background {
+            width: 200px;
+            height: 35px;
+        }
+        
+        .github_button_text {
+            font-family: "Roboto", sans-serif;
+            vertical-align: middle;
+            font-size: 20px;
+            color: black;
+        }
+        
+        .github_button_image {
+            vertical-align: middle;
+        }
+        
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+        
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+        
+        .dropdown-menu li a:hover {
+            background-color: lightgray;
+            color: red;
+        }
+        /**/
+        
+        .dropdown:hover {
+            background-color: lightgray;
+            color: red;
+        }
+        /**/
+        
+        .dropdown:hover #dropdown-text {
+            background-color: lightgray;
+            color: red;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        /**/
+        
+        .dropdown-menu:hover .dropdown {
+            background-color: lightgray;
+            color: red;
+        }
+        /**/
+        /**
+        .dropdown:hover .dropdown-menu, .dropdown-header {
+            background-color: crimson;
+            color: black;
+        }/**/
+        /**/
+        
+        a,
+        p,
+        h1,
+        .dropdown,
+        h2,
+        span {
+            font-family: "Roboto", sans-serif;
+            color: black;
+        }
+        /**/
+        
+        .navbar-default .navbar-nav>li>a {
+            color: white;
+        }
+        
+        .dropdown-header {
+            font-size: 15px;
+            background-color: #F0F0F0
+        }
+        
+        .nav-tabs .dropdown-menu,
+        .nav-pills .dropdown-menu,
+        .navbar .dropdown-menu {
+            margin-top: 0;
+        }
+        
+        .navbar-default .navbar-brand {
+            color: white;
+        }
+        
+        .logo {
+            height: 100px;
+            width: 200px;
+            overflow: hidden;
+        }
+        
+        .header-text-1 {
+            color: white;
+        }
+        
+        .header-button-1:hover #header-text-1 {
+            color: red;
+            background-color: lightgray;
+        }
+        
+        .header-button-2:hover #header-text-2 {
+            color: red;
+            background-color: lightgray;
+        }
+        
+        .header-button-3:hover #header-text-3 {
+            color: red;
+            background-color: lightgray;
+        }
+        
+        .centerImage {
+            position: absolute;
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 500px;
+            bottom: 0;
+        }
+        
+        .doc3 {
+            margin: auto 10px;
+            width: auto;
+            height: 2000px;
+        }
+        
+        .navbar {
+            background-color: darkgray;
+            border-color: red;
+        }
+        
+        #sidebar-wrapper {
+            z-index: 1000;
+            position: fixed;
+            left: 250px;
+            width: 0;
+            height: 100%;
+            margin-left: -250px;
+            overflow-y: auto;
+            background: #000;
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+        
+        .smaller-lead {
+            font-size: 15px;
+        }
