@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Keith MacKay">
+    <meta name="description" content="Keith MacKay's Webpage-based Resume">
+    <link rel="icon" href="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/clock-128.ico">
+    <title>Web Clock</title>
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/bootstrap.css">
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/tether.css">
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/material.css">
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/ripples.css">
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/style.css">
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/snackbar.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.020/css/hack-extended.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/jquery.js"></script>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/tether.js"></script>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/bootstrap.js"></script>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/material.js"></script>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/snackbar.js"></script>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/ripples.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/script.js"></script>
+</head>
+
+<body class="product-sans">
+    <nav class="navbar navbar-inverse navbar-fixed-top product-sans">
+        <div class="keithapps-tabs" id="clocktypes" style="font-size: 0px;">
+            <div id="analogTab" class="unselectable"><a onclick="tabClick(event);">Analog</a></div>
+            <div id="digitalTab" class="unselectable"><a onclick="tabClick(event);">Digital</a></div>
+            <div id="bothTab" class="unselectable"><a onclick="tabClick(event);">Both</a></div>
+        </div>
+    </nav>
+    <div class="full unselectable" id="clock-contents"></div>
+    <span class="togglebutton" id="showDate">
+        <label>
+            <input type="checkbox" id="showDateIn" onclick="showDateToggle();" checked><span class="toggle"></span> Show Date
+    </label>
+    </span>
+</body>
+
+</html>
