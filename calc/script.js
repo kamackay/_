@@ -8,7 +8,8 @@ const calcTypes = {
     multiply: 3,
     divide: 4,
     exp: 5,
-    solution: 6
+    mod: 6,
+    solution: 7
 };
 
 function showInOutput(str, newLn = true, tab = 0) {
@@ -47,6 +48,9 @@ var f = function () {
     $(document).on('keydown', function (e) {
         if (e.shiftKey) {
             if (e.which === 54) calcButton('exp');
+            else if (e.which === 53) calcButton('mod');
+            else if (e.which === 56) calcButton('multiply');
+            else if (e.which === 49) factorial();
             return;
         } else if (e.ctrlKey) {
             e.preventDefault();
@@ -141,7 +145,7 @@ function calcButton(btn) {
     } else if (btn === 'equal') { //---------Equal
         if (calc === calcTypes.none) {
             eq(con.html());
-        } else if (calc === calcTypes.add || calc === calcTypes.minus || calc === calcTypes.multiply || calc === calcTypes.divide || calc === calcTypes.exp)
+        } else if (calc === calcTypes.add || calc === calcTypes.minus || calc === calcTypes.multiply || calc === calcTypes.divide || calc === calcTypes.exp || calc === calcTypes.mod)
             basicCalc(calc);
         calc = calcTypes.none;
     } else if (btn === 'divide') {
@@ -160,7 +164,8 @@ function calcButton(btn) {
         var num = parseFloat(con.html());
         store.html('sqrt(' + num.toString() + ') = ' + Math.sqrt(num).toString());
     } else if (btn === 'mod') {
-        notSupported();
+        if (con.html() !== '') transfer('%');
+        calc = calcTypes.mod; //--------------Modulus
     } else if (btn === 'exp') {
         if (con.html() !== '') transfer('^');
         calc = calcTypes.exp;
@@ -191,6 +196,8 @@ function basicCalc(kind) {
             case calcTypes.exp:
                 solution = Math.pow(last, n);
                 break;
+            case calcTypes.mod:
+                solution = last % n;
         }
         eq(solution);
         con.html(solution.toString());
@@ -236,6 +243,7 @@ function factorial() {
     var num = parseFloat(con.html());
     if (num < 0) {
         store.html(num.toString() + '! = negative factorial?');
+        resetCon();
         return;
     }
     var answer = 1,
@@ -247,6 +255,11 @@ function factorial() {
     store.html(num.toString() + '! = ' + answer.toString());
     if (answer === Number.POSITIVE_INFINITY)
         showSnackbar('Showing as "Infinity" because Javascript\'s max int is ' + Number.MAX_VALUE.toString());
+    resetCon();
+}
+
+function resetCon() {
+    con.html('0')
 }
 
 var last;
