@@ -17,4 +17,5 @@ $(document).ready(function () {
                 break;
         }
     }); /**/
+    $('#contents').append('<img class="full full-stretch" src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/material_dark.jpg" />')
 });
