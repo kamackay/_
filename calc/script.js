@@ -81,6 +81,10 @@ var f = function () {
             case 88:
                 calcButton('multiply');
                 break;
+            case 109:
+            case 189:
+                calcButton('minus');
+                break;
             case 116:
                 e.preventDefault();
                 showSnackbar('Refresh disabled. Just to be a dick.');
@@ -89,7 +93,7 @@ var f = function () {
                 var a = e.which - 48;
                 if (a >= 0 && a <= 9) calcButton(a);
                 else if (a >= 48 && a <= 57) calcButton(a - 48);
-                //else alert(e.which);
+                // else alert(e.which);
                 break;
                 //Keys to ignore
             case 16:
@@ -130,8 +134,10 @@ function calcButton(btn) {
         if (con.html() !== '') transfer('+');
         calc = calcTypes.add; //--------------Subtraction
     } else if (btn === 'minus') {
-        if (con.html() !== '') transfer('-');
-        calc = calcTypes.minus;
+        if (con.html() !== '' && con.html() !== '0') {
+            transfer('-');
+            calc = calcTypes.minus;
+        } else con.html('-');
     } else if (btn === 'equal') { //---------Equal
         if (calc === calcTypes.none) {
             eq(con.html());
@@ -151,7 +157,10 @@ function calcButton(btn) {
         if (current.length > 0)
             con.html(current.substr(0, current.length - 1));
     } else if (btn === 'sqrt') {
-
+        var num = parseFloat(con.html());
+        store.html('sqrt(' + num.toString() + ') = ' + Math.sqrt(num).toString());
+    } else if (btn === 'mod') {
+        notSupported();
     } else if (btn === 'exp') {
         if (con.html() !== '') transfer('^');
         calc = calcTypes.exp;
@@ -225,6 +234,10 @@ function getAllPrimes(n = 50) {
 
 function factorial() {
     var num = parseFloat(con.html());
+    if (num < 0) {
+        store.html(num.toString() + '! = negative factorial?');
+        return;
+    }
     var answer = 1,
         temp = num;
     while (temp > 0) {
@@ -232,6 +245,8 @@ function factorial() {
         temp--;
     }
     store.html(num.toString() + '! = ' + answer.toString());
+    if (answer === Number.POSITIVE_INFINITY)
+        showSnackbar('Showing as "Infinity" because Javascript\'s max int is ' + Number.MAX_VALUE.toString());
 }
 
 var last;
