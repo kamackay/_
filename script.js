@@ -34,13 +34,33 @@ function scrollNext() {
     });
     var below = next.attr('anim-dest-below');
     if (below !== undefined) {
-        var el = $('#' + below);
+        var el = $('#' + below.split(':')[0]);
         next.animate({
-            top: el.position().top + el.outerHeight() + 10
+            top: el.position().top + el.outerHeight() + parseInt(below.split(':')[1]) || 10
         }, {
             queue: false,
             duration: parseInt(next.attr('anim-dest-top-time')) || 5000
 
-        })
+        });
     }
+    var styles = next.find('.styleme');
+    $.each(styles, function (n, o) {
+        var obj = $(this);
+        var h = obj.attr('style-height');
+        if (h)
+            obj.animate({
+                height: $(window).height() * parseInt(h) * .01
+            }, {
+                duration: 5000,
+                queue: false
+            });
+        var w = obj.attr('style-width');
+        if (w)
+            obj.animate({
+                width: $(window).width() * parseInt(w) * .01
+            }, {
+                duration: 5000,
+                queue: false
+            });
+    });
 }

@@ -3,6 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Keith MacKay">
+    <link rel="icon" href="./favicon.ico">
     <meta http-equiv="refresh" content="1;url=./resume">
     <script type="text/javascript">
         window.location.href = "./resume"
@@ -60,6 +64,10 @@
             padding: 2px;
             margin: 0px;
         }
+        
+        #queue1 * {
+            display: inline-block;
+        }
 
     </style>
     <!--https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/-->
@@ -69,7 +77,11 @@
     <div class="container">
         <h1 id="header" class="header">Welcome</h1>
         <h2 id="queue0" anim-dest-top="5%" anim-dest-left="5%" class="start-below start-left-minor">Pages available:</h2>
-        <h2 id="queue1" anim-dest-below="queue0" anim-dest-left="15%" class="start-below start-left-minor"></h2>
+        <div id="queue1" anim-dest-below="queue0:50" anim-dest-left="15%" class="start-below start-left-minor">
+            <p>Keith MacKay's Resume</p>
+            <br>
+            <iframe class="styleme" style-height="75" style-width="50" style="margin-top: 20px;" src="./resume/"></iframe>
+        </div>
         <!---->
     </div>
 </body>
