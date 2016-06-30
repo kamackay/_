@@ -57,7 +57,7 @@ $(document).ready(function () {
     if (clockType === 'analog') $('#showDate').fadeOut(0);
     showType(clockType);
     removeContextMenu();
-    /*$(document).on('keydown', function (e) {
+    $(document).on('keydown', function (e) {
         switch (e.which) {
             case 115:
                 if (e.ctrlKey || e.which === 19) e.preventDefault();

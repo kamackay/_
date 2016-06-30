@@ -7,13 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Keith MacKay">
     <link rel="icon" href="./favicon.ico">
-    <meta http-equiv="refresh" content="1;url=./resume">
+    <!--<meta http-equiv="refresh" content="1;url=./resume">
     <script type="text/javascript">
         window.location.href = "./resume"
 
     </script>
     <!---->
     <title>Welcome</title>
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/bootstrap.css">
     <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/material.css">
     <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/ripples.css">
     <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/style.css">
@@ -37,36 +38,11 @@
         }
         
         * {
-            position: fixed;
-        }
-        
-        .start-below {
-            top: 200%;
-        }
-        
-        .start-right {
-            left: 100%;
-        }
-        
-        .start-left-minor {
-            left: -25%;
-        }
-        
-        div.page-link {
-            border: black thin solid;
-            display: inline-block;
-            padding: 5px;
-            margin: 0px;
-        }
-        
-        div.page-link * {
             position: relative;
-            padding: 2px;
-            margin: 0px;
         }
         
-        #queue1 * {
-            display: inline-block;
+        .btn {
+            text-transform: none;
         }
 
     </style>
@@ -74,13 +50,18 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1 id="header" class="header">Welcome</h1>
-        <h2 id="queue0" anim-dest-top="5%" anim-dest-left="5%" class="start-below start-left-minor">Pages available:</h2>
-        <div id="queue1" anim-dest-below="queue0:50" anim-dest-left="15%" class="start-below start-left-minor">
-            <p>Keith MacKay's Resume</p>
-            <br>
-            <iframe class="styleme" style-height="75" style-width="50" style="margin-top: 20px;" src="./resume/"></iframe>
+    <div class="" id="contents">
+        <div class="container">
+            <h1 id="header" class="header">Welcome</h1>
+            <h3>Here are some of the projects available at keithmackay.com</h3>
+            <div class="row well">
+                <div class="col-md-6">
+                    <h2 onclick="redirectTo('./calc')" class="btn btn-raised btn-primary" style="font-size: 50px;">Online Calculator</h2></div>
+                <div class="col-md-6">
+                    <p style="font-size: 25px;">Web-based Calculator
+                        <br>Also has a collection of calculations that can be done, including finding all Prime Roots of a number</p>
+                </div>
+            </div>
         </div>
         <!---->
     </div>

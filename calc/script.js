@@ -223,6 +223,17 @@ function getAllPrimes(n = 50) {
     return res;
 }
 
+function factorial() {
+    var num = parseFloat(con.html());
+    var answer = 1,
+        temp = num;
+    while (temp > 0) {
+        answer *= temp;
+        temp--;
+    }
+    store.html(num.toString() + '! = ' + answer.toString());
+}
+
 var last;
 
 var calc = calcTypes.none;
