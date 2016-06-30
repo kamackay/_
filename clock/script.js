@@ -57,15 +57,30 @@ $(document).ready(function () {
     if (clockType === 'analog') $('#showDate').fadeOut(0);
     showType(clockType);
     removeContextMenu();
+    /*$(document).on('keydown', function (e) {
+        switch (e.which) {
+            case 115:
+                if (e.ctrlKey || e.which === 19) e.preventDefault();
+                break;
+            case 116:
+                e.preventDefault();
+                showSnackbar('Refresh disabled. Just to be a dick.');
+                break;
+            case 83:
+                if (e.ctrlKey) {
+                    e.preventDefault();
+                    showSnackbar("I cannot be saved");
+                }
+                break;
+        }
+    });/**/
 });
 
 function setSizes() {
-    try {
-        var types = $('#clocktypes').find('div');
-        $.each(types, function (x, o) {
-            $(this).css('width', ($(window).width() / types.length)).css('font-size', $(this).height() / 3 + 'px');
-        });
-    } catch (err) {}
+    var types = $('#clocktypes').find('div');
+    $.each(types, function (x, o) {
+        $(this).css('width', ($(window).width() / types.length)).css('font-size', $(this).height() / 3 + 'px');
+    });
 }
 
 function tabClick(e) {
@@ -245,11 +260,9 @@ function showDigital(both = false) {
 }
 
 function resizeDigital() {
-    try {
-        var contents = $('#keithapps-digitalClock');
-        contents.css('font-size', ((showDate) ? $(window).width() / 14 : $(window).width() / 7) + 'px');
-        if (clockType !== 'both') contents.css('top', '35%');
-    } catch (err) {}
+    var contents = $('#keithapps-digitalClock');
+    contents.css('font-size', ((showDate) ? $(window).width() / 14 : $(window).width() / 7) + 'px');
+    if (clockType !== 'both') contents.css('top', '35%');
 };
 
 function smallSize() {
