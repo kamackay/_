@@ -53,6 +53,7 @@ var f = function () {
             else if (e.which === 49) factorial();
             return;
         } else if (e.ctrlKey) {
+            if (e.which === 83) showSnackbar('You can\'t save me...');
             e.preventDefault();
             return;
         }
