@@ -79,10 +79,17 @@ function bounceUp() {
             queue: false,
             easing: 'easeOutBounce',
             complete: function () {
-                $(window).resize(function () {
-                    var e = $('.')
-                    alert()
-                });
+                var f = function () {
+                    $.each($('.vScrollable'), function (n, o) {
+                        var e = $(this);
+                        var p = e.position();
+                        if (p.top + e.height() > $(window).height()) {
+                            e.css('height', $(window).height() - p.top);
+                        }
+                    });
+                }
+                $(window).resize(f);
+                f();
             }
         });
     });

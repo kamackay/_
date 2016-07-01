@@ -65,6 +65,7 @@
         
         .vScrollable {
             overflow-y: auto;
+            overflow-x: hidden;
         }
 
     </style>
@@ -76,35 +77,35 @@
         <div class="container">
             <h1 id="header" drop-top="0px" class="header light-text dropIn">Welcome</h1>
             <h3 drop-top="0px" class="light-text dropUp">Here are some of the projects available at <a style="cursor: pointer;" onclick="showSnackbar('You\'re already at this webpage, what did you expect?');">keithmackay.com</a></h3>
-            <div class="bounceUp" style="padding:10px;">
-                <div class="row well">
+            <div class="bounceUp vScrollable" style="padding:10px;">
+                <div class="row well link" onclick="redirectTo('./calc')">
                     <div class="col-md-6">
-                        <a href="./calc" class="btn btn-raised btn-primary" style="font-size: 50px;">Online Calculator</a></div>
+                        <a href="./calc" class="btn btn-raised btn-primary" style="font-size: 30px;">Online Calculator</a></div>
                     <div class="col-md-6">
                         <h3>Web-based Calculator</h3>
                         <p>Large collection of mathematical calculations in a Material inspired UI</p>
                     </div>
                 </div>
-                <div class="row well">
+                <div class="row well link" onclick="redirectTo('./clock')">
                     <div class="col-md-6">
-                        <a href="./clock" class="btn btn-raised btn-primary" style="font-size: 50px;">Online Clock</a>
+                        <a href="./clock" class="btn btn-raised btn-primary" style="font-size: 30px;">Online Clock</a>
                     </div>
                     <div class="col-md-6">
                         <h3>Web-based Clock</h3>
                         <p>Allows for multiple layout patterns and datetime format types, saves your selected settings in Cookies</p>
                     </div>
                 </div>
-                <div class="row well">
+                <div class="row well link" onclick="redirectTo('./resume')">
                     <div class="col-md-6">
-                        <a href="./resume" class="btn btn-raised btn-primary" style="font-size: 50px;">Resume</a></div>
+                        <a href="./resume" class="btn btn-raised btn-primary" style="font-size: 30px;">Resume</a></div>
                     <div class="col-md-6">
                         <h3>Resume</h3>
                         <p>Keith MacKay's web-page Resume. Formal Resume Document can also be accessed from this page.</p>
                     </div>
                 </div>
-                <div class="row well">
+                <div class="row well link" onclick="redirectTo('https://play.google.com/store/apps/developer?id=Keith+MacKay')">
                     <div class="col-md-6">
-                        <a href="https://play.google.com/store/apps/developer?id=Keith+MacKay" class="btn btn-raised btn-primary" style="font-size: 50px;">Play Store</a></div>
+                        <a href="https://play.google.com/store/apps/developer?id=Keith+MacKay" class="btn btn-raised btn-primary" style="font-size: 30px;">Play Store</a></div>
                     <div class="col-md-6">
                         <h3>Keith MacKay's Apps on the Play Store</h3>
                         <p>Includes Drinking Games Application, Android System Volume Manager, and an Android Keyboard which allows all Ascii values to be entered</p>
