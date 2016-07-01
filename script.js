@@ -78,7 +78,12 @@ function bounceUp() {
             duration: t.attr('drop-time') || 2000,
             queue: false,
             easing: 'easeOutBounce',
-            complete: bounceUp
+            complete: function () {
+                $(window).resize(function () {
+                    var e = $('.')
+                    alert()
+                });
+            }
         });
     });
 }
