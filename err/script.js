@@ -101,5 +101,5 @@ function increment() {
     num += .01;
     bar.animate(num);
     txt.html((Math.floor(num * 100)).toString() + '%');
-    setTimeout(increment, (num * 50) * (Math.random(Math.random() * (maxTime - 5000 + 1)) + 5000));
+    setTimeout(increment, (num * 200) * (Math.random(Math.random() * (maxTime - 5000 + 1)) + 2000));
 }
