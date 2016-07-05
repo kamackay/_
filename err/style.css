@@ -6,13 +6,17 @@
  }
  
  @font-face {
-     font-family: cal;
-     src: url("./fonts/font.ttf") format("truetype");
+     font-family: arial;
+     src: url("./fonts/arial.ttf") format("truetype");
  }
  
  body {
      overflow: hidden;
      background-color: black;
+ }
+ 
+ #errTime {
+     font-family: arial;
  }
  
  body * {

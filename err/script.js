@@ -18,7 +18,7 @@ $(document).ready(function () {
             type = Types.error;
         }
     } catch (ex) {}
-    //if (isMobileDevice()) return;
+    if (isMobileDevice()) showSnackbar('This webpage is not meant for a mobile device, so it may not look correct');
     $(document).on('keydown', function (e) {
         switch (e.which) {
             case 83:
@@ -79,6 +79,8 @@ $(document).ready(function () {
             curs.mousedown(function (e) {
                 e.preventDefault();
             });
+            var currentdate = new Date();
+            $('#errTime').html((currentdate.getHours() % 12).toString() + ':' + currentdate.getMinutes().toString() + ' ' + (currentdate.getHours() > 12 ? 'PM' : 'AM'));
             break;
     }
 });
