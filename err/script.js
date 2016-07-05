@@ -29,7 +29,14 @@ $(document).ready(function () {
                 break;
             case 116:
                 e.preventDefault();
-                if (type !== Types.error) window.location.search = "type=error";
+                switch (type) {
+                    case Types.windows10:
+                        window.location.search = "type=error";
+                        break;
+                    case Types.error:
+                        $('#cursors').html('');
+                        break;
+                }
                 break;
         }
     });
