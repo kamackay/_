@@ -29,10 +29,9 @@
  #win10 * {
      font-family: windows1;
  }
- 
- #error {
+ /*#error {
      background-image: url("./img/err.png");
- }
+ }/**/
  
  .white {
      color: white;
