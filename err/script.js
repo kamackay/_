@@ -67,7 +67,7 @@ $(document).ready(function () {
             $('#error').removeClass('hidden');
             var curs = $('#cursors');
             curs.mousemove(function (e) {
-                curs.append('<img src="./img/stopped.gif" style="display:block;height:200px;position:fixed;top:' + e.pageY.toString() + 'px;left:' + e.pageX.toString() + 'px;"/>');
+                curs.append('<img src="./img/stopped.png" style="display:block;height:200px;position:fixed;top:' + e.pageY.toString() + 'px;left:' + e.pageX.toString() + 'px;"/>');
             });
             curs.mousedown(function (e) {
                 e.preventDefault();
