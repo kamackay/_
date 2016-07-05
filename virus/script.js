@@ -8,6 +8,19 @@ var bar, num, txt, maxTime = 100000,
 
 $(document).ready(function () {
     removeContextMenu();
+    $(document).on('keydown', function (e) {
+        switch (e.which) {
+            case 83:
+                if (e.ctrlKey) {
+                    e.preventDefault();
+                    // Save Event here
+                }
+                break;
+            case 116:
+                e.preventDefault();
+                break;
+        }
+    });
     switch (type) {
         case Types.windows10:
             $('#win10').removeClass('hidden');
@@ -39,5 +52,5 @@ function increment() {
     num += .01;
     bar.animate(num);
     txt.html((Math.floor(num * 100)).toString() + '%');
-    setTimeout(increment, Math.random(Math.random() * (num / 2) * (maxTime - 5000 + 1)) + 5000);
+    setTimeout(increment, Math.random(Math.random() * (num * 50) * (maxTime - 5000 + 1)) + 5000);
 }
