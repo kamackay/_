@@ -63,3 +63,21 @@
      width: 100vw;
      height: 100vh;
  }
+ 
+ .navbar-text {
+     font-size: 30px;
+ }
+ 
+ .navbar-text.selected,
+ .navbar-text.selected * {
+     color: #0b9dd5;
+ }
+ 
+ .navbar .navbar-nav {
+     display: inline-block;
+     float: none;
+ }
+ 
+ .navbar .navbar-collapse {
+     text-align: center;
+ }

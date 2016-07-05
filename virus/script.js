@@ -8,6 +8,7 @@ var bar, num, txt, maxTime = 100000,
 
 $(document).ready(function () {
     removeContextMenu();
+    //if (isMobileDevice()) return;
     $(document).on('keydown', function (e) {
         switch (e.which) {
             case 83:
@@ -38,6 +39,12 @@ $(document).ready(function () {
                 var h = $('#progress').height();
                 txt.css('top', h * -1).css('height', h);
                 txt.css('padding-top', (h - parseFloat(txt.css('font-size')) * 2) / 2);
+                var height = $(window).height();
+                $.each($('body').find('.dynamic-font'), function (n, o) {
+                    var t = $(this);
+                    t.css('font-size', parseFloat(t.attr('dyn-font-size')) / 100 * height);
+                });
+
             };
             $(window).resize(f);
             f();
@@ -49,6 +56,18 @@ $(document).ready(function () {
 });
 
 function increment() {
+    if (num > .99) {
+        num = 0;
+        try {
+            for (var i = 1; i <= 4; i++) {
+                var el = $('#winText' + i.toString());
+                if (!el.hasClass('selected')) {
+                    el.addClass('selected');
+                    break;
+                }
+            }
+        } catch (err) {}
+    }
     num += .01;
     bar.animate(num);
     txt.html((Math.floor(num * 100)).toString() + '%');

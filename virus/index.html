@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0076)http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html -->
 <html>
-<!-- MEMO: update me with `git checkout gh-pages && git merge master && git push origin gh-pages` -->
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,13 +14,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Keith MacKay">
     <link rel="icon" href="./favicon.ico">
-    <!--<meta http-equiv="refresh" content="1;url=./resume">
-    <script type="text/javascript">
-        window.location.href = "./resume"
-
-    </script>
-    <!---->
-    <title>Welcome</title>
     <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/bootstrap.css">
     <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/material.css">
     <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/ripples.css">
@@ -52,12 +43,22 @@
 
 <body class="">
     <div style="" class="option hidden" id="win10">
-        <h1 class="white head" style="width:100vw;">Installing Windows 10</h1>
+        <h1 class="dynamic-font white head" dyn-font-size="8.5" style="width:100vw;">Installing Windows 10</h1>
         <h4 class="white center" style="padding-top: 0px;">Your PC will restart several times. Sit back and relax.</h4>
         <div style="width: 100vw;text-align:center;padding-top: 20px;">
             <div id="progress"></div>
             <div style="display:block;position:relative" class="white" id="text">0%</div>
         </div>
+        <nav class="navbar navbar-default navbar-fixed-bottom" style="background-color: transparent;">
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li id="winText1" dyn-font-size="3" class="dynamic-font navbar-text selected"><a>Configuring Settings</a></li>
+                    <li id="winText2" dyn-font-size="3" class="dynamic-font navbar-text"><a>Setting Up</a></li>
+                    <li id="winText3" dyn-font-size="3" class="dynamic-font navbar-text"><a>Applying PC Settings</a></li>
+                    <li id="winText4" dyn-font-size="3" class="dynamic-font navbar-text"><a>A few final actions</a></li>
+                </ul>
+            </div>
+        </nav>
     </div>
 
     <div id="snackbar-container"></div>
