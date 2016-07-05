@@ -30,7 +30,9 @@
      font-family: windows1;
  }
  
- #error * {}
+ #error {
+     background: url(./img/err.jpg);
+ }
  
  .white {
      color: white;
