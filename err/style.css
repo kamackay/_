@@ -15,23 +15,13 @@
      background-color: black;
  }
  
- * {
+ body * {
      cursor: none;
-     -webkit-touch-callout: none;
-     -webkit-user-select: none;
-     -khtml-user-select: none;
-     -moz-user-select: none;
-     -ms-user-select: none;
-     /**/
-     user-select: none;
  }
  
  #win10 * {
      font-family: windows1;
  }
- /*#error {
-     background-image: url("./img/err.png");
- }/**/
  
  .white {
      color: white;
