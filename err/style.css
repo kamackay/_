@@ -31,7 +31,7 @@
  }
  
  #error {
-     background: url(./img/err.jpg);
+     background: url("./img/err.png");
  }
  
  .white {
