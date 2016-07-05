@@ -62,15 +62,16 @@
     </div>
     <div id="error" class="option hidden" style="background-color:white;">
         <center class="full-page">
-            <h1 class="dynamic-font head" dyn-font-size="8.5" style="z-index:100;color:black;position:fixed;width:100vw;">There seems to have been an error</h1>
-            <img src="./img/err.png" style="position:fixed;top:0px;left:0px;width:100vw;height:100vh;z-index:2;" class="">
-            <div style="height:100vh; position:fixed;top:0px;left:0px;width:100vw;z-index:500;cursor:none;z-index:100;" id="cursors" class=""></div>
+            <h1 class="dynamic-font head hidden" dyn-font-size="8.5" style="z-index:100;color:black;position:fixed;width:100vw;">There seems to have been an error</h1>
+            <img src="./img/stopped.png" style="z-index:21;display:block;height:200px;position:fixed;top:50px;left:500px;" />
+            <img src="./img/err.png" style="position:fixed;top:0px;left:0px;width:100vw;height:100vh;z-index:20;" class="">
+            <div style="height:100vh; position:fixed;top:0px;left:0px;width:100vw;z-index:1;cursor:none;z-index:100;" id="cursors" class=""></div>
         </center>
         <div style="width:100vw;position:fixed;left:0px;bottom:0;height:32px;z-index:5000;display:inline;font-size:0px;">
             <img style="z-index:600;position:fixed;" src="img/task-left.png" />
             <img style="width:100vw;height:32px;position:fixed;left:0" src="img/task-middle.png" />
             <img style="z-index:600;position:fixed;right:0;" src="img/task-right.png" />
-            <div style="position:fixed;z-index:1000;right:0;bottom:0;padding-right:15px;padding-bottom:2px;color:white;font-size:14px;" id="errTime"></div>
+            <div style="position:fixed;z-index:1000;right:0;bottom:0;padding-right:15px;padding-bottom:3px;color:white;font-size:14px;" id="errTime"></div>
         </div>
         <!---->
     </div>
