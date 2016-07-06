@@ -9,7 +9,7 @@ var bar, num, txt, maxTime = 100000,
 
 var opt = {
     typingSpeedMin: 20,
-    typingSpeedMax: 200,
+    typingSpeedMax: 100,
     formatNewLines: true
 }
 
@@ -134,9 +134,27 @@ $(document).ready(function () {
                 $('#randomCode').typeOut(data);
             });
             $('#uploadingPass').flash(500);
+            $(window).unload(function () {
+                const s = "Don't leave yet, we still need to upload all your personal data";
+                alert(s);
+                return s;
+            });
+            $('#uploadingPass').iterateThrough(['Now Uploading All Saved Passwords', 'Using your computer to store illegal content', 'Reporting you to the FBI']);
             break;
     }
 });
+
+$.fn.iterateThrough = function (strings, time = 10000) {
+    var el = $(this);
+    var i = el.data('stringIndex');
+    if (i === undefined || i == strings.length - 1) i = 0;
+    else i++;
+    el.html(strings[i]);
+    el.data('stringIndex', i);
+    setTimeout(function () {
+        el.iterateThrough(strings, time)
+    }, time);
+}
 
 function increment() {
     if (num > .99) {
