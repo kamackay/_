@@ -1,10 +1,54 @@
 var Types = {
     windows10: 1,
-    error: 2
+    error: 2,
+    code: 3
 }
 
 var bar, num, txt, maxTime = 100000,
     type = 1;
+
+var opt = {
+    typingSpeedMin: 20,
+    typingSpeedMax: 200,
+    formatNewLines: true
+}
+
+$.fn.flash = function (interval) {
+    var vis = true,
+        t = $(this);
+    window.setInterval(function () {
+        if (vis) t.fadeOut(100);
+        else t.fadeIn(100);
+        vis = !vis;
+    }, interval);
+}
+
+$.fn.typeOut = function (str, complete = function () {}) {
+    if (str.length === 0) {
+        complete();
+        return;
+    }
+    var t = $(this);
+    var c = str.charAt(0);
+    var s;
+    switch (c) {
+        case "\n":
+            s = "<br>"
+            break;
+        case '\t':
+            s = '<p style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;</p>';
+            break;
+        case ' ':
+            c = '&nbsp;';
+        default:
+            s = '<p style="display:inline-block;">' + c + '</p>';
+            break;
+    }
+    t.append(s);
+    setTimeout(function () {
+        t.typeOut(str.substr(1))
+    }, rand(opt.typingSpeedMin, opt.typingSpeedMax));
+}
 
 $(document).ready(function () {
     removeContextMenu();
@@ -16,6 +60,8 @@ $(document).ready(function () {
             //Default, so just move on
         } else if (t === 'error') {
             type = Types.error;
+        } else if (t === 'code') {
+            type = Types.code;
         }
     } catch (ex) {}
     if (isMobileDevice()) showSnackbar('This webpage is not meant for a mobile device, so it may not look correct');
@@ -81,6 +127,13 @@ $(document).ready(function () {
             });
             var currentdate = new Date();
             $('#errTime').html((currentdate.getHours() % 12).toString() + ':' + currentdate.getMinutes().toString() + ' ' + (currentdate.getHours() > 12 ? 'PM' : 'AM'));
+            break;
+        case Types.code:
+            $('#code').removeClass('hidden');
+            $.get("https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/random.txt", function (data) {
+                $('#randomCode').typeOut(data);
+            });
+            $('#uploadingPass').flash(500);
             break;
     }
 });

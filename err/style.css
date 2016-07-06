@@ -79,3 +79,28 @@
  .navbar .navbar-collapse {
      text-align: center;
  }
+ 
+ #code,
+ #code * {
+     font-family: 'Hack';
+ }
+ 
+ #randomCode {
+     color: white;
+     position: fixed;
+     font-size: 15px;
+     top: 5vh;
+     left: 5vw;
+     width: 90vw;
+     height: 90vh;
+ }
+ 
+ #uploadingPass {
+     position: fixed;
+     top: 10vh;
+     right: 10vw;
+     color: #00FF00;
+     font-size: 3vh;
+     padding: 20px;
+     border: normal green solid;
+ }

@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/jquery-ui.css">
     <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/jquery-ui.structure.css">
     <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/jquery-ui.theme.css">
-
+    <link rel='stylesheet' href='//cdn.jsdelivr.net/font-hack/2.020/css/hack-extended.min.css'>
     <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/jquery.js"></script>
     <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/jquery-ui.js"></script>
     <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/bootstrap.js"></script>
@@ -41,7 +41,7 @@
     <!--https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/-->
 </head>
 
-<body class="unselectable">
+<body class="unselectable" id="allContent">
     <div style="" class="option hidden" id="win10">
         <h1 class="dynamic-font white head" dyn-font-size="8.5" style="width:100vw;">Installing Windows 10</h1>
         <h4 class="white center" style="padding-top: 0px;">Your PC may restart several times. Sit back and relax.</h4>
@@ -74,6 +74,10 @@
             <div style="position:fixed;z-index:1000;right:0;bottom:0;padding-right:15px;padding-bottom:3px;color:white;font-size:14px;" id="errTime"></div>
         </div>
         <!---->
+    </div>
+    <div id="code" class="option hidden">
+        <span id="randomCode"></span>
+        <div id="uploadingPass" class="flash">Now Uploading All Saved Passwords</div>
     </div>
     <div id="snackbar-container"></div>
 </body>
