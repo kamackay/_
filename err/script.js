@@ -1,4 +1,5 @@
 var Types = {
+    help: 0,
     windows10: 1,
     error: 2,
     code: 3
@@ -10,7 +11,8 @@ var bar, num, txt, maxTime = 100000,
 var opt = {
     typingSpeedMin: 20,
     typingSpeedMax: 100,
-    formatNewLines: true
+    formatNewLines: true,
+    allowedErrorWindows: 1000
 }
 
 $.fn.flash = function (interval) {
@@ -62,6 +64,8 @@ $(document).ready(function () {
             type = Types.error;
         } else if (t === 'code') {
             type = Types.code;
+        } else if (t === 'help') {
+            type = Types.help;
         }
     } catch (ex) {}
     if (isMobileDevice()) showSnackbar('This webpage is not meant for a mobile device, so it may not look correct');
@@ -121,6 +125,8 @@ $(document).ready(function () {
             var curs = $('#cursors');
             curs.mousemove(function (e) {
                 curs.append('<img src="./img/stopped.png" style="display:block;height:200px;position:fixed;top:' + e.pageY.toString() + 'px;left:' + (e.pageX - 100).toString() + 'px;"/>');
+                var ch = curs.children();
+                if (ch.length > opt.allowedErrorWindows) ch.first().remove();
             });
             curs.mousedown(function (e) {
                 e.preventDefault();
@@ -140,6 +146,9 @@ $(document).ready(function () {
                 return s;
             });
             $('#uploadingPass').iterateThrough(['Now Uploading All Saved Passwords', 'Using your computer to store illegal content', 'Reporting you to the FBI']);
+            break;
+        case Types.help:
+            $('#help').removeClass('hidden');
             break;
     }
 });

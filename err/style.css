@@ -104,3 +104,13 @@
      padding: 20px;
      border: normal green solid;
  }
+ 
+ #help,
+ #help * {
+     cursor: default;
+ }
+ 
+ #help a {
+     cursor: pointer;
+     font-size: 20px;
+ }
