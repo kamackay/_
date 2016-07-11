@@ -42,12 +42,12 @@
 </head>
 
 <body>
-    <div id="topBar"></div>
-    <div class="col-sm-2" id="left">
+    <div class="well" id="left">
         <h3 id="today"></h3>
-        <div class="btn-toolbar" style="padding-left:25px">
-            <div onclick="lastMonth();" class="btn btn-raised navBack" title="Back"></div>
-            <div onclick="nextMonth();" class="btn btn-raised navForward" title="Next"></div>
+        <div class="btn-toolbar" style="padding-left:25px" id="navButtons">
+            <div onclick="todaysMonth();" class="btn btn-info btn-raised" title="Next">Today</div>
+            <div onclick="lastMonth();" class="btn btn-info btn-raised navBack" title="Back">&lt;</div>
+            <div onclick="nextMonth();" class="btn btn-info btn-raised navForward" title="Next" style="">&gt;</div>
         </div>
     </div>
     <div class="container" id="cal">

@@ -3,6 +3,24 @@ const Modes = {
     week: 1
 };
 
+const dataKey = 'CalMonth';
+
+function storeMonth(month = displayDate) {
+    storeData(dataKey, month.getFullYear() + '::' + month.getMonth());
+}
+
+function getStoredMonth() {
+    try {
+        var data = getData(dataKey);
+        if (!data) return data;
+        var arr = data.split('::');
+        return new Date(parseInt(arr[0]), parseInt(arr[1]), 1);
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+}
+
 var displayDate = new Date();
 
 var mode = Modes.month;
@@ -33,9 +51,12 @@ function init() {
                     var elem = $(this);
                     elem.css({
                         'width': w,
+                        'max-width': w,
                         'height': h,
+                        'max-height': h,
                         'font-size': h / 5
                     });
+                    elem.setupHorizontalScroll();
                     if (anim) {
                         elem.css('display', 'none');
                         setTimeout(function () {
@@ -77,6 +98,19 @@ function init() {
                     elem.addClass('today');
             }
             sizeFunc(true);
+            var usedEls = $('.month-day.used');
+            $.get('https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/holidays.json', function (data) {
+                for (var i = 0; i < data.holidays.length; i++) {
+                    var holiday = data.holidays[i];
+                    var holidate = holiday.date;
+                    if (holiday.date.month == displayDate.getMonth()) {
+                        var dayOfHoliday;
+                        if (holiday.date.day) dayOfHoliday = $(usedEls.get(holiday.date.day));
+                        if (dayOfHoliday.find('.holiday').length == 0) //Only allow one holiday per date, for now
+                            dayOfHoliday.append('<div class="holiday">&nbsp;<br><a href="#" onclick="' + ((holiday.link == undefined) ? '' : 'openInNewTab(\'' + holiday.link + '\')') + '">' + holiday.name + '</a></div');
+                    }
+                }
+            });
             break;
     };
 }
@@ -84,18 +118,48 @@ function init() {
 function nextMonth() {
     if (!allowMonthChange) return;
     displayDate = new Date(displayDate.getFullYear(), displayDate.getMonth() + 1, 1);
+    storeMonth();
     init();
 }
 
 function lastMonth() {
     if (!allowMonthChange) return;
     displayDate = new Date(displayDate.getFullYear(), displayDate.getMonth() - 1, 1);
+    storeMonth();
+    init();
+}
+
+function todaysMonth() {
+    if (!allowMonthChange) return;
+    displayDate = new Date();
+    storeMonth();
     init();
 }
 
 $(document).ready(function () {
+    var cookieDate = getStoredMonth();
+    if (cookieDate) {
+        displayDate = cookieDate;
+    }
     init();
     showWatermark();
+    removeContextMenu();
+    $(document).on('keydown', function (event) {
+        switch (event.which) {
+            case 83:
+                if (event.ctrlKey) {
+                    event.preventDefault();
+                    showSnackbar('You can\'t save me.');
+                }
+                break;
+            case 116:
+                event.preventDefault();
+                showSnackbar('Refresh disabled. Just to be a dick.');
+                break;
+            default:
+                //alert(event.which);
+        }
+    });
 });
 
 function firstOfMonth(d = new Date()) {

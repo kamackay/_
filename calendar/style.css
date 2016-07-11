@@ -6,10 +6,19 @@
     height: 50px;
 }
 
+#left {
+    display: inline-block;
+    float: left;
+    width: 15%;
+    min-width: 200px;
+}
+
+#left * {}
+
 .navForward {
-    background-image: url(./img/next.png);
+    /*background-image: url(./img/next.png);
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center;/**/
     cursor: pointer;
     border: 0 none;
     height: 30px;
@@ -20,16 +29,21 @@
 }
 
 .navBack {
-    background-image: url(./img/back.png);
+    /*background-image: url(./img/back.png);
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center;/**/
     cursor: pointer;
     border: 0 none;
-    height: 30px;
     padding: 0 2px;
     width: 30px;
     -moz-user-select: none;
     -webkit-user-select: none;
+}
+
+#navButtons .btn-info {
+    height: 30px;
+    text-transform: none;
+    padding: 5px;
 }
 
 #cal {
@@ -44,7 +58,7 @@
 }
 
 #month .month-day {
-    display: inline-block;
+    display: inline-flex;
     border: thin black solid;
     min-height: 100px;
 }
@@ -59,6 +73,7 @@
 
 #month .month-day.used {
     background-color: white;
+    overflow-y: auto;
 }
 
 #month .month-day:not(.used) {
@@ -67,4 +82,10 @@
 
 #month .month-day.today {
     background-color: lightcoral;
+}
+
+.holiday {
+    display: block;
+    padding: 5px;
+    font-size: 15px;
 }
