@@ -7,52 +7,9 @@ var Types = {
 
 var bar, num, txt, maxTime = 100000,
     type = 1;
-
-var opt = {
-    typingSpeedMin: 20,
-    typingSpeedMax: 100,
-    formatNewLines: true,
-    allowedErrorWindows: 1000
-}
-
-$.fn.flash = function (interval) {
-    var vis = true,
-        t = $(this);
-    window.setInterval(function () {
-        if (vis) t.fadeOut(100);
-        else t.fadeIn(100);
-        vis = !vis;
-    }, interval);
-}
-
-$.fn.typeOut = function (str, complete = function () {}) {
-    if (str.length === 0) {
-        complete();
-        return;
-    }
-    var t = $(this);
-    var c = str.charAt(0);
-    var s;
-    switch (c) {
-        case "\n":
-            s = "<br>"
-            break;
-        case '\t':
-            s = '<p style="display:inline-block;">&nbsp;&nbsp;&nbsp;&nbsp;</p>';
-            break;
-        case ' ':
-            c = '&nbsp;';
-        default:
-            s = '<p style="display:inline-block;">' + c + '</p>';
-            break;
-    }
-    t.append(s);
-    setTimeout(function () {
-        t.typeOut(str.substr(1))
-    }, rand(opt.typingSpeedMin, opt.typingSpeedMax));
-}
-
+    
 $(document).ready(function () {
+    opt.allowedErrorWindows = 1000;
     removeContextMenu();
     var search = window.location.search.substr(1);
     var params = search.split('&');

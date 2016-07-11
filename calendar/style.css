@@ -1,0 +1,66 @@
+#topBar {
+    width: 100vw;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 50px;
+}
+
+#cal {
+    padding-top: 50px;
+}
+
+#month {
+    display: inline-block;
+    font-size: 0px;
+    width: 100%;
+    height: 85vh;
+}
+
+#month .month-day {
+    display: inline-block;
+    border: thin black solid;
+    min-height: 100px;
+}
+
+#month .month-head {
+    display: inline-block;
+    border: thin black solid;
+    text-align: center;
+    color: lightgray;
+    background-color: black;
+}
+
+#month .month-day.used {
+    background-color: white;
+}
+
+#month .month-day:not(.used) {
+    background-color: #aaaaaa;
+}
+
+.navForward {
+    background-image: url(./img/next.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    border: 0 none;
+    height: 30px;
+    padding: 0 2px;
+    width: 30px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+.navBack {
+    background-image: url(./img/back.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    border: 0 none;
+    height: 30px;
+    padding: 0 2px;
+    width: 30px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
