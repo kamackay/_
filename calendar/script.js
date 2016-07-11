@@ -6,10 +6,14 @@ const Modes = {
 var displayDate = new Date();
 
 var mode = Modes.month;
+var allowMonthChange = true;
 
 function init() {
     var todayEl = $('#today');
-    todayEl.typeOut(getMonthName(displayDate) + ', ' + displayDate.getFullYear().toString());
+    allowMonthChange = false;
+    todayEl.typeOut(getMonthName(displayDate) + ', ' + displayDate.getFullYear().toString(), function () {
+        allowMonthChange = true
+    });
     switch (mode) {
         case Modes.month:
             var monthEl = $('#month');
@@ -35,8 +39,6 @@ function init() {
                     if (anim) {
                         elem.css('display', 'none');
                         setTimeout(function () {
-                            /*if (elem.hasClass('used')) /**/
-                            //elem.show(1000);
                             elem.fadeIn(1000);
                         }, timeToShow);
                         timeToShow += 100;
@@ -61,7 +63,7 @@ function init() {
             $(window).resize(function () {
                 sizeFunc(false);
             });
-            sizeFunc(true);
+            var today = new Date();
             var first = firstOfMonth(displayDate);
             var els = monthEl.find('.month-day');
             var f = first.getDay(),
@@ -71,22 +73,30 @@ function init() {
                 var elem = $(els.get(i));
                 elem.html(x.toString());
                 elem.addClass('used');
+                if (x == today.getDate() && displayDate.getMonth() == today.getMonth() && displayDate.getFullYear() == today.getFullYear())
+                    elem.addClass('today');
             }
+            sizeFunc(true);
             break;
     };
 }
 
 function nextMonth() {
+    if (!allowMonthChange) return;
     displayDate = new Date(displayDate.getFullYear(), displayDate.getMonth() + 1, 1);
     init();
 }
 
 function lastMonth() {
+    if (!allowMonthChange) return;
     displayDate = new Date(displayDate.getFullYear(), displayDate.getMonth() - 1, 1);
     init();
 }
 
-$(document).ready(init);
+$(document).ready(function () {
+    init();
+    showWatermark();
+});
 
 function firstOfMonth(d = new Date()) {
     return new Date(d.getFullYear(), d.getMonth(), 0);
