@@ -106,6 +106,27 @@ function init() {
                     if (holiday.date.month == displayDate.getMonth()) {
                         var dayOfHoliday;
                         if (holiday.date.day) dayOfHoliday = $(usedEls.get(holiday.date.day));
+                        else if (holiday.date.week) {
+                            if (holiday.date.week === 'last') {
+                                //The last week of the month
+                                var dayNum = holiday.date.dayOfWeek;
+                                var potential = $(els.get(dayNum));
+                                while (!potential.hasClass('used')) {
+                                    dayNum -= 7;
+                                    potential = $(els.get(dayNum));
+                                }
+                                dayOfHoliday = potential;
+                            } else {
+                                var dayNum = holiday.date.dayOfWeek;
+                                var potential = $(els.get(dayNum));
+                                while (!potential.hasClass('used')) {
+                                    dayNum += 7;
+                                    potential = $(els.get(dayNum));
+                                }
+                                potential = $(els.get(dayNum + (holiday.date.week * 7)));
+                                dayOfHoliday = potential;
+                            }
+                        }
                         if (dayOfHoliday.find('.holiday').length == 0) //Only allow one holiday per date, for now
                             dayOfHoliday.append('<div class="holiday">&nbsp;<br><a href="#" onclick="' + ((holiday.link == undefined) ? '' : 'openInNewTab(\'' + holiday.link + '\')') + '">' + holiday.name + '</a></div');
                     }
@@ -142,7 +163,7 @@ $(document).ready(function () {
         displayDate = cookieDate;
     }
     init();
-    showWatermark();
+    if (!isMobileDevice()) showWatermark();
     removeContextMenu();
     $(document).on('keydown', function (event) {
         switch (event.which) {

@@ -6,8 +6,8 @@ var Types = {
 }
 
 var bar, num, txt, maxTime = 100000,
-    type = 1;
-    
+    type = Types.help;
+
 $(document).ready(function () {
     opt.allowedErrorWindows = 1000;
     removeContextMenu();
@@ -16,7 +16,7 @@ $(document).ready(function () {
     try {
         var t = params[0].split('=')[1];
         if (t === 'win10') {
-            //Default, so just move on
+            type = Types.windows10;
         } else if (t === 'error') {
             type = Types.error;
         } else if (t === 'code') {
@@ -24,7 +24,9 @@ $(document).ready(function () {
         } else if (t === 'help') {
             type = Types.help;
         }
-    } catch (ex) {}
+    } catch (ex) {
+        type = Types.help;
+    }
     if (isMobileDevice()) showSnackbar('This webpage is not meant for a mobile device, so it may not look correct');
     $(document).on('keydown', function (e) {
         switch (e.which) {
