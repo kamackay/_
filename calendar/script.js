@@ -5,7 +5,8 @@ const Modes = {
 
 const Keys = {
     dataKey: 'CalMonth',
-    animKey: 'animations'
+    animKey: 'animations',
+    holidaysKey: 'holidays'
 };
 
 function storeMonth(month = displayDate) {
@@ -24,16 +25,29 @@ function getStoredMonth() {
     }
 }
 
-var settings = {};
-settings.anim = true;
+var settings = {
+    anim: true,
+    holidays: true
+};
 
 var displayDate = new Date();
 
 var mode = Modes.month;
 var allowMonthChange = true;
 
+function holidaysSH() {
+    if (settings.holidays) {
+        $.each($('body').find('.holiday'), function (n, o) {
+            $(this).css('display', 'block');
+        });
+    } else $.each($('body').find('.holiday'), function (n, o) {
+        $(this).css('display', 'none');
+    });
+}
+
 function init() {
     if (!settings.anim) $('#showAnim').prop('checked', false);
+    if (!settings.holidays) $('#showHolidays').prop('checked', false);
     $('#selectDate').hide();
     $('#today').show();
     storeMonth();
@@ -176,6 +190,7 @@ function todaysMonth() {
 
 $(document).ready(function () {
     settings.anim = (getData(Keys.animKey) === 'true');
+    settings.holidays = (getData(Keys.holidaysKey) === 'true');
     var cookieDate = getStoredMonth();
     if (cookieDate) displayDate = cookieDate;
     init();
@@ -230,4 +245,10 @@ function setMonth(month) {
 function toggleAnimations() {
     settings.anim = !settings.anim;
     storeData(Keys.animKey, settings.anim.toString());
+}
+
+function toggleHolidays() {
+    settings.holidays = !settings.holidays;
+    storeData(Keys.holidaysKey, settings.holidays.toString());
+    holidaysSH();
 }
