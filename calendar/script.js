@@ -3,10 +3,13 @@ const Modes = {
     week: 1
 };
 
-const dataKey = 'CalMonth';
+const Keys = {
+    dataKey: 'CalMonth',
+    animKey: 'animations'
+};
 
 function storeMonth(month = displayDate) {
-    storeData(dataKey, month.getFullYear() + '::' + month.getMonth());
+    storeData(Keys.dataKey, month.getFullYear() + '::' + month.getMonth());
 }
 
 function getStoredMonth() {
@@ -21,20 +24,27 @@ function getStoredMonth() {
     }
 }
 
+var settings = {};
+settings.anim = true;
+
 var displayDate = new Date();
 
 var mode = Modes.month;
 var allowMonthChange = true;
 
 function init() {
+    if (!settings.anim) $('#showAnim').prop('checked', false);
     $('#selectDate').hide();
     $('#today').show();
     storeMonth();
     var todayEl = $('#today');
-    allowMonthChange = false;
-    todayEl.typeOut(getMonthName(displayDate) + ', ' + displayDate.getFullYear().toString(), function () {
-        allowMonthChange = true
-    });
+    var text = getMonthName(displayDate) + ', ' + displayDate.getFullYear().toString();
+    if (settings.anim) {
+        allowMonthChange = false;
+        todayEl.typeOut(text, function () {
+            allowMonthChange = true
+        });
+    } else todayEl.html(text);
     $('#selectedMonth').html(getMonthName(displayDate));
     $('#selectedYear').val(displayDate.getFullYear().toString())
     switch (mode) {
@@ -66,7 +76,7 @@ function init() {
                         setTimeout(function () {
                             elem.fadeIn(1000);
                         }, timeToShow);
-                        timeToShow += 100;
+                        timeToShow += 50;
                     }
                 });
                 var index = 0,
@@ -76,9 +86,9 @@ function init() {
                     elem.css({
                         'width': w,
                         'font-size': h / 7.5
-                    });
+                    }).html(arr[index++]);
                     if (anim) {
-                        elem.css('display', 'none').html(arr[index++]);
+                        elem.css('display', 'none');
                         setTimeout(function () {
                             elem.fadeIn();
                         }, 750);
@@ -101,7 +111,7 @@ function init() {
                 if (x == today.getDate() && displayDate.getMonth() == today.getMonth() && displayDate.getFullYear() == today.getFullYear())
                     elem.addClass('today');
             }
-            sizeFunc(true);
+            sizeFunc(settings.anim);
             var usedEls = $('.month-day.used');
             $.get('https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/holidays.json', function (data) {
                 for (var i = 0; i < data.holidays.length; i++) {
@@ -165,10 +175,11 @@ function todaysMonth() {
 }
 
 $(document).ready(function () {
+    settings.anim = (getData(Keys.animKey) === 'true');
     var cookieDate = getStoredMonth();
     if (cookieDate) displayDate = cookieDate;
     init();
-    if (!isMobileDevice()) showWatermark();
+    if (!isMobileDevice()) showWatermark(settings.anim);
     removeContextMenu();
     $(document).on('keydown', function (event) {
         switch (event.which) {
@@ -186,7 +197,7 @@ $(document).ready(function () {
                 //alert(event.which);
         }
     });
-    $('#today').dblclick(function (e) {
+    $('#today').click(function (e) {
         $('#selectDate').show();
         $('#today').hide();
     });
@@ -214,4 +225,9 @@ function firstOfMonth(d = new Date()) {
 function setMonth(month) {
     displayDate = new Date(displayDate.getFullYear(), month, 1);
     $('#selectedMonth').html(getMonthName(displayDate));
+}
+
+function toggleAnimations() {
+    settings.anim = !settings.anim;
+    storeData(Keys.animKey, settings.anim.toString());
 }

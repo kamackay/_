@@ -15,10 +15,10 @@
     <meta name="author" content="Keith MacKay">
     <link rel="icon" href="./cal.ico">
     <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/bootstrap.css">
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/tether.css">
     <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/material.css">
     <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/ripples.css">
     <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/style.css">
-    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/tether.css">
     <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/snackbar.css">
     <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/jquery-ui.css">
     <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/jquery-ui.structure.css">
@@ -26,10 +26,10 @@
     <link rel='stylesheet' href='//cdn.jsdelivr.net/font-hack/2.020/css/hack-extended.min.css'>
     <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/jquery.js"></script>
     <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/tether.js"></script>
     <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/bootstrap.js"></script>
     <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/ripples.js"></script>
     <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/material.js"></script>
-    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/tether.js"></script>
     <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/clock.js"></script>
     <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/snackbar.js"></script>
     <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/script.js"></script>
@@ -66,6 +66,7 @@
                 </ul>
             </div>
             <input class="form-control" type="text" name="selectedYear" maxlength="4" id="selectedYear">
+            <span class="caret hidden"></span>
             <button onclick="init()" class="btn btn-raised btn-primary">Go</button>
         </div>
         <div class="btn-toolbar" style="padding-left:25px" id="navButtons">
@@ -73,6 +74,12 @@
             <div onclick="lastMonth();" class="btn btn-info btn-raised navBack" title="Back">&lt;</div>
             <div onclick="nextMonth();" class="btn btn-info btn-raised navForward" title="Next" style="">&gt;</div>
         </div>
+    </div>
+    <div id="bottomLeft" class="form-group">
+        <span class="togglebutton" id="showDate">
+        <label>
+            <input type="checkbox" id="showAnim" onclick="toggleAnimations();" checked><span class="toggle"></span>Animations
+        </label>
     </div>
     <div class="container" id="cal">
         <div id="month"></div>

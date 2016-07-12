@@ -6,6 +6,10 @@
     height: 50px;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 #left {
     display: inline-block;
     float: left;
@@ -107,4 +111,15 @@
     display: block;
     padding: 5px;
     font-size: 15px;
+}
+
+#bottomLeft {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    margin: 1vw;
+}
+
+#bottomLeft * {
+    color: #222222;
 }
