@@ -9,7 +9,7 @@ var bar, num, txt, maxTime = 100000,
     type = Types.help;
 
 $(document).ready(function () {
-    opt.allowedErrorWindows = 1000;
+    opt.allowedErrorWindows = 4000;
     removeContextMenu();
     var search = window.location.search.substr(1);
     var params = search.split('&');

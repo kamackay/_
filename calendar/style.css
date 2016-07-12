@@ -46,8 +46,23 @@
     padding: 5px;
 }
 
+#selectDate a.btn.dropdown-toggle {
+    padding: 5px;
+}
+
+#selectedYear {
+    display: inline-block;
+    max-width: 25%;
+    padding: 5px;
+}
+
 #cal {
     padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#selectDate li:hover {
+    cursor: pointer;
 }
 
 #month {
@@ -82,6 +97,10 @@
 
 #month .month-day.today {
     background-color: lightcoral;
+}
+
+#today {
+    cursor: pointer;
 }
 
 .holiday {

@@ -27,11 +27,16 @@ var mode = Modes.month;
 var allowMonthChange = true;
 
 function init() {
+    $('#selectDate').hide();
+    $('#today').show();
+    storeMonth();
     var todayEl = $('#today');
     allowMonthChange = false;
     todayEl.typeOut(getMonthName(displayDate) + ', ' + displayDate.getFullYear().toString(), function () {
         allowMonthChange = true
     });
+    $('#selectedMonth').html(getMonthName(displayDate));
+    $('#selectedYear').val(displayDate.getFullYear().toString())
     switch (mode) {
         case Modes.month:
             var monthEl = $('#month');
@@ -56,7 +61,6 @@ function init() {
                         'max-height': h,
                         'font-size': h / 5
                     });
-                    elem.setupHorizontalScroll();
                     if (anim) {
                         elem.css('display', 'none');
                         setTimeout(function () {
@@ -127,8 +131,11 @@ function init() {
                                 dayOfHoliday = potential;
                             }
                         }
-                        if (dayOfHoliday.find('.holiday').length == 0) //Only allow one holiday per date, for now
+                        if (dayOfHoliday.find('.holiday').length == 0) { //Only allow one holiday per date, for now
                             dayOfHoliday.append('<div class="holiday">&nbsp;<br><a href="#" onclick="' + ((holiday.link == undefined) ? '' : 'openInNewTab(\'' + holiday.link + '\')') + '">' + holiday.name + '</a></div');
+                            dayOfHoliday.addClass('hasHoliday');
+                            dayOfHoliday.setupHorizontalScroll();
+                        }
                     }
                 }
             });
@@ -159,9 +166,7 @@ function todaysMonth() {
 
 $(document).ready(function () {
     var cookieDate = getStoredMonth();
-    if (cookieDate) {
-        displayDate = cookieDate;
-    }
+    if (cookieDate) displayDate = cookieDate;
     init();
     if (!isMobileDevice()) showWatermark();
     removeContextMenu();
@@ -181,8 +186,32 @@ $(document).ready(function () {
                 //alert(event.which);
         }
     });
+    $('#today').dblclick(function (e) {
+        $('#selectDate').show();
+        $('#today').hide();
+    });
+    var selectedYear = $('#selectedYear');
+    selectedYear.bind('keypress', function (event) {
+        var regex = new RegExp("^[0-9]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        if (event.which == 13) init();
+        if (!regex.test(key)) {
+            event.preventDefault();
+            return false;
+        }
+        if (selectedYear.val().length == 3) {
+            setTimeout(function () {
+                displayDate = new Date(parseInt(selectedYear.val()), displayDate.getMonth(), 1);
+            }, 10);
+        } /**/
+    });
 });
 
 function firstOfMonth(d = new Date()) {
     return new Date(d.getFullYear(), d.getMonth(), 0);
+}
+
+function setMonth(month) {
+    displayDate = new Date(displayDate.getFullYear(), month, 1);
+    $('#selectedMonth').html(getMonthName(displayDate));
 }
