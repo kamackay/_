@@ -94,7 +94,7 @@ function init() {
                     elem.hover(function () {
                         if (!settings.anim || !elem.hasClass('used')) return;
                         elem.animate({
-                            backgroundColor: colors.materialPrimary
+                            backgroundColor: colors.materialWarning
                         }, {
                             duration: 500
                         });
