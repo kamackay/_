@@ -4,18 +4,18 @@ const Modes = {
 };
 
 const Keys = {
-    dataKey: 'CalMonth',
+    dateKey: 'CalMonth',
     animKey: 'animations',
     holidaysKey: 'holidays'
 };
 
 function storeMonth(month = displayDate) {
-    storeData(Keys.dataKey, month.getFullYear() + '::' + month.getMonth());
+    storeData(Keys.dateKey, month.getFullYear() + '::' + month.getMonth());
 }
 
 function getStoredMonth() {
     try {
-        var data = getData(dataKey);
+        var data = getData(Keys.dateKey);
         if (!data) return data;
         var arr = data.split('::');
         return new Date(parseInt(arr[0]), parseInt(arr[1]), 1);
@@ -25,10 +25,7 @@ function getStoredMonth() {
     }
 }
 
-var settings = {
-    anim: true,
-    holidays: true
-};
+settings.holidays = true;
 
 var displayDate = new Date();
 
@@ -40,9 +37,11 @@ function holidaysSH() {
         $.each($('body').find('.holiday'), function (n, o) {
             $(this).css('display', 'block');
         });
-    } else $.each($('body').find('.holiday'), function (n, o) {
-        $(this).css('display', 'none');
-    });
+    } else {
+        $.each($('body').find('.holiday'), function (n, o) {
+            $(this).css('display', 'none');
+        });
+    }
 }
 
 function init() {
@@ -92,6 +91,21 @@ function init() {
                         }, timeToShow);
                         timeToShow += 50;
                     }
+                    elem.hover(function () {
+                        if (!settings.anim || !elem.hasClass('used')) return;
+                        elem.animate({
+                            backgroundColor: colors.materialPrimary
+                        }, {
+                            duration: 500
+                        });
+                    }, function () {
+                        if (!settings.anim || !elem.hasClass('used')) return;
+                        elem.animate({
+                            backgroundColor: (elem.hasClass('today')) ? '#f08080' : colors.white
+                        }, {
+                            duration: 500
+                        });
+                    });
                 });
                 var index = 0,
                     arr = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -133,8 +147,9 @@ function init() {
                     var holidate = holiday.date;
                     if (holiday.date.month == displayDate.getMonth()) {
                         var dayOfHoliday;
-                        if (holiday.date.day) dayOfHoliday = $(usedEls.get(holiday.date.day));
-                        else if (holiday.date.week) {
+                        if (holiday.date.day !== undefined) {
+                            dayOfHoliday = $(usedEls.get(holiday.date.day));
+                        } else if (holiday.date.week !== undefined) {
                             if (holiday.date.week === 'last') {
                                 //The last week of the month
                                 var dayNum = holiday.date.dayOfWeek;
@@ -151,9 +166,15 @@ function init() {
                                     dayNum += 7;
                                     potential = $(els.get(dayNum));
                                 }
-                                potential = $(els.get(dayNum + (holiday.date.week * 7)));
+                                dayNum += (holiday.date.week * 7);
+                                potential = $(els.get(dayNum));
                                 dayOfHoliday = potential;
                             }
+                        }
+                        if (!dayOfHoliday) {
+                            console.log('Couldn\'t find day for ' + holiday.name);
+                            console.log(holiday);
+                            continue;
                         }
                         if (dayOfHoliday.find('.holiday').length == 0) { //Only allow one holiday per date, for now
                             dayOfHoliday.append('<div class="holiday">&nbsp;<br><a href="#" onclick="' + ((holiday.link == undefined) ? '' : 'openInNewTab(\'' + holiday.link + '\')') + '">' + holiday.name + '</a></div');
@@ -164,7 +185,8 @@ function init() {
                 }
             });
             break;
-    };
+    }
+    setTimeout(holidaysSH, 100);
 }
 
 function nextMonth() {
