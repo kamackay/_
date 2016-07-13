@@ -141,6 +141,9 @@ body {
 #numberIn {
     margin-right: auto;
     display: inline-block;
+    background-color: transparent;
+    text-align: right;
+    border: none;
 }
 
 #numberStore {

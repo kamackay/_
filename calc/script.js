@@ -125,6 +125,12 @@ var f = function () {
     } else {
         showWatermark();
     } /**/
+    con.on('keydown', function (e) {
+        e.preventDefault();
+    });
+    con.on('scrollwheel', function (e) {
+        e.preventDefault();
+    });
     window.setInterval(f, 1000);
 }));
 
@@ -132,54 +138,54 @@ var con, store;
 
 function calcButton(btn) {
     if (btn === 'clear') {
-        con.html('0');
+        con.val('0');
         store.html('');
         calc = calcTypes.none;
     } else if (btn === 'plus') { //-----------Addition
-        if (con.html() !== '') transfer('+');
+        if (con.val() !== '') transfer('+');
         calc = calcTypes.add; //--------------Subtraction
     } else if (btn === 'minus') {
-        if (con.html() !== '' && con.html() !== '0') {
+        if (con.val() !== '' && con.val() !== '0') {
             transfer('-');
             calc = calcTypes.minus;
-        } else con.html('-');
+        } else con.val('-');
     } else if (btn === 'equal') { //---------Equal
         if (calc === calcTypes.none) {
-            eq(con.html());
+            eq(con.val());
         } else if (calc === calcTypes.add || calc === calcTypes.minus || calc === calcTypes.multiply || calc === calcTypes.divide || calc === calcTypes.exp || calc === calcTypes.mod)
             basicCalc(calc);
         calc = calcTypes.none;
     } else if (btn === 'divide') {
-        if (con.html() !== '') transfer('&divide;');
+        if (con.val() !== '') transfer('&divide;');
         calc = calcTypes.divide;
     } else if (btn === 'period') {
-        if (!con.html().includes('.')) con.append('.');
+        if (!con.val().includes('.')) con.append('.');
     } else if (btn === 'multiply') {
-        if (con.html() !== '') transfer('<i style="font-size: inherit;" class="material-icons">clear</i>');
+        if (con.val() !== '') transfer('<i style="font-size: inherit;" class="material-icons">clear</i>');
         calc = calcTypes.multiply;
     } else if (btn === 'back') {
-        var current = con.html();
+        var current = con.val();
         if (current.length > 0)
-            con.html(current.substr(0, current.length - 1));
+            con.val(current.substr(0, current.length - 1));
     } else if (btn === 'sqrt') {
-        var num = parseFloat(con.html());
+        var num = parseFloat(con.val());
         store.html('sqrt(' + num.toString() + ') = ' + Math.sqrt(num).toString());
     } else if (btn === 'mod') {
-        if (con.html() !== '') transfer('%');
+        if (con.val() !== '') transfer('%');
         calc = calcTypes.mod; //--------------Modulus
     } else if (btn === 'exp') {
-        if (con.html() !== '') transfer('^');
+        if (con.val() !== '') transfer('^');
         calc = calcTypes.exp;
     } else {
-        if (con.html() === '0') con.html('');
-        con.append(btn);
+        if (con.val() === '0') con.val('');
+        con.val(con.val() + btn);
     }
 }
 
 function basicCalc(kind) {
     var solution;
     try {
-        var n = parseFloat(con.html());
+        var n = parseFloat(con.val());
         store.append(' ' + n.toString() + " ");
         switch (kind) {
             case calcTypes.add:
@@ -201,25 +207,25 @@ function basicCalc(kind) {
                 solution = last % n;
         }
         eq(solution);
-        con.html(solution.toString());
+        con.val(solution.toString());
     } catch (err) {
         alert(err);
     }
 }
 
 function transfer(extra = '', insertZero = true) {
-    store.html(con.html() + (extra ? ' ' + extra : ''));
-    last = parseFloat(con.html());
-    con.html(insertZero ? '0' : '');
+    store.html(con.val() + (extra ? ' ' + extra : ''));
+    last = parseFloat(con.val());
+    con.val(insertZero ? '0' : '');
 }
 
 function eq(num) {
-    con.html('');
+    con.val('');
     store.append('= ' + num.toString() + ' ');
 }
 
 function allPrimes() {
-    var n = parseFloat(con.html());
+    var n = parseFloat(con.val());
     store.html(getAllPrimes(n));
 }
 
@@ -241,7 +247,7 @@ function getAllPrimes(n = 50) {
 }
 
 function factorial() {
-    var num = parseFloat(con.html());
+    var num = parseFloat(con.val());
     if (num < 0) {
         store.html(num.toString() + '! = negative factorial?');
         resetCon();
@@ -260,7 +266,7 @@ function factorial() {
 }
 
 function resetCon() {
-    con.html('0')
+    con.val('0')
 }
 
 var last;

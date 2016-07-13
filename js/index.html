@@ -41,14 +41,17 @@
     <!--https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/-->
 </head>
 
-<body>
+<body class="fullMaterial darkMaterial">
     <div id="contents" class="container">
         <div id="leftBar">
             <div onclick="refreshElements()" class="option" data-toggle="tooltip" data-placement="right" title="Refresh this page">
                 <center><i onclick="" class="material-icons">autorenew</i></center>
             </div>
+            <div onclick="formatCode()" class="option" data-toggle="tooltip" data-placement="right" title="Format Code">
+                <center><i onclick="" class="material-icons">wrap_text</i></center>
+            </div>
         </div>
-        <div class="container" style="position:fixed;left:4vw;width:97vw;">
+        <div id="codeContainer" class="container" style="position:fixed;right:1vw;width:92vw;z-index:1;">
             <center>
                 <h1>Real-time Javascript Environment</h1>
             </center>
