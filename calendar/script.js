@@ -83,7 +83,7 @@ function init() {
                         'height': h,
                         'max-height': h,
                         'font-size': h / 5
-                    });
+                    }).addClass('unselectable');
                     if (anim) {
                         elem.css('display', 'none');
                         setTimeout(function () {
@@ -96,14 +96,16 @@ function init() {
                         elem.animate({
                             backgroundColor: colors.materialWarning
                         }, {
-                            duration: 500
+                            duration: 500,
+                            queue: false
                         });
                     }, function () {
                         if (!settings.anim || !elem.hasClass('used')) return;
                         elem.animate({
                             backgroundColor: (elem.hasClass('today')) ? '#f08080' : colors.white
                         }, {
-                            duration: 500
+                            duration: 500,
+                            queue: false
                         });
                     });
                 });
@@ -114,7 +116,7 @@ function init() {
                     elem.css({
                         'width': w,
                         'font-size': h / 7.5
-                    }).html(arr[index++]);
+                    }).html(arr[index++]).addClass('unselectable');
                     if (anim) {
                         elem.css('display', 'none');
                         setTimeout(function () {
@@ -122,6 +124,10 @@ function init() {
                         }, 750);
                     }
                 });
+                var wind = $(window);
+                if (wind.height() > wind.width()) {
+                    collapseSettings();
+                } else expandSettings();
             }
             $(window).resize(function () {
                 sizeFunc(false);

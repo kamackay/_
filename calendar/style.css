@@ -11,10 +11,12 @@ body {
 }
 
 #left {
+    position: fixed;
+    top: 0px;
     display: inline-block;
     float: left;
     width: 15%;
-    min-width: 200px;
+    min-width: 250px;
 }
 
 #left * {}
@@ -61,8 +63,9 @@ body {
 }
 
 #cal {
+    margin-top: 100px;
     padding-top: 50px;
-    padding-bottom: 50px;
+    padding-bottom: 100px;
 }
 
 #selectDate li:hover {
@@ -113,17 +116,18 @@ body {
     font-size: 15px;
 }
 
-#bottomLeft {
-    position: fixed;
-    left: 0px;
-    bottom: 0px;
-    margin: 1vw;
-}
-
-#bottomLeft * {
-    color: #222222;
-}
-
 #showHolidays {
     margin-left: 10px;
+}
+
+#closeMonthSelect,
+#closeMonthSelect * {
+    font-size: 15px;
+    padding: 0px;
+    margin: 0px;
+}
+
+#selectDate button {
+    padding: 10px;
+    font-size: 20px;
 }
