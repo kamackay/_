@@ -1,1 +1,15 @@
+body {
+    overflow: hidden;
+}
 
+#contents {
+    display: inline-block;
+}
+
+#leftBar>.option {
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, .19);
+    border-radius: 100px;
+    margin: 5px;
+}
+
+#leftBar>.option:hover {}

@@ -22,4 +22,18 @@ $(document).ready(function () {
                 //alert(event.which);
         }
     });
+    $.each($('*'), function (n, o) {
+        $(this).addClass('originalEl');
+    });
 });
+
+function refreshElements() {
+    var newEl = $('*').find('*:not(.originalEl)');
+    $.each(newEl, function (n, o) {
+        $(this).remove();
+    });
+    //$('body').remove();
+    /*$.each($('*:not(.originalEl)'), function (n, o) {
+        
+    });/**/
+}
