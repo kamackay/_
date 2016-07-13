@@ -65,3 +65,6 @@ function formatCode() {
         $('#jsCode').val(prettyCode);
     } else toast('Still Loading, please wait one moment');
 }
+function minifyCode(){
+    toast('This feature isn\'t quite ready yet');
+}
