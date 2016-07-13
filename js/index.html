@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="images/icon.ico">
+    <title>Real-time Javascript playground</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Keith MacKay">
+    <link rel="icon" href="./favicon.ico">
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/bootstrap.css">
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/tether.css">
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/material.css">
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/ripples.css">
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/style.css">
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/snackbar.css">
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/jquery-ui.css">
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/jquery-ui.structure.css">
+    <link rel="stylesheet" href="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/jquery-ui.theme.css">
+    <link rel='stylesheet' href='//cdn.jsdelivr.net/font-hack/2.020/css/hack-extended.min.css'>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/jquery.js"></script>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/tether.js"></script>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/bootstrap.js"></script>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/ripples.js"></script>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/material.js"></script>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/clock.js"></script>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/snackbar.js"></script>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/script.js"></script>
+    <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/mousewheel.js"></script>
+    <!--<script type="text/javascript" src="./progressbar.js"></script><!---->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="text/javascript" src="script.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <!--https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/-->
+</head>
+
+<body>
+    <div id="contents" class="container">
+        <center>
+            <div class="container">
+                <h1>Real-time Javascript Environment</h1>
+                <div class="well label-floating">
+                    <label class="control-label" for="jsCode">Write something to make the label float</label>
+                    <textarea class="form-control" style="max-width:100%;max-height:80vh;height:80vh;padding:10px;" id="jsCode"></textarea>
+                    <button onclick="runCode();" class="btn btn-raised btn-block btn-lg btn-primary">Run Code</button>
+                </div>
+            </div>
+        </center>
+    </div>
+    <div id="snackbar-container"></div>
+</body>
+
+</html>

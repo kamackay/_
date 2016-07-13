@@ -124,10 +124,7 @@ function init() {
                         }, 750);
                     }
                 });
-                var wind = $(window);
-                if (wind.height() > wind.width()) {
-                    collapseSettings();
-                } else expandSettings();
+                collapseSettings();
             }
             $(window).resize(function () {
                 sizeFunc(false);
