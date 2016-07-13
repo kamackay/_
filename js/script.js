@@ -43,7 +43,6 @@ $(document).ready(function () {
         var newCode = codeElement.val();
         if (newCode !== code)
             storeData(Keys.codeStore, codeElement.val());
-
     }, 100);
 });
 
