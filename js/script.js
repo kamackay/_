@@ -6,17 +6,23 @@ function runCode() {
 }
 
 const Keys = {
-    codeStore: 'codeStore'
+    codeStore: 'codeStore',
+    formatOnSave: 'formatOnSave'
 }
 
+settings.prettyPrintOnSave = false;
+
 $(document).ready(function () {
+    settings.prettyPrintOnSave = (getData(Keys.formatOnSave) === 'true');
+    if (!settings.prettyPrintOnSave) $('#formatWhenSave').prop('checked', false);
+    collapseSettings();
     $(document).on('keydown', function (event) {
         switch (event.which) {
             case 83:
                 if (event.ctrlKey) {
                     event.preventDefault();
-                    showSnackbar('You can\'t save me.');
-                    formatCode();
+                    //showSnackbar('You can\'t save me.');
+                    if (settings.prettyPrintOnSave) formatCode();
                 }
                 break;
             case 116:
@@ -27,16 +33,14 @@ $(document).ready(function () {
                 //alert(event.which);
         }
     });
+    showWatermark();
     $.each($('*'), function (n, o) {
-        $(this).addClass('originalEl');
-    });
-    try {
-        $.get('https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/beautify.js', function (data) {
-            $('head').append('<script id="beautifyScript" class="originalEl" type="text/javascript">' + data + '</script>');
-        });
-    } catch (err) {
-        console.log("Error loading script:: - " + err);
-    }
+        $(this).addClass('unselectable');
+    }); /**/
+    setTimeout(function () {
+        //loadJSAsync('https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/xregexp.js', 'xregxScript');
+        loadJSAsync('https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/beautify.js', 'beautifyScript');
+    }, 100);
     var codeElement = $('#jsCode');
     codeElement.on('keydown', function (e) {
         switch (e.which) {
@@ -57,17 +61,24 @@ $(document).ready(function () {
     });
     var casheData = getData(Keys.codeStore);
     if (casheData && casheData.length) codeElement.val(casheData);
-    setInterval(function () {
-        var newCode = codeElement.val();
-        if (newCode !== code)
-            storeData(Keys.codeStore, codeElement.val());
-    }, 100);
+    setInterval(saveCode, 100);
 });
+
+function saveCode() {
+    var codeElement = $('#jsCode');
+    var newCode = codeElement.val();
+    if (newCode !== code)
+        storeData(Keys.codeStore, codeElement.val());
+}
 
 var code = "";
 
 function beautifyAvailable() {
     return $('#beautifyScript').length;
+}
+
+function xRegXAvailable() {
+    return $('#xregxScript').length
 }
 
 function refreshElements() {
@@ -86,8 +97,11 @@ function formatCode() {
 }
 
 function minifyCode() {
-    var text = $('#jsCode').val();
-    $.post('https://javascript-minifier.com/raw?input=' + encodeURI(text), function (data) {
-        $('#jsCode').val(data);
-    });
+    var minCode = js_minify($('#jsCode').val());
+    $('#jsCode').val(minCode);
+}
+
+function formatOnSave() {
+    settings.prettyPrintOnSave = !settings.prettyPrintOnSave;
+    storeData(Keys.formatOnSave, settings.prettyPrintOnSave.toString());
 }

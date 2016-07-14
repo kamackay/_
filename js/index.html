@@ -34,6 +34,7 @@
     <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/snackbar.js"></script>
     <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/script.js"></script>
     <script type="text/javascript" src="https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/mousewheel.js"></script>
+
     <!--<script type="text/javascript" src="./progressbar.js"></script><!---->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script type="text/javascript" src="script.js"></script>
@@ -47,11 +48,14 @@
             <div onclick="refreshElements()" class="option" data-toggle="tooltip" data-placement="right" title="Refresh this page">
                 <center><i onclick="" class="material-icons">autorenew</i></center>
             </div>
-            <div onclick="formatCode()" class="option" data-toggle="tooltip" data-placement="right" title="Format Code">
+            <div onclick="formatCode()" class="option" data-toggle="tooltip" data-placement="right" title="Format (Pretty Print) Code">
                 <center><i onclick="" class="material-icons">wrap_text</i></center>
             </div>
             <div onclick="minifyCode()" class="option" data-toggle="tooltip" data-placement="right" title="Minify Code">
                 <center><i onclick="" class="material-icons">vertical_align_bottom</i></center>
+            </div>
+            <div style="position:fixed;bottom:5px;" id="settingsShortcut" onclick="expandSettings()" class="option" data-toggle="tooltip" data-placement="right" title="Settings">
+                <center><i onclick="" class="material-icons">settings</i></center>
             </div>
         </div>
         <div id="codeContainer" class="container" style="position:fixed;right:1vw;width:92vw;z-index:1;">
@@ -64,6 +68,12 @@
                 <button onclick="runCode();" class="btn btn-raised btn-block btn-lg btn-primary">Run Code</button>
             </div>
         </div>
+    </div>
+    <div id="settings" class="form-group">
+        <span class="togglebutton">
+        <label>
+            <input type="checkbox" id="showAnim" onclick="formatOnSave()" checked><span class="toggle"></span>Animations
+        </label>
     </div>
     <div id="snackbar-container"></div>
 </body>
