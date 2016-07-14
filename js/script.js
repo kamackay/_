@@ -16,6 +16,7 @@ $(document).ready(function () {
                 if (event.ctrlKey) {
                     event.preventDefault();
                     showSnackbar('You can\'t save me.');
+                    formatCode();
                 }
                 break;
             case 116:
@@ -34,9 +35,26 @@ $(document).ready(function () {
             $('head').append('<script id="beautifyScript" class="originalEl" type="text/javascript">' + data + '</script>');
         });
     } catch (err) {
-        console.log("Error loading script:: - " + err)
+        console.log("Error loading script:: - " + err);
     }
     var codeElement = $('#jsCode');
+    codeElement.on('keydown', function (e) {
+        switch (e.which) {
+            case 9:
+                e.preventDefault();
+                if (e.shiftKey) {
+                    var start = codeElement.get(0).selectionStart;
+                    var end = codeElement.get(0).selectionEnd;
+                } else {
+                    var start = codeElement.get(0).selectionStart;
+                    var end = codeElement.get(0).selectionEnd;
+                    codeElement.val(codeElement.val().substring(0, start) + "\t" + codeElement.val().substring(end));
+                    codeElement.get(0).selectionStart =
+                        codeElement.get(0).selectionEnd = start + 1;
+                }
+                break;
+        }
+    });
     var casheData = getData(Keys.codeStore);
     if (casheData && casheData.length) codeElement.val(casheData);
     setInterval(function () {
@@ -53,10 +71,11 @@ function beautifyAvailable() {
 }
 
 function refreshElements() {
-    var newEl = $('*').find('*:not(.originalEl)');
+    redirectTo('./');
+    /*var newEl = $('*').find('*:not(.originalEl)');
     $.each(newEl, function (n, o) {
         $(this).remove();
-    });
+    });/**/ //This code doesn't 100% work
 }
 
 function formatCode() {
@@ -65,6 +84,10 @@ function formatCode() {
         $('#jsCode').val(prettyCode);
     } else toast('Still Loading, please wait one moment');
 }
-function minifyCode(){
-    toast('This feature isn\'t quite ready yet');
+
+function minifyCode() {
+    var text = $('#jsCode').val();
+    $.post('https://javascript-minifier.com/raw?input=' + encodeURI(text), function (data) {
+        $('#jsCode').val(data);
+    });
 }
