@@ -105,3 +105,7 @@ function formatOnSave() {
     settings.prettyPrintOnSave = !settings.prettyPrintOnSave;
     storeData(Keys.formatOnSave, settings.prettyPrintOnSave.toString());
 }
+
+function downloadCode() {
+    download('script.js', '//This code was generated on http://keithmackay.com/js/ \n\n' + js_beautify($('#jsCode').val()));
+}
