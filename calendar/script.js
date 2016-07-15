@@ -213,6 +213,15 @@ function todaysMonth() {
     init();
 }
 
+function scrollDown() {
+    $('body').animate({
+        scrollTop: $('body').height() * 2
+    }, {
+        duration: 1000,
+        queue: false
+    });
+}
+
 $(document).ready(function () {
     settings.anim = (getData(Keys.animKey) !== 'false');
     settings.holidays = (getData(Keys.holidaysKey) !== 'false');
