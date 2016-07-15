@@ -487,3 +487,9 @@ img.link {
 span.ability-score {
     cursor: default;
 }
+
+button.btn {
+    word-break: normal;
+    word-wrap: break-word;
+    white-space: normal;
+}

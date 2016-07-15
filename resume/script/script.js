@@ -4,6 +4,7 @@ function scrollToTop() {
 
 $(document).ready(function () {
     setSizes();
+    if (isMobileDevice()) $('#resumeiFrame').hide();
 });
 
 $(window).resize(function () {
