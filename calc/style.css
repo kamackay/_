@@ -144,6 +144,8 @@ body {
     background-color: transparent;
     text-align: right;
     border: none;
+    width: 100%;
+    overflow-x: auto;
 }
 
 #numberStore {

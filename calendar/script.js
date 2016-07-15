@@ -64,13 +64,10 @@ function init() {
         case Modes.month:
             var monthEl = $('#month');
             monthEl.html('');
-            monthEl.append('<div class="month-head"></div><div class="month-head"></div><div class="month-head"></div><div class="month-head"></div><div class="month-head"></div><div class="month-head"></div><div class="month-head"></div>');
-            monthEl.append('<div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div>');
-            monthEl.append('<div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div>');
-            monthEl.append('<div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div>');
-            monthEl.append('<div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div>');
-            monthEl.append('<div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div>');
-            monthEl.append('<div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div><div class="month-day">&nbsp;</div>');
+            var count = 0;
+            while (count++ < 7) monthEl.append('<div class="month-head"></div>');
+            count = 0;
+            while (count++ < 42) monthEl.append('<div class="month-day">&nbsp;</div>');
             var sizeFunc = function (anim = false) {
                 var w = monthEl.width() / 7;
                 var h = monthEl.height() / 6;
@@ -94,15 +91,18 @@ function init() {
                     elem.hover(function () {
                         if (!settings.anim || !elem.hasClass('used')) return;
                         elem.animate({
-                            backgroundColor: colors.materialWarning
+                            backgroundColor: colors.materialWarning,
+                            color: colors.black
                         }, {
                             duration: 500,
                             queue: false
                         });
                     }, function () {
+                        var isT = elem.hasClass('today')
                         if (!settings.anim || !elem.hasClass('used')) return;
                         elem.animate({
-                            backgroundColor: (elem.hasClass('today')) ? '#f08080' : colors.white
+                            backgroundColor: (isT) ? '#1D62AC' : colors.white,
+                            color: isT ? colors.white : colors.black
                         }, {
                             duration: 500,
                             queue: false
@@ -214,8 +214,8 @@ function todaysMonth() {
 }
 
 $(document).ready(function () {
-    settings.anim = (getData(Keys.animKey) === 'true');
-    settings.holidays = (getData(Keys.holidaysKey) === 'true');
+    settings.anim = (getData(Keys.animKey) !== 'false');
+    settings.holidays = (getData(Keys.holidaysKey) !== 'false');
     var cookieDate = getStoredMonth();
     if (cookieDate) displayDate = cookieDate;
     init();
@@ -256,6 +256,7 @@ $(document).ready(function () {
             }, 10);
         } /**/
     });
+    loadBackgroundAsync('https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/material_white.png')
 });
 
 function firstOfMonth(d = new Date()) {

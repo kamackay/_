@@ -137,8 +137,8 @@ function increment() {
             }
         } catch (err) {}
     }
-    num += .01;
+    num += rand(.01, .04);
     bar.animate(num);
     txt.html((Math.floor(num * 100)).toString() + '%');
-    setTimeout(increment, (Math.random(Math.random() * (maxTime - 5000 + 1)) + 2000));
+    setTimeout(increment, rand(7500, 4000));
 }

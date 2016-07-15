@@ -93,6 +93,12 @@ body {
     background-color: black;
 }
 
+#month .month-day.used,
+#month .month-day.used *:not(a) {
+    cursor: default;
+    padding: 5px;
+}
+
 #month .month-day.used {
     background-color: white;
     overflow-y: auto;
@@ -100,10 +106,12 @@ body {
 
 #month .month-day:not(.used) {
     background-color: #aaaaaa;
+    padding: 5px;
 }
 
 #month .month-day.today {
-    background-color: lightcoral;
+    background-color: #1D62AC;
+    color: white;
 }
 
 #today {

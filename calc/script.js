@@ -44,6 +44,7 @@ var f = function () {
 };
 
 ($(document).ready(function () {
+    loadJSAsync('https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/math.js', 'mathScript');
     $('#output').html("Output:<br>");
     $(document).on('keydown', function (e) {
         if (e.shiftKey) {
@@ -54,10 +55,16 @@ var f = function () {
             return;
         } else if (e.ctrlKey) {
             if (e.which === 83) showSnackbar('You can\'t save me...');
+            if (e.which === 86) {
+                return;
+            }
             e.preventDefault();
             return;
         }
         switch (e.which) {
+            case 35:
+            case 36:
+                return;
             case 8:
                 calcButton('back');
                 break;
@@ -94,11 +101,16 @@ var f = function () {
                 e.preventDefault();
                 showSnackbar('Refresh disabled. Just to be a dick.');
                 break;
+            case 86:
+                if (e.ctrlKey) {
+                    return;
+                }
+                break;
             default:
                 var a = e.which - 48;
                 if (a >= 0 && a <= 9) calcButton(a);
                 else if (a >= 48 && a <= 57) calcButton(a - 48);
-                // else alert(e.which);
+                //else alert(e.which);
                 break;
                 //Keys to ignore
             case 16:
@@ -126,7 +138,16 @@ var f = function () {
         showWatermark();
     } /**/
     con.on('keydown', function (e) {
-        e.preventDefault();
+
+        switch (e.which) {
+            case 35:
+            case 36:
+                return;
+            case 86:
+                if (e.ctrlKey) return;
+            default:
+                e.preventDefault();
+        }
     });
     con.on('scrollwheel', function (e) {
         e.preventDefault();
@@ -151,7 +172,9 @@ function calcButton(btn) {
         } else con.val('-');
     } else if (btn === 'equal') { //---------Equal
         if (calc === calcTypes.none) {
-            eq(con.val());
+            parseMath();
+        } else if (containsNonNumeric(con.val())) {
+            parseMath();
         } else if (calc === calcTypes.add || calc === calcTypes.minus || calc === calcTypes.multiply || calc === calcTypes.divide || calc === calcTypes.exp || calc === calcTypes.mod)
             basicCalc(calc);
         calc = calcTypes.none;
@@ -211,12 +234,36 @@ function basicCalc(kind) {
     } catch (err) {
         alert(err);
     }
+    scrollAnswerRight();
 }
 
 function transfer(extra = '', insertZero = true) {
     store.html(con.val() + (extra ? ' ' + extra : ''));
     last = parseFloat(con.val());
     con.val(insertZero ? '0' : '');
+}
+
+function parseMath() {
+    var text = con.val();
+    var answer;
+    try {
+        answer = math.eval(text);
+    } catch (err) {
+        answer = '?';
+    }
+    store.html(text + ' = ' + answer);
+    scrollAnswerRight()
+}
+
+function scrollAnswerRight() {
+    setTimeout(function () {
+        store.animate({
+            scrollLeft: store.width() * 2
+        }, {
+            duration: 200,
+            queue: false
+        })
+    }, 100);
 }
 
 function eq(num) {
@@ -267,6 +314,19 @@ function factorial() {
 
 function resetCon() {
     con.val('0')
+}
+
+function containsNonNumeric(str) {
+    if (!str) return false;
+    for (var i = 0; i < str.length; i++) {
+        var c = str[i];
+        if (c !== '0' && c !== '1' && c !== '2' && c !== '3' && c !== '4' && c !== '5' && c !== '6' && c !== '7' && c !== '8' && c !== '9') {
+            console.log(c);
+            return true;
+        }
+    }
+    console.log('numbers')
+    return false;
 }
 
 var last;
