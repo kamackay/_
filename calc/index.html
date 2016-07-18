@@ -1,28 +1,17 @@
 <!DOCTYPE html>
-<!-- saved from url=(0076)http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html -->
 <html>
-<!-- MEMO: update me with `git checkout gh-pages && git merge master && git push origin gh-pages` -->
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     <link rel="icon" href="images/icon.ico">
     <title>Online Calculator</title>
-
-    <!-- Material Design fonts -->
     <link rel="stylesheet" href="./Bootstrap Material_files/css" type="text/css">
     <link href="./Bootstrap Material_files/icon" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Bootstrap -->
     <link href="./Bootstrap Material_files/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Bootstrap Material Design -->
     <link href="./Bootstrap Material_files/bootstrap-material-design.css" rel="stylesheet">
     <link href="./Bootstrap Material_files/ripples.min.css" rel="stylesheet">
-
-
     <link href="./Bootstrap Material_files/snackbar.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel='stylesheet' href='//cdn.jsdelivr.net/font-hack/2.020/css/hack-extended.min.css'>
@@ -30,15 +19,15 @@
     <!--https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/ Files-->
 </head>
 
-<body class="">
+<body class="" style="background-color:#878787">
     <h1 class="hidden">Calculations</h1>
     <div class="container">
-        <div class="well calculator">
+        <div id="calculator" class="well calculator">
             <div class="console" id="console">
                 <input type="text" id="numberIn">
                 <div id="numberStore"></div>
             </div>
-            <div class="numbers">
+            <div class="numbers" style="">
                 <div class="">
                     <div onclick="calcButton(7)" id="button7" data-ripple-color="#ffffff" data-ripple-duration="5" class="btn btn-num">7</div>
                     <div onclick="calcButton(4)" data-ripple-color="#ffffff" class="btn btn-num">4</div>

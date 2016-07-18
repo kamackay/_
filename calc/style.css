@@ -15,12 +15,14 @@ body {
     /**/
 }
 
-.calculator {
+.calculator,
+#calculator {
     width: 60%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
+    margin-top: 30px;
     overflow-y: auto;
+    border-radius: 10px;
     height: 95vh;
 }
 
