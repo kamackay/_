@@ -66,6 +66,7 @@ $(document).ready(function () {
 
 function saveCode(alertAfter = false) {
     var codeElement = $('#jsCode');
+    if (settings.prettyPrintOnSave) formatCode();
     var newCode = codeElement.val();
     if (newCode !== code) {
         storeData(Keys.codeStore, newCode);
