@@ -61,14 +61,17 @@ $(document).ready(function () {
     });
     var casheData = getData(Keys.codeStore);
     if (casheData && casheData.length) codeElement.val(casheData);
-    setInterval(saveCode, 100);
+    //setInterval(saveCode, 100);
 });
 
-function saveCode() {
+function saveCode(alertAfter = false) {
     var codeElement = $('#jsCode');
     var newCode = codeElement.val();
-    if (newCode !== code)
-        storeData(Keys.codeStore, codeElement.val());
+    if (newCode !== code) {
+        storeData(Keys.codeStore, newCode);
+        code = newCode;
+    }
+    if (alertAfter) toast('Saved Code Successfully!')
 }
 
 var code = "";
@@ -108,4 +111,11 @@ function formatOnSave() {
 
 function downloadCode() {
     download('script.js', '//This code was generated on http://keithmackay.com/js/ \n\n' + js_beautify($('#jsCode').val()));
+}
+
+function help() {
+    $.get('./help.html', function (data) {
+        // popupForm(data);
+    });
+    popupForm('<div><h1>This feature is still being developed, please check back later to see if it has been completed. Sorry!</h1><div class="materialLoad"></div></div>')
 }
