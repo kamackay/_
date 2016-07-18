@@ -34,6 +34,7 @@ $(document).ready(function () {
         }
     });
     showWatermark();
+    usingMaterialLoading()
     $.each($('*'), function (n, o) {
         $(this).addClass('unselectable');
     }); /**/
