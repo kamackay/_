@@ -78,7 +78,7 @@
             </div>
         </div>
     </div>
-    <div id="settings" class="form-group">
+    <div id="settings" class="form-group input-group">
         <span class="togglebutton">
         <label>
             <input type="checkbox" id="formatWhenSave" onclick="formatOnSave()" checked><span class="toggle"></span>Pretty Print Code on Save
@@ -91,6 +91,10 @@
         </span>
         <span class="togglebutton">
             <label><input type="checkbox" id="autoSaveToggle" onclick="toggleAutoSave()" checked><span class="toggle"></span>Auto Save</label>
+        </span>
+        <span style="display:inline;" id="autoSaveSpan"><span class="input-group-addon">Every</span>
+        <input type="text" id="autoSaveTime" class="form-control" style="max-width:100px;">
+        <span class="input-group-addon">Seconds</span>
         </span>
     </div>
     <div id="snackbar-container"></div>

@@ -9,20 +9,26 @@ const Keys = {
     codeStore: 'codeStore',
     formatOnSave: 'formatOnSave',
     minComments: 'minComments',
-    autoSave: 'autoSave'
+    autoSave: 'autoSave',
+    autoSaveTime: 'autoSaveTime'
 }
 
 settings.prettyPrintOnSave = false;
 settings.keepCommentsOnMin = false;
 settings.autoSave = false;
+settings.autoSaveTime = 500;
 
 $(document).ready(function () {
-    settings.prettyPrintOnSave = (getData(Keys.formatOnSave) === 'true');
-    settings.keepCommentsOnMin = (getData(Keys.minComments) === 'true');
-    settings.autoSave = (getData(Keys.autoSave) === 'true');
+    settings.prettyPrintOnSave = (getData(Keys.formatOnSave) !== 'false');
+    settings.keepCommentsOnMin = (getData(Keys.minComments) !== 'false');
+    settings.autoSave = (getData(Keys.autoSave) !== 'false');
     if (!settings.prettyPrintOnSave) $('#formatWhenSave').prop('checked', false);
     if (!settings.keepCommentsOnMin) $('#commentsOnMin').prop('checked', false);
-    if (!settings.autoSave) $('#autoSaveToggle').prop('checked', false);
+    if (!settings.autoSave) {
+        $('#autoSaveToggle').prop('checked', false);
+        $('#autoSaveSpan').fadeOut()
+    } else autoSave();
+    settings.autoSaveTime = parseFloat(getData(Keys.autoSaveTime) || '1000');
     collapseSettings();
     $(document).on('keydown', function (event) {
         switch (event.which) {
@@ -48,7 +54,6 @@ $(document).ready(function () {
         $(this).addClass('unselectable');
     }); /**/
     setTimeout(function () {
-        //loadJSAsync('https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/xregexp.js', 'xregxScript');
         loadJSAsync('https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/beautify.js', 'beautifyScript');
     }, 100);
     var codeElement = $('#jsCode');
@@ -71,8 +76,21 @@ $(document).ready(function () {
     });
     var casheData = getData(Keys.codeStore);
     if (casheData && casheData.length) codeElement.val(casheData);
-    //setInterval(saveCode, 100);
+    var autoSaveEl = $('#autoSaveTime');
+    var r5 = function (e) {
+        updateAutoSaveTime();
+    };
+    autoSaveEl.on('blur', r5).on('focusout', r5);
+    autoSaveEl.val((settings.autoSaveTime / 1000).toString())
+
 });
+
+function updateAutoSaveTime(num) {
+    var autoSaveEl = $('#autoSaveTime');
+    var num = num || parseFloat(autoSaveEl.val()) * 1000;
+    settings.autoSaveTime = num;
+    storeData(Keys.autoSaveTime, num.toString())
+}
 
 function saveCode(alertAfter = false) {
     var codeElement = $('#jsCode');
@@ -83,6 +101,13 @@ function saveCode(alertAfter = false) {
         code = newCode;
     }
     if (alertAfter) toast('Saved Code Successfully!')
+}
+
+function autoSave() {
+    if (!settings.autoSave) return;
+    saveCode();
+    console.log('autoSave');
+    setTimeout(autoSave, settings.autoSaveTime)
 }
 
 var code = "";
@@ -97,10 +122,6 @@ function xRegXAvailable() {
 
 function refreshElements() {
     redirectTo('./');
-    /*var newEl = $('*').find('*:not(.originalEl)');
-    $.each(newEl, function (n, o) {
-        $(this).remove();
-    });/**/ //This code doesn't 100% work
 }
 
 function formatCode() {
@@ -121,7 +142,12 @@ function formatOnSave() {
 }
 
 function toggleAutoSave() {
-
+    settings.autoSave = !settings.autoSave;
+    storeData(Keys.autoSave, settings.autoSave.toString());
+    if (settings.autoSave) {
+        $('#autoSaveSpan').fadeIn()
+        autoSave();
+    } else $('#autoSaveSpan').fadeOut()
 }
 
 function commentsOnMin() {
