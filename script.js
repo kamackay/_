@@ -1,3 +1,8 @@
+const anim = {
+    easingType: 'easeOutExpo',
+    time: 5000
+};
+
 $(document).ready(function () {
     removeContextMenu();
     $(document).on('keydown', function (e) {
@@ -45,9 +50,9 @@ function dropIn() {
         t.animate({
             top: t.attr('drop-top')
         }, {
-            duration: t.attr('drop-time') || 2000,
+            duration: t.attr('drop-time') || anim.time,
             queue: false,
-            easing: 'easeOutBounce'
+            easing: anim.easingType
         });
     });
     setTimeout(dropUp, 0);
@@ -60,9 +65,9 @@ function dropUp() {
         t.animate({
             top: t.attr('drop-top') || 0
         }, {
-            duration: t.attr('drop-time') || 2000,
+            duration: t.attr('drop-time') || anim.time,
             queue: false,
-            easing: 'easeOutBounce',
+            easing: anim.easingType,
             complete: function () {}
         });
     });
@@ -73,12 +78,14 @@ function bounceUp() {
     var els = $('.bounceUp');
     $.each(els, function (n, o) {
         var t = $(this);
+        t.fadeIn(anim.time);
         t.animate({
-            top: t.attr('drop-top') || 0
+            top: t.attr('drop-top') || 0,
+            opacity: 100
         }, {
-            duration: t.attr('drop-time') || 2000,
+            duration: t.attr('drop-time') || anim.time,
             queue: false,
-            easing: 'easeOutBounce',
+            easing: anim.easingType,
             complete: function () {
                 var f = function () {
                     $.each($('.vScrollable'), function (n, o) {
