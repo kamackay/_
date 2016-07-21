@@ -50,7 +50,7 @@ function dropIn() {
             easing: 'easeOutBounce'
         });
     });
-    setTimeout(dropUp, 2000);
+    setTimeout(dropUp, 0);
 }
 
 function dropUp() {

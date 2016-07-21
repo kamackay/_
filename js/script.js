@@ -7,14 +7,18 @@ function runCode() {
 
 const Keys = {
     codeStore: 'codeStore',
-    formatOnSave: 'formatOnSave'
+    formatOnSave: 'formatOnSave',
+    minComments: 'minComments'
 }
 
 settings.prettyPrintOnSave = false;
+settings.keepCommentsOnMin = false;
 
 $(document).ready(function () {
     settings.prettyPrintOnSave = (getData(Keys.formatOnSave) === 'true');
+    settings.keepCommentsOnMin = (getData(Keys.minComments) === 'true');
     if (!settings.prettyPrintOnSave) $('#formatWhenSave').prop('checked', false);
+    if (!settings.keepCommentsOnMin) $('#commentsOnMin').prop('checked', false);
     collapseSettings();
     $(document).on('keydown', function (event) {
         switch (event.which) {
@@ -22,6 +26,7 @@ $(document).ready(function () {
                 if (event.ctrlKey) {
                     event.preventDefault();
                     //showSnackbar('You can\'t save me.');
+                    saveCode(true);
                     if (settings.prettyPrintOnSave) formatCode();
                 }
                 break;
@@ -102,13 +107,18 @@ function formatCode() {
 }
 
 function minifyCode() {
-    var minCode = js_minify($('#jsCode').val());
+    var minCode = js_minify($('#jsCode').val(), settings.keepCommentsOnMin);
     $('#jsCode').val(minCode);
 }
 
 function formatOnSave() {
     settings.prettyPrintOnSave = !settings.prettyPrintOnSave;
     storeData(Keys.formatOnSave, settings.prettyPrintOnSave.toString());
+}
+
+function commentsOnMin() {
+    settings.keepCommentsOnMin = !settings.keepCommentsOnMin;
+    storeData(Keys.minComments, settings.keepCommentsOnMin.toString());
 }
 
 function downloadCode() {
