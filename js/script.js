@@ -8,17 +8,21 @@ function runCode() {
 const Keys = {
     codeStore: 'codeStore',
     formatOnSave: 'formatOnSave',
-    minComments: 'minComments'
+    minComments: 'minComments',
+    autoSave: 'autoSave'
 }
 
 settings.prettyPrintOnSave = false;
 settings.keepCommentsOnMin = false;
+settings.autoSave = false;
 
 $(document).ready(function () {
     settings.prettyPrintOnSave = (getData(Keys.formatOnSave) === 'true');
     settings.keepCommentsOnMin = (getData(Keys.minComments) === 'true');
+    settings.autoSave = (getData(Keys.autoSave) === 'true');
     if (!settings.prettyPrintOnSave) $('#formatWhenSave').prop('checked', false);
     if (!settings.keepCommentsOnMin) $('#commentsOnMin').prop('checked', false);
+    if (!settings.autoSave) $('#autoSaveToggle').prop('checked', false);
     collapseSettings();
     $(document).on('keydown', function (event) {
         switch (event.which) {
@@ -114,6 +118,10 @@ function minifyCode() {
 function formatOnSave() {
     settings.prettyPrintOnSave = !settings.prettyPrintOnSave;
     storeData(Keys.formatOnSave, settings.prettyPrintOnSave.toString());
+}
+
+function toggleAutoSave() {
+
 }
 
 function commentsOnMin() {
