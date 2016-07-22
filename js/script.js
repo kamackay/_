@@ -106,7 +106,6 @@ function saveCode(alertAfter = false, style = true) {
 function autoSave() {
     if (!settings.autoSave) return;
     saveCode(false, false);
-    console.log('autoSave');
     setTimeout(autoSave, settings.autoSaveTime)
 }
 
@@ -132,6 +131,7 @@ function formatCode() {
 }
 
 function minifyCode() {
+    console.log(settings);
     var minCode = js_minify($('#jsCode').val(), settings.keepCommentsOnMin);
     $('#jsCode').val(minCode);
 }
@@ -157,6 +157,12 @@ function commentsOnMin() {
 
 function downloadCode() {
     download('script.js', '//This code was generated on http://keithmackay.com/js/ \n\n' + js_beautify($('#jsCode').val()));
+}
+
+function showAvailableFrameworks() {
+    $.get('./frameworks.html', function (data) {
+        popupForm(data);
+    });
 }
 
 function help() {
