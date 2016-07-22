@@ -20,7 +20,7 @@ settings.autoSaveTime = 500;
 
 $(document).ready(function () {
     settings.prettyPrintOnSave = (getData(Keys.formatOnSave) !== 'false');
-    settings.keepCommentsOnMin = (getData(Keys.minComments) !== 'false');
+    settings.keepCommentsOnMin = getStoredBool(Keys.minComments, false);
     settings.autoSave = (getData(Keys.autoSave) !== 'false');
     if (!settings.prettyPrintOnSave) $('#formatWhenSave').prop('checked', false);
     if (!settings.keepCommentsOnMin) $('#commentsOnMin').prop('checked', false);
@@ -92,9 +92,9 @@ function updateAutoSaveTime(num) {
     storeData(Keys.autoSaveTime, num.toString())
 }
 
-function saveCode(alertAfter = false) {
+function saveCode(alertAfter = false, style = true) {
     var codeElement = $('#jsCode');
-    if (settings.prettyPrintOnSave) formatCode();
+    if (settings.prettyPrintOnSave && style) formatCode();
     var newCode = codeElement.val();
     if (newCode !== code) {
         storeData(Keys.codeStore, newCode);
@@ -105,7 +105,7 @@ function saveCode(alertAfter = false) {
 
 function autoSave() {
     if (!settings.autoSave) return;
-    saveCode();
+    saveCode(false, false);
     console.log('autoSave');
     setTimeout(autoSave, settings.autoSaveTime)
 }
