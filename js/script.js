@@ -19,9 +19,9 @@ settings.autoSave = false;
 settings.autoSaveTime = 500;
 
 $(document).ready(function () {
-    settings.prettyPrintOnSave = (getData(Keys.formatOnSave) !== 'false');
+    settings.prettyPrintOnSave = getStoredBool(Keys.formatOnSave, true);
     settings.keepCommentsOnMin = getStoredBool(Keys.minComments, false);
-    settings.autoSave = (getData(Keys.autoSave) !== 'false');
+    settings.autoSave = getStoredBool(Keys.autoSave, true);
     if (!settings.prettyPrintOnSave) $('#formatWhenSave').prop('checked', false);
     if (!settings.keepCommentsOnMin) $('#commentsOnMin').prop('checked', false);
     if (!settings.autoSave) {
