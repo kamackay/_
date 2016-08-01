@@ -360,29 +360,58 @@
                         <br>Click to show a live preview
                         <br>
                     </p>
-                    <button onclick="openInNewTab('https://keithmackay.com/clock/')" class="btn btn-raised btn-info">Visit live version</button>
+                    <button onclick="openInNewTab('http://keithmackay.com/clock/')" class="btn btn-raised btn-info">Visit live version</button>
                 </div>
                 <div class="col-md-4 project-view" onclick="showResumePreview();">
-                    <span class="project-icon"><img src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/clock-128.ico" alt="Clock Icon"></span>
+                    <span class="project-icon"><img src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/resume.png" alt="Icon"></span>
                     <h2 class="project-title">Resume Webpage</h2>
                     <p class="project-desc">This resume, which uses a number of javascript libraries
                         <br>
                         <br>Click to show a live preview (Inception)</p>
                 </div>
                 <div class="col-md-4 project-view" onclick="showCalcPreview();">
-                    <span class="project-icon"><img src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/clock-128.ico" alt="Clock Icon"></span>
+                    <span class="project-icon"><img src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/calculator.ico" alt="Icon"></span>
                     <h2 class="project-title">Calculator</h2>
-                    <p class="project-desc">This resume, which uses a number of javascript libraries
+                    <p class="project-desc">Online Calculator
                         <br>
                         <br>Click to show a live preview</p>
                     <br>
-                    <button onclick="openInNewTab('https://keithmackay.com/calc/')" class="btn btn-raised btn-info">Visit live version</button>
+                    <button onclick="openInNewTab('http://keithmackay.com/calc/')" class="btn btn-raised btn-info">Visit live version</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 project-view" onclick="showJSPreview();">
+                    <span class="project-icon"><img src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/javascript.png" alt="Icon"></span>
+                    <h2 class="project-title">Javascript Environment</h2>
+                    <p class="project-desc">Online Live Javascript Environment with interactive terminal
+                        <br>
+                        <br>Click to show a live preview</p>
+                    <br>
+                    <button onclick="openInNewTab('http://keithmackay.com/js/')" class="btn btn-raised btn-info">Visit live version</button>
                 </div>
             </div>
             <script>
+                function showJSPreview() {
+                    hideFrame($('#clockFrame'));
+                    hideFrame($('#calcFrame'));
+                    hideFrame($('#resumeFrame'));
+                    var frame = $('#jsFrame')
+                    if (frame.hasClass('page-hidden')) {
+                        frame.animate({
+                            height: $(window).height() / 1.25
+                        }, {
+                            duration: 500,
+                            easing: 'swing',
+                            queue: false
+                        });
+                        frame.removeClass('page-hidden')
+                    } else hideFrame(frame);
+                }
+
                 function showResumePreview() {
                     hideFrame($('#clockFrame'));
                     hideFrame($('#calcFrame'));
+                    hideFrame($('#jsFrame'));
                     var frame = $('#resumeFrame');
                     if (frame.hasClass('page-hidden')) {
                         frame.animate({
@@ -399,6 +428,7 @@
                 function showClockPreview() {
                     hideFrame($('#resumeFrame'));
                     hideFrame($('#calcFrame'));
+                    hideFrame($('#jsFrame'));
                     var frame = $('#clockFrame');
                     if (frame.hasClass('page-hidden')) {
                         frame.animate({
@@ -414,7 +444,8 @@
 
                 function showCalcPreview() {
                     hideFrame($('#resumeFrame'));
-                    hideFrame($('#clockFrame'))
+                    hideFrame($('#clockFrame'));
+                    hideFrame($('#jsFrame'));
                     var frame = $('#calcFrame');
                     if (frame.hasClass('page-hidden')) {
                         frame.animate({
@@ -450,7 +481,7 @@
         <script>
             //Adding the frames after a timeout so that they aren't loaded first
             function delayAddFrames() {
-                $('#displayRow').append('<iframe class="page page-hidden" id="clockFrame" src="../clock/"></iframe><iframe class="page page-hidden" id="resumeFrame" src="../resume/"></iframe><iframe class="page page-hidden" id="calcFrame" src="../calc/"></iframe>');
+                $('#displayRow').append('<iframe class="page page-hidden" id="clockFrame" src="../clock/"></iframe><iframe class="page page-hidden" id="resumeFrame" src="../resume/"></iframe><iframe class="page page-hidden" id="calcFrame" src="../calc/"></iframe><iframe class="page page-hidden" id="jsFrame" src="../js/"></iframe>');
             }
 
             $(document).ready(function() {
