@@ -389,11 +389,44 @@
                     <br>
                     <button onclick="openInNewTab('http://keithmackay.com/js/')" class="btn btn-raised btn-info">Visit live version</button>
                 </div>
+                <div class="col-md-4 project-view" onclick="showCalendarPreview();">
+                    <span class="project-icon"><img src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/calendar.ico" alt="Icon"></span>
+                    <h2 class="project-title">Calendar</h2>
+                    <p class="project-desc">Animated Web Calendar
+                        <br>
+                        <br>Click to show a live preview</p>
+                    <br>
+                    <button onclick="openInNewTab('http://keithmackay.com/calendar/')" class="btn btn-raised btn-info">Visit live version</button>
+                </div>
+                <div class="col-md-4 project-view" onclick="openInNewTab('https://play.google.com/store/apps/developer?id=Keith+MacKay')">
+                    <span class="project-icon"><img src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/android.png" alt="Icon"></span>
+                    <h2 class="project-title">Android Projects</h2>
+                    <p class='project-desc'>Several Android Projects currently live on the Play Store</p>
+                </div>
             </div>
             <script>
+                function showCalendarPreview() {
+                    hideFrame($('#clockFrame'));
+                    hideFrame($('#calcFrame'));
+                    hideFrame($('#jsFrame'));
+                    hideFrame($('#resumeFrame'));
+                    var frame = $('#calFrame')
+                    if (frame.hasClass('page-hidden')) {
+                        frame.animate({
+                            height: $(window).height() / 1.25
+                        }, {
+                            duration: 500,
+                            easing: 'swing',
+                            queue: false
+                        });
+                        frame.removeClass('page-hidden')
+                    } else hideFrame(frame);
+                }
+
                 function showJSPreview() {
                     hideFrame($('#clockFrame'));
                     hideFrame($('#calcFrame'));
+                    hideFrame($('#calFrame'))
                     hideFrame($('#resumeFrame'));
                     var frame = $('#jsFrame')
                     if (frame.hasClass('page-hidden')) {
@@ -410,6 +443,7 @@
 
                 function showResumePreview() {
                     hideFrame($('#clockFrame'));
+                    hideFrame($('#calFrame'))
                     hideFrame($('#calcFrame'));
                     hideFrame($('#jsFrame'));
                     var frame = $('#resumeFrame');
@@ -427,6 +461,7 @@
 
                 function showClockPreview() {
                     hideFrame($('#resumeFrame'));
+                    hideFrame($('#calFrame'))
                     hideFrame($('#calcFrame'));
                     hideFrame($('#jsFrame'));
                     var frame = $('#clockFrame');
@@ -444,6 +479,7 @@
 
                 function showCalcPreview() {
                     hideFrame($('#resumeFrame'));
+                    hideFrame($('#calFrame'))
                     hideFrame($('#clockFrame'));
                     hideFrame($('#jsFrame'));
                     var frame = $('#calcFrame');
@@ -481,7 +517,7 @@
         <script>
             //Adding the frames after a timeout so that they aren't loaded first
             function delayAddFrames() {
-                $('#displayRow').append('<iframe class="page page-hidden" id="clockFrame" src="../clock/"></iframe><iframe class="page page-hidden" id="resumeFrame" src="../resume/"></iframe><iframe class="page page-hidden" id="calcFrame" src="../calc/"></iframe><iframe class="page page-hidden" id="jsFrame" src="../js/"></iframe>');
+                $('#displayRow').append('<iframe class="page page-hidden" id="clockFrame" src="../clock/"></iframe><iframe class="page page-hidden" id="resumeFrame" src="../resume/"></iframe><iframe class="page page-hidden" id="calcFrame" src="../calc/"></iframe><iframe class="page page-hidden" id="jsFrame" src="../js/"></iframe><iframe class="page page-hidden" id="calFrame" src="../calendar/"></iframe>');
             }
 
             $(document).ready(function() {
