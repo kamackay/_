@@ -91,9 +91,11 @@ function bounceUp() {
                     $.each($('.vScrollable'), function (n, o) {
                         var e = $(this);
                         var p = e.position();
-                        if (p.top + e.height() > $(window).height()) {
+                        var sizeE = function () {
                             e.css('height', $(window).height() - p.top);
                         }
+                        sizeE();
+                        $(window).resize(sizeE);
                     });
                 }
                 $(window).resize(f);
