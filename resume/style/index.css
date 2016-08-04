@@ -446,6 +446,9 @@ a {
 .project-view {
     padding: 10px;
     border-radius: 8px;
+    min-height: 300px;
+    text-align: center;
+    padding-top: 30px;
 }
 
 .project-view > .project-icon {
