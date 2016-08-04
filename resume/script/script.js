@@ -4,7 +4,11 @@ function scrollToTop() {
 
 $(document).ready(function () {
     setSizes();
-    if (isMobileDevice()) $('#resumeiFrame').hide();
+    if (isMobileDevice()) {
+        $('#resumeiFrame').hide();
+        $('#keithImg').hide();
+        $('#ncsuLogo').hide();
+    }
 });
 
 $(window).resize(function () {
