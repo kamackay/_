@@ -91,7 +91,8 @@ $(document).ready(function () {
                 e.preventDefault();
             });
             var currentdate = new Date();
-            $('#errTime').html((currentdate.getHours() % 12).toString() + ':' + currentdate.getMinutes().toString() + ' ' + (currentdate.getHours() > 12 ? 'PM' : 'AM'));
+            var min = currentdate.getMinutes().toString();
+            $('#errTime').html((((currentdate.getHours() - 1) % 12) + 1).toString() + ':' + ((min.length == 1) ? '0' + min : min) + ' ' + (currentdate.getHours() > 12 ? 'PM' : 'AM'));
             break;
         case Types.code:
             $('#code').removeClass('hidden');
