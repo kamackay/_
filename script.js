@@ -22,7 +22,7 @@ $(document).ready(function () {
                 break;
         }
     }); /**/
-    $('#contents').append('<img id="page-back" class="full" style="z-index: 100;opacity:0" src="http://keithmackay.com/imagesmaterial_dark.jpg" />');
+    $('#contents').append('<img id="page-back" class="full" style="z-index: 100;opacity:0" src="http://keithmackay.com/images/material_dark.jpg" />');
     back = $('#page-back');
     back.load(function () {
         back.animate({

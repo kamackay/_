@@ -265,7 +265,7 @@ $(document).ready(function () {
             }, 10);
         } /**/
     });
-    loadBackgroundAsync('http://keithmackay.com/imagesmaterial_white.png')
+    loadBackgroundAsync('http://keithmackay.com/images/material_white.png')
 });
 
 function firstOfMonth(d = new Date()) {
