@@ -54,7 +54,7 @@ $(document).ready(function () {
         $(this).addClass('unselectable');
     }); /**/
     setTimeout(function () {
-        loadJSAsync('https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/beautify.js', 'beautifyScript');
+        loadJSAsync('http://keithmackay.com/devfiles/beautify.js', 'beautifyScript');
     }, 100);
     var codeElement = $('#jsCode');
     codeElement.on('keydown', function (e) {

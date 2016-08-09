@@ -44,7 +44,7 @@ var f = function () {
 };
 
 ($(document).ready(function () {
-    loadJSAsync('https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/math.js', 'mathScript');
+    loadJSAsync('http://keithmackay.com/devfiles/math.js', 'mathScript');
     $('#output').html("Output:<br>");
     $(document).on('keydown', function (e) {
         if (e.shiftKey) {
