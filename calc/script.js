@@ -61,6 +61,7 @@ var f = function () {
             e.preventDefault();
             return;
         }
+        //alert(e.which);
         switch (e.which) {
             case 35:
             case 36:
@@ -182,7 +183,9 @@ function calcButton(btn) {
         if (con.val() !== '') transfer('&divide;');
         calc = calcTypes.divide;
     } else if (btn === 'period') {
-        if (!con.val().includes('.')) con.append('.');
+        if (!con.val().includes('.')) {
+            con.val(con.val() + '.');
+        }
     } else if (btn === 'multiply') {
         if (con.val() !== '') transfer('<i style="font-size: inherit;" class="material-icons">clear</i>');
         calc = calcTypes.multiply;
