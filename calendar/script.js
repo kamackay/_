@@ -265,7 +265,7 @@ $(document).ready(function () {
             }, 10);
         } /**/
     });
-    loadBackgroundAsync('https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/material_white.png')
+    loadBackgroundAsync('http://keithmackay.com/imagesmaterial_white.png')
 });
 
 function firstOfMonth(d = new Date()) {

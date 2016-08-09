@@ -91,7 +91,7 @@ function notSupported () {
 }
 
 function showWatermark (anim = true) {
-  $('body').append('<div onclick="openInNewTab(\'http://keithmackay.com\')" id="watermark" style="position: fixed; top: -100%;left: 200%;width: 200px; opacity: .5; cursor: pointer;"><img style="width: 200px;" src="https://googledrive.com/host/0B6vDuBGkfv-HSjhIcnJEUF9yc0k/watermark.png" alt="watermark"/></div>')
+  $('body').append('<div onclick="openInNewTab(\'http://keithmackay.com\')" id="watermark" style="position: fixed; top: -100%;left: 200%;width: 200px; opacity: .5; cursor: pointer;"><img style="width: 200px;" src="http://keithmackay.com/imageswatermark.png" alt="watermark"/></div>')
   var place = function (time = 10) {$('#watermark').animate({left: $(window).width() - 200, top: 0}, {duration: time, queue: false, easing: 'swing'});if ($(window).height() > $(window).width())$('#watermark').hide()}
   if (anim) place(10000)
   else $('#watermark').css({'left': $(window).width() - 200, 'top': 0})
