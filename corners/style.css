@@ -43,3 +43,10 @@ body {
 .row * {
     display: inline;
 }
+
+.animationTile {
+    position: fixed;
+    background-color: white;
+    border: thin black solid;
+    pointer-events: none;
+}
