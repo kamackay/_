@@ -13,15 +13,16 @@ $(document).ready(function () {
         board.append(rowEl)
     }
     setSizes()
+    $(window).resize(setSizes)
 })
 
 function setSizes() {
     var board = $('#board');
     var size = Math.min(board.width() / colCount, board.height() / rowCount);
     $.each(board.find('*.row'), function (n, o) {
-        $(this).css('height', size - 2);
+        $(this).css('height', size - 6);
     });
     $.each(board.find('*.tile'), function (n, o) {
-        $(this).css('height', size - 2).css('width', size);
+        $(this).css('height', size - 6).css('width', (board.width() * .12) - 2);
     });
 }

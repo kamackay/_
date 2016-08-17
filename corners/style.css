@@ -16,6 +16,8 @@ body {
 #board div.row {
     margin-bottom: 5px;
     margin-top: 5px;
+    margin-left: 0px;
+    padding-left: 0px;
 }
 
 #board {
