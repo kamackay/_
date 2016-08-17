@@ -1,18 +1,27 @@
 var colCount, rowCount
 var board
 $(document).ready(function () {
-  board = $('#board')
-  colCount = Android.getColumnCount()
-  rowCount = Android.getRowCount()
-  // Android.toast('rows = ' + rowCount.toString())
-  // Android.toast('columns = ' + colCount.toString())
-  for (var y = 0; y < rowCount; y++) {
-    var rowElement = "<div class='row'>"
-    for (var x = 0; x < colCount; x++) {
-      rowElement += '<div class="tile" id="tile' + x.toString() + y.toString() + '"></div>'
+    board = $('#board')
+    colCount = 8 //Android.getColumnCount()
+    rowCount = 12 //Android.getRowCount()
+    for (var y = 0; y < rowCount; y++) {
+        rowEl = '<div class="row">'
+        for (var x = 0; x < colCount; x++) {
+            rowEl += '<div class="tile" id="tile' + y.toString() + x.toString() + '"></div>'
+        }
+        rowEl += '</div>'
+        board.append(rowEl)
     }
-    rowElement += '</div>'
-    // Android.log(rowElement)
-    board.append(rowElement)
-  }
+    setSizes()
 })
+
+function setSizes() {
+    var board = $('#board');
+    var size = Math.min(board.width() / colCount, board.height() / rowCount);
+    $.each(board.find('*.row'), function (n, o) {
+        $(this).css('height', size - 2);
+    });
+    $.each(board.find('*.tile'), function (n, o) {
+        $(this).css('height', size - 2).css('width', size);
+    });
+}

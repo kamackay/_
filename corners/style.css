@@ -13,21 +13,29 @@ body {
     margin: 0;
 }
 
+#board div.row {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
 #board {
     position: fixed;
     bottom: 4px;
-    margin: 0;
+    margin: 0px;
+    padding: 0px;
     width: 96vw;
     left: 2vw;
-    height: 80vh;
+    height: 85vh;
     border: solid thin black;
 }
 
 #board .tile {
-    width: 50px;
-    height: 50px;
+    display: inline-block;
     background-color: white;
-    margin:5px;
+    border: thin black solid;
+    padding: 0px;
+    margin-right: 1px;
+    margin-left: 1px;
 }
 
 .row * {
