@@ -1,5 +1,6 @@
 var colCount, rowCount
 var board
+const maxVal = 8;
 
 $.fn.animateRotate = function (angle, duration, easing, complete) {
     var args = $.speed(duration, easing, complete);
@@ -33,10 +34,12 @@ $(document).ready(function () {
     }
     setSizes()
     $(window).resize(setSizes)
-    setTimeout(function () {
-        animTileAway(2, 2);
-    }, 1000)
+    setupTiles();
 })
+
+function tileClick(e) {
+
+}
 
 function setSizes() {
     var board = $('#board');
@@ -45,7 +48,9 @@ function setSizes() {
         $(this).css('height', size - 6);
     });
     $.each(board.find('*.tile'), function (n, o) {
-        $(this).css('height', size - 6).css('width', (board.width() * .12) - 2);
+        var t = $(this);
+        t.css('height', size - 6).css('width', (board.width() * .12) - 2);
+        t.on('click', tileClick);
     });
 }
 
@@ -55,20 +60,46 @@ function animTileAway(x, y) {
     var pos = el.offset();
     $('body').append('<div class="animationTile" id="anim' + id + '" style="top:' + pos.top + 'px;left:' + pos.left + 'px;height:' + el.height() + 'px;width:' + el.width() + 'px;"></div>')
     var animEl = $('#anim' + id);
-    var maxX = $(window).width() * 1.5;
-    var newX = Math.random() * (maxX - (-1 * maxX)) + (-1 * maxX);
+    var w = $(window).width();
+    var maxX = (pos.left > w / 2) ? w * 1.5 : w / 1.5;
+    var minX = (pos.left > w / 2) ? w / 3 : (-1 / 3) * w;
+    var newX = Math.random() * (maxX - minX) + minX;
     animEl.animate({
         top: $(window).height() * 1.5
     }, {
-        duration: 3000,
+        duration: 2500,
         easing: 'swing',
         queue: false
     }).animate({
         left: newX
     }, {
-        duration: 2000,
+        duration: 1500,
         easing: 'swing',
         queue: false
     })
-    animEl.animateRotate(5000, 5000, 'linear')
+    animEl.animateRotate(3000, 3000, 'linear', function () {
+        animEl.remove();
+    })
+}
+
+function getTile(x, y) {
+    return $('#tile' + y.toString() + x.toString());
+}
+
+function setupTiles() {
+    var numFilled = 0,
+        maxVal = colCount * rowCount;
+    for (var x = 0; x < colCount; x++) {
+        for (var y = 0; y < rowCount; y++) {
+            if (numFilled < maxVal && randBool()) {
+                var tile = getTile(x, y);
+                tile.addClass('filled');
+                numFilled++;
+            }
+        }
+    }
+}
+
+function randBool() {
+    return Math.random() > .5;
 }

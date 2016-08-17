@@ -34,10 +34,9 @@ body {
 #board .tile {
     display: inline-block;
     background-color: white;
-    border: thin black solid;
     padding: 0px;
-    margin-right: 1px;
-    margin-left: 1px;
+    margin-right: 2px;
+    margin-left: 2px;
 }
 
 .row * {
@@ -49,4 +48,43 @@ body {
     background-color: white;
     border: thin black solid;
     pointer-events: none;
+}
+
+#board .tile.filled {
+    border: solid thin black;
+    margin-right: 1px;
+    margin-left: 1px;
+    background-color: grey;
+}
+
+#board .tile.filled.filled-1 {
+    background-color: yellow;
+}
+
+#board .tile.filled.filled-2 {
+    background-color: green;
+}
+
+#board .tile.filled.filled-3 {
+    background-color: #007800;
+}
+
+#board .tile.filled.filled-4 {
+    background-color: red;
+}
+
+#board .tile.filled.filled-5 {
+    background-color: cyan;
+}
+
+#board .tile.filled.filled-6 {
+    background-color: magenta;
+}
+
+#board .tile.filled.filled-7 {
+    background-color: ;
+}
+
+#board .tile.filled.filled-8 {
+    background-color: gray;
 }
