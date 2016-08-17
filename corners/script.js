@@ -1,6 +1,6 @@
 var colCount, rowCount
 var board
-const maxVal = 8;
+const maxTileVal = 8;
 
 $.fn.animateRotate = function (angle, duration, easing, complete) {
     var args = $.speed(duration, easing, complete);
@@ -92,8 +92,7 @@ function setupTiles() {
     for (var x = 0; x < colCount; x++) {
         for (var y = 0; y < rowCount; y++) {
             if (numFilled < maxVal && randBool()) {
-                var tile = getTile(x, y);
-                tile.addClass('filled');
+                setFilled(x, y);
                 numFilled++;
             }
         }
@@ -102,4 +101,11 @@ function setupTiles() {
 
 function randBool() {
     return Math.random() > .5;
+}
+
+function setFilled(x, y) {
+    var tile = $('#tile' + y.toString() + x.toString());
+    tile.addClass('filled');
+    var tileVal = Math.floor(Math.random() * maxTileVal);
+    tile.addClass('filled-' + tileVal.toString());
 }

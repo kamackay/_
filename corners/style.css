@@ -37,6 +37,8 @@ body {
     padding: 0px;
     margin-right: 2px;
     margin-left: 2px;
+    margin-top: 1px;
+    margin-bottom: 1px;
 }
 
 .row * {
@@ -51,10 +53,15 @@ body {
 }
 
 #board .tile.filled {
-    border: solid thin black;
-    margin-right: 1px;
-    margin-left: 1px;
+    margin-right: 2px;
+    margin-left: 2px;
+    margin-top: 1px;
+    margin-bottom: 1px;
     background-color: grey;
+}
+
+#board .tile.filled.filled-0 {
+    background-color: blue;
 }
 
 #board .tile.filled.filled-1 {
