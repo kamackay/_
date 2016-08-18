@@ -82,7 +82,8 @@ var f = function () {
             $(this).removeClass('well');
         });
     } else {
-        showWatermark();
+        //showWatermark();
+        //Watermark is intrusive on the right, maybe move it to the left?
     } /**/
     con.on('scrollwheel', function (e) {
         e.preventDefault();
@@ -98,36 +99,32 @@ function calcButton(btn) {
         store.html('');
         calc = calcTypes.none;
     } else if (btn === 'plus') { //-----------Addition
-        if (con.val() !== '') transfer('+');
-        calc = calcTypes.add; //--------------Subtraction
+        con.val(con.val() + '+')
     } else if (btn === 'minus') {
-        if (con.val() !== '' && con.val() !== '0') {
-            transfer('-');
-            calc = calcTypes.minus;
-        } else con.val('-');
+        con.val(con.val() + '-')
     } else if (btn === 'equal') { //---------Equal
         parseMath();
     } else if (btn === 'divide') {
-        if (con.val() !== '') transfer('&divide;');
+        con.val(con.val() + '/')
         calc = calcTypes.divide;
     } else if (btn === 'period') {
-        if (!con.val().includes('.'))
-            con.val(con.val() + '.');
+        con.val(con.val() + '.')
     } else if (btn === 'multiply') {
-        if (con.val() !== '') transfer('<i style="font-size: inherit;" class="material-icons">clear</i>');
+        con.val(con.val() + '*')
         calc = calcTypes.multiply;
     } else if (btn === 'back') {
         var current = con.val();
         if (current.length > 0)
             con.val(current.substr(0, current.length - 1));
     } else if (btn === 'sqrt') {
-        var num = parseFloat(con.val());
-        store.html('sqrt(' + num.toString() + ') = ' + Math.sqrt(num).toString());
+        //var num = parseFloat(con.val());
+        //store.html('sqrt(' + num.toString() + ') = ' + Math.sqrt(num).toString());
+        con.val('sqrt(' + con.val() + ')')
     } else if (btn === 'mod') {
-        if (con.val() !== '') transfer('%');
+        con.val(con.val() + '%');
         calc = calcTypes.mod; //--------------Modulus
     } else if (btn === 'exp') {
-        if (con.val() !== '') transfer('^');
+        con.val(con.val() + '^');
         calc = calcTypes.exp;
     } else {
         if (con.val() === '0') con.val('');
@@ -181,7 +178,13 @@ function parseMath() {
     } catch (err) {
         answer = '?';
     }
-    store.html(text + ' = ' + answer);
+    var fc = ['+', '-', '%', '/', '*', '^'],
+        fs = '\\s*';
+    var ft = text;
+    for (var i = 0; i < fc.length; i++) {
+        ft = ft.replace(new RegExp(fs + '\\' + fc[i] + fs), ' ' + fc[i] + ' ')
+    }
+    store.html(ft + ' = ' + answer);
     scrollAnswerRight()
 }
 
