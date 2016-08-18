@@ -72,6 +72,9 @@ var f = function () {
     con = $('#numberIn');
     store = $('#numberStore');
     removeContextMenu();
+    con.on('blur', function () {
+        con.focus();
+    });
     /**/
     if (isMobileDevice()) {
         var elems = $('body').find('.calculator.well');
