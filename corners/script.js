@@ -1,6 +1,13 @@
 var colCount, rowCount
 var board
 const maxTileVal = 8;
+var game = {
+    score: 0,
+    difficulty: 0,
+    waitTime: 3000,
+    waitInc: 100,
+    logClick: false
+};
 
 $.fn.animateRotate = function (angle, duration, easing, complete) {
     var args = $.speed(duration, easing, complete);
@@ -27,7 +34,7 @@ $(document).ready(function () {
     for (var y = 0; y < rowCount; y++) {
         rowEl = '<div class="row">'
         for (var x = 0; x < colCount; x++) {
-            rowEl += '<div class="tile" id="tile' + y.toString() + x.toString() + '"></div>'
+            rowEl += '<div class="tile" id="' + getId(x, y) + '"></div>'
         }
         rowEl += '</div>'
         board.append(rowEl)
@@ -35,10 +42,130 @@ $(document).ready(function () {
     setSizes()
     $(window).resize(setSizes)
     setupTiles();
+    setTimeout(addLooper, game.waitTime)
 })
 
-function tileClick(e) {
+function addLooper() {
+    for (var i = 0; i < 10; i++) {
+        var x = Math.floor(Math.random() * colCount),
+            y = Math.floor(Math.random() * rowCount);
+        if (getVal(x, y) === -1) {
+            setFilled(x, y, true);
+            break;
+        }
+    }
+    if (game.waitTime > game.waitInc) game.waitTime -= game.waitInc;
+    setTimeout(addLooper, game.waitTime)
+}
 
+function tileClick(e) {
+    try {
+        var info = {
+            clickId: $(e.target).attr('id'),
+            clickCol: 0,
+            clickRow: 0
+        }
+        info.clickCol = parseInt(info.clickId.split('_')[1]);
+        info.clickRow = parseInt(info.clickId.split('_')[0].replace('tile', ''));
+        info.up = findUp(info.clickCol, info.clickRow);
+        info.left = findLeft(info.clickCol, info.clickRow)
+        info.right = findRight(info.clickCol, info.clickRow)
+        info.down = findDown(info.clickCol, info.clickRow)
+        if (game.logClick) console.log(info)
+        var scoreDelta = 0;
+        if (info.left.val !== null && (info.left.val === info.up.val || info.left.val === info.down.val || info.left.val == info.right.val)) {
+            scoreDelta += Math.abs(info.clickCol - info.left.x);
+            animTileAway(info.left.x, info.left.y);
+        }
+        if (info.right.val !== null && (info.right.val == info.up.val || info.right.val == info.down.val || info.right.val == info.left.val)) {
+            scoreDelta += Math.abs(info.clickCol - info.right.x);
+            animTileAway(info.right.x, info.right.y);
+        }
+        if (info.up.val !== null && (info.up.val == info.left.val || info.up.val == info.down.val || info.up.val == info.right.val)) {
+            scoreDelta += Math.abs(info.clickRow - info.up.y);
+            animTileAway(info.up.x, info.up.y);
+        }
+        if (info.down.val !== null && (info.down.val == info.up.val || info.down.val == info.left.val || info.down.val == info.right.val)) {
+            scoreDelta += Math.abs(info.clickRow - info.down.y);
+            animTileAway(info.down.x, info.down.y);
+        }
+        updateScore(scoreDelta)
+    } catch (err) {
+        console.log('error  during click - ' + err.toString());
+    }
+}
+
+function updateScore(inc) {
+    game.score += inc;
+    $('#scoreEl').html('Score - ' + game.score)
+}
+
+function findUp(x, y) {
+    while (y >= 0) {
+        var val = getVal(x, y);
+        if (!isNaN(val) && val !== -1) {
+            return {
+                x: x,
+                y: y,
+                val: val
+            }
+        }
+        y--;
+    }
+    return {
+        val: null
+    };
+}
+
+function findDown(x, y) {
+    while (y < rowCount) {
+        var val = getVal(x, y);
+        if (!isNaN(val) && val !== -1) {
+            return {
+                x: x,
+                y: y,
+                val: val
+            }
+        }
+        y++;
+    }
+    return {
+        val: null
+    };
+}
+
+function findRight(x, y) {
+    while (x < colCount) {
+        var val = getVal(x, y);
+        if (!isNaN(val) && val !== -1) {
+            return {
+                x: x,
+                y: y,
+                val: val
+            }
+        }
+        x++;
+    }
+    return {
+        val: null
+    };
+}
+
+function findLeft(x, y) {
+    while (x >= 0) {
+        var val = getVal(x, y);
+        if (!isNaN(val) && val !== -1) {
+            return {
+                x: x,
+                y: y,
+                val: val
+            }
+        }
+        x--;
+    }
+    return {
+        val: null
+    };
 }
 
 function setSizes() {
@@ -54,16 +181,22 @@ function setSizes() {
     });
 }
 
+function getId(x, y) {
+    return 'tile' + y.toString() + '_' + x.toString()
+}
+
 function animTileAway(x, y) {
-    var id = 'tile' + y.toString() + x.toString()
+    var id = getId(x, y)
     var el = $('#' + id)
     var pos = el.offset();
-    $('body').append('<div class="animationTile" id="anim' + id + '" style="top:' + pos.top + 'px;left:' + pos.left + 'px;height:' + el.height() + 'px;width:' + el.width() + 'px;"></div>')
-    var animEl = $('#anim' + id);
-    var classes = el.attr('class').split(/\s+/);
-    var valClass = '';
-    for (var i = 0; i < classes.length; i++)
-        if (classs[i].startsWith('filled-')) valClass = classes[i];
+    var animId = 'anim' + id + '_' + Math.floor(Math.random() * 100);
+    $('body').append('<div class="animationTile" id="' + animId + '" style="top:' + pos.top + 'px;left:' + pos.left + 'px;height:' + el.height() + 'px;width:' + el.width() + 'px;"></div>')
+    var animEl = $('#' + animId);
+    animEl.addClass('filled-' + getVal(x, y).toString())
+    var elClasses = el.attr('class').split(' ')
+    for (var i = 0; i < elClasses.length; i++)
+        if (elClasses[i].startsWith('filled')) el.removeClass(elClasses[i])
+    el.attr('game-val', '');
     var w = $(window).width();
     var maxX = (pos.left > w / 2) ? w * 1.5 : w / 1.5;
     var minX = (pos.left > w / 2) ? w / 3 : (-1 / 3) * w;
@@ -87,7 +220,7 @@ function animTileAway(x, y) {
 }
 
 function getTile(x, y) {
-    return $('#tile' + y.toString() + x.toString());
+    return $('#' + getId(x, y));
 }
 
 function setupTiles() {
@@ -107,9 +240,25 @@ function randBool() {
     return Math.random() > .5;
 }
 
-function setFilled(x, y) {
-    var tile = $('#tile' + y.toString() + x.toString());
+function setFilled(x, y, anim = false) {
+    var tile = $('#' + getId(x, y));
     tile.addClass('filled');
-    var tileVal = Math.floor(Math.random() * maxTileVal);
+    tile.css('display', 'none')
+    var tileVal = Math.floor(Math.random() * (maxTileVal - 1)) + 1;
     tile.addClass('filled-' + tileVal.toString());
+    tile.fadeIn(anim ? 1000 : 1, function () {
+        tile.attr('game-val', tileVal.toString())
+    })
+}
+
+function getVal(x, y) {
+    var el = getTile(x, y);
+    try {
+        var va = el.attr('game-val');
+        if (va && va !== '')
+            return parseInt(va);
+        else return -1
+    } catch (err) {
+        return -1;
+    }
 }
