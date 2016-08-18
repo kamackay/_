@@ -60,6 +60,10 @@ function animTileAway(x, y) {
     var pos = el.offset();
     $('body').append('<div class="animationTile" id="anim' + id + '" style="top:' + pos.top + 'px;left:' + pos.left + 'px;height:' + el.height() + 'px;width:' + el.width() + 'px;"></div>')
     var animEl = $('#anim' + id);
+    var classes = el.attr('class').split(/\s+/);
+    var valClass = '';
+    for (var i = 0; i < classes.length; i++)
+        if (classs[i].startsWith('filled-')) valClass = classes[i];
     var w = $(window).width();
     var maxX = (pos.left > w / 2) ? w * 1.5 : w / 1.5;
     var minX = (pos.left > w / 2) ? w / 3 : (-1 / 3) * w;

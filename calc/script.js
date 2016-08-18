@@ -46,75 +46,19 @@ var f = function () {
 ($(document).ready(function () {
     loadJSAsync('http://keithmackay.com/devfiles/math.js', 'mathScript');
     $('#output').html("Output:<br>");
-    $(document).on('keydown', function (e) {
-        if (e.shiftKey) {
-            if (e.which === 54) calcButton('exp');
-            else if (e.which === 53) calcButton('mod');
-            else if (e.which === 56) calcButton('multiply');
-            else if (e.which === 49) factorial();
-            return;
-        } else if (e.ctrlKey) {
-            if (e.which === 83) showSnackbar('You can\'t save me...');
-            if (e.which === 86) {
-                return;
-            }
+    $('#numberIn').on('keydown', function (e) {
+        if (e.ctrlKey && e.which === 83) {
+            showSnackbar('You can\'t save me...');
             e.preventDefault();
-            return;
         }
         switch (e.which) {
-            case 35:
-            case 36:
-                return;
-            case 8:
-                calcButton('back');
-                break;
-            case 115:
-                if (e.ctrlKey || e.which === 19) e.preventDefault();
-                break;
             case 13:
                 calcButton('equal');
-                break;
-            case 190:
-            case 110:
-                calcButton('period');
-                break;
-            case 43:
-            case 107:
-                calcButton('plus');
-                break;
-            case 47:
-                calcButton('divide');
-                break;
-            case 27:
-            case 46:
-                calcButton('clear');
-                break;
-            case 106:
-            case 88:
-                calcButton('multiply');
-                break;
-            case 109:
-            case 189:
-                calcButton('minus');
                 break;
             case 116:
                 e.preventDefault();
                 showSnackbar('Refresh disabled. Just to be a dick.');
                 break;
-            case 86:
-                if (e.ctrlKey) {
-                    return;
-                }
-                break;
-            default:
-                var a = e.which - 48;
-                if (a >= 0 && a <= 9) calcButton(a);
-                else if (a >= 48 && a <= 57) calcButton(a - 48);
-                //else alert(e.which);
-                break;
-                //Keys to ignore
-            case 16:
-
         }
     });
     var scrollHorizontal = function (event, delta) {
@@ -137,18 +81,6 @@ var f = function () {
     } else {
         showWatermark();
     } /**/
-    con.on('keydown', function (e) {
-
-        switch (e.which) {
-            case 35:
-            case 36:
-                return;
-            case 86:
-                if (e.ctrlKey) return;
-            default:
-                e.preventDefault();
-        }
-    });
     con.on('scrollwheel', function (e) {
         e.preventDefault();
     });
@@ -171,13 +103,7 @@ function calcButton(btn) {
             calc = calcTypes.minus;
         } else con.val('-');
     } else if (btn === 'equal') { //---------Equal
-        if (calc === calcTypes.none) {
-            parseMath();
-        } else if (containsNonNumeric(con.val())) {
-            parseMath();
-        } else if (calc === calcTypes.add || calc === calcTypes.minus || calc === calcTypes.multiply || calc === calcTypes.divide || calc === calcTypes.exp || calc === calcTypes.mod)
-            basicCalc(calc);
-        calc = calcTypes.none;
+        parseMath();
     } else if (btn === 'divide') {
         if (con.val() !== '') transfer('&divide;');
         calc = calcTypes.divide;

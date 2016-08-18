@@ -33,7 +33,7 @@ body {
 
 #board .tile {
     display: inline-block;
-    background-color: white;
+    background-color: transparent;
     padding: 0px;
     margin-right: 2px;
     margin-left: 2px;
@@ -57,41 +57,49 @@ body {
     margin-left: 2px;
     margin-top: 1px;
     margin-bottom: 1px;
-    background-color: grey;
 }
 
-#board .tile.filled.filled-0 {
+#board .tile.filled.filled-0,
+.animationTile.filled-0 {
     background-color: blue;
 }
 
-#board .tile.filled.filled-1 {
+#board .tile.filled.filled-1,
+.animationTile.filled-1 {
     background-color: yellow;
 }
 
-#board .tile.filled.filled-2 {
+#board .tile.filled.filled-2,
+.animationTile.filled-2 {
     background-color: green;
 }
 
-#board .tile.filled.filled-3 {
+#board .tile.filled.filled-3,
+.animationTile.filled-3 {
     background-color: #007800;
 }
 
-#board .tile.filled.filled-4 {
+#board .tile.filled.filled-4,
+.animationTile.filled-4 {
     background-color: red;
 }
 
-#board .tile.filled.filled-5 {
+#board .tile.filled.filled-5,
+.animationTile.filled-5 {
     background-color: cyan;
 }
 
-#board .tile.filled.filled-6 {
+#board .tile.filled.filled-6,
+.animationTile.filled-6 {
     background-color: magenta;
 }
 
-#board .tile.filled.filled-7 {
-    background-color: ;
+#board .tile.filled.filled-7,
+.animationTile.filled-7 {
+    background-color: #ff8c00;
 }
 
-#board .tile.filled.filled-8 {
-    background-color: gray;
+#board .tile.filled.filled-8,
+.animationTile.filled-8 {
+    background-color: white;
 }
