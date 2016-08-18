@@ -28,7 +28,7 @@ var f = function () {
     var buttons = calc.find('.btn:not(.btn-small)');
     if (mobile || win.height() > win.width() * 1.5) calc.css('width', '100%');
     else {
-        var a = win.width();
+        var a = win.width() - (parseInt(calc.css('margin-left')) * 2);
         var n = Math.min(a, a / Math.cbrt(a + maxWidth) + maxWidth);
         calc.css('width', n);
     }
@@ -260,6 +260,14 @@ function containsNonNumeric(str) {
     }
     console.log('numbers')
     return false;
+}
+
+function funct(functName) {
+    con.val(functName + '(' + con.val() + ')')
+}
+
+function trig() {
+    con.val()
 }
 
 var last;
