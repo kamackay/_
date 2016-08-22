@@ -45,15 +45,34 @@ $(document).ready(function () {
     setTimeout(addLooper, game.waitTime)
 })
 
-function addLooper() {
-    for (var i = 0; i < 10; i++) {
-        var x = Math.floor(Math.random() * colCount),
-            y = Math.floor(Math.random() * rowCount);
-        if (getVal(x, y) === -1) {
-            setFilled(x, y, true);
-            break;
+function gameOver() {
+    toast('Game Over')
+}
+
+function fillRandTile() {
+    var xs = Math.floor(Math.random() * colCount),
+        ys = Math.floor(Math.random() * rowCount);
+    for (var x = xs; x < colCount; x++) {
+        for (var y = ys; y < rowCount; y++) {
+            if (getVal(x, y) === -1) {
+                setFilled(x, y, true);
+                return;
+            }
         }
     }
+    for (var x = 0; x < colCount; x++) {
+        for (var y = 0; y < rowCount; y++) {
+            if (getVal(x, y) === -1) {
+                setFilled(x, y, true);
+                return;
+            }
+        }
+    }
+    gameOver()
+}
+
+function addLooper() {
+    fillRandTile();
     if (game.waitTime > game.waitInc) game.waitTime -= game.waitInc;
     setTimeout(addLooper, game.waitTime)
 }
@@ -65,8 +84,8 @@ function tileClick(e) {
             clickCol: 0,
             clickRow: 0
         }
-        info.clickCol = parseInt(info.clickId.split('_')[1]);
-        info.clickRow = parseInt(info.clickId.split('_')[0].replace('tile', ''));
+        info.clickCol = parseInt(info.clickId.split('_')[ 1 ]);
+        info.clickRow = parseInt(info.clickId.split('_')[ 0 ].replace('tile', ''));
         info.up = findUp(info.clickCol, info.clickRow);
         info.left = findLeft(info.clickCol, info.clickRow)
         info.right = findRight(info.clickCol, info.clickRow)
@@ -195,7 +214,7 @@ function animTileAway(x, y) {
     animEl.addClass('filled-' + getVal(x, y).toString())
     var elClasses = el.attr('class').split(' ')
     for (var i = 0; i < elClasses.length; i++)
-        if (elClasses[i].startsWith('filled')) el.removeClass(elClasses[i])
+        if (elClasses[ i ].startsWith('filled')) el.removeClass(elClasses[ i ])
     el.attr('game-val', '');
     var w = $(window).width();
     var maxX = (pos.left > w / 2) ? w * 1.5 : w / 1.5;
@@ -204,16 +223,16 @@ function animTileAway(x, y) {
     animEl.animate({
         top: $(window).height() * 1.5
     }, {
-        duration: 2500,
-        easing: 'swing',
-        queue: false
-    }).animate({
-        left: newX
-    }, {
-        duration: 1500,
-        easing: 'swing',
-        queue: false
-    })
+            duration: 2500,
+            easing: 'swing',
+            queue: false
+        }).animate({
+            left: newX
+        }, {
+            duration: 1500,
+            easing: 'swing',
+            queue: false
+        })
     animEl.animateRotate(3000, 3000, 'linear', function () {
         animEl.remove();
     })
