@@ -24,7 +24,10 @@
     <div class="container">
         <div id="calculator" class="well calculator">
             <div class="console" id="console">
-                <input type="text" id="numberIn" autofocus>
+                <div class="row">
+                    <button onclick="formatFonts()" class="btn btn-raised btn-small btn-primary" style="width:5%;height:100%;font-size:30px;padding:10px;border-radius:5px">&#x222b;</button>
+                    <input type="text" id="numberIn" autofocus>
+                </div>
                 <div id="numberStore"></div>
             </div>
             <div class="numbers" style="">
@@ -66,9 +69,6 @@
                 <div onclick="funct('sin')" data-ripple-color="#000000" class="btn btn-raised btn-small btn-info">Sine</div>
                 <div onclick="funct('cos')" data-ripple-color="#000000" class="btn btn-raised btn-small btn-info">Cosine</div>
                 <div onclick="funct('tan')" data-ripple-color="#000000" class="btn btn-raised btn-small btn-info">Tangent</div>
-            </div>
-            <div class="row" style="margin-top: 10px;">
-                <a onclick="formatFonts()" class="btn btn-small btn-raised btn-primary" style='padding: 10px; font-size: 20px;'>Format Fonts</a>
             </div>
             <div class="well hidden" id="output"></div>
         </div>
