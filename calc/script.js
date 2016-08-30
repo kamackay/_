@@ -266,8 +266,8 @@ function funct(functName) {
     con.val(functName + '(' + con.val() + ')')
 }
 
-function trig() {
-    con.val()
+function formatFonts() {
+
 }
 
 var last;
