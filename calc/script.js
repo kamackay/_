@@ -267,7 +267,7 @@ function funct(functName) {
 }
 
 function formatFonts() {
-
+    toast('This feature is still in development! Sorry!')
 }
 
 var last;
