@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./Bootstrap Material_files/css" type="text/css">
     <link href="./Bootstrap Material_files/icon" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="./Bootstrap Material_files/bootstrap.min.css" rel="stylesheet">
+    <link href="http://keithmackay.com/devfiles/bootstrap.css" rel="stylesheet">
     <link href="./Bootstrap Material_files/bootstrap-material-design.css" rel="stylesheet">
     <link href="./Bootstrap Material_files/ripples.min.css" rel="stylesheet">
     <link href="./Bootstrap Material_files/snackbar.min.css" rel="stylesheet">
@@ -17,6 +17,16 @@
     <link rel='stylesheet' href='//cdn.jsdelivr.net/font-hack/2.020/css/hack-extended.min.css'>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--http://keithmackay.com/devfiles/ Files-->
+
+    <script src="./Bootstrap Material_files/jquery-1.10.2.min.js"></script>
+    <script src="./Bootstrap Material_files/bootstrap.min.js"></script>
+    <script src="./Bootstrap Material_files/ripples.min.js"></script>
+    <script src="http://keithmackay.com/devfiles/script.js"></script>
+    <script src="http://keithmackay.com/devfiles/ie.js"></script>
+    <script src="./Bootstrap Material_files/material.min.js"></script>
+    <script src="./Bootstrap Material_files/snackbar.min.js"></script>
+    <script type="text/javascript" src="mousewheel.js"></script>
+    <script src="script.js"></script>
 </head>
 
 <body class="" style="background-color:#878787">
@@ -25,7 +35,7 @@
         <div id="calculator" class="well calculator">
             <div class="console" id="console">
                 <div class="row">
-                    <button onclick="formatFonts()" class="btn btn-raised btn-small btn-primary" style="width:5%;height:100%;font-size:30px;padding:10px;border-radius:5px">&#x222b;</button>
+                    <button id="formatButton" data-toggle="tooltip" data-placement="right" title="Format" onclick="formatFonts()" class="btn btn-raised btn-small btn-primary" style="width:5%;height:100%;font-size:30px;padding:10px;border-radius:5px">&#x0192;</button>
                     <input type="text" id="numberIn" autofocus>
                 </div>
                 <div id="numberStore"></div>
@@ -72,17 +82,6 @@
             </div>
             <div class="well hidden" id="output"></div>
         </div>
-        <script src="./Bootstrap Material_files/jquery-1.10.2.min.js"></script>
-        <script src="./Bootstrap Material_files/bootstrap.min.js"></script>
-        <script src="./Bootstrap Material_files/ripples.min.js"></script>
-        <script src="http://keithmackay.com/devfiles/script.js"></script>
-        <script src="http://keithmackay.com/devfiles/ie.js"></script>
-        <script src="./Bootstrap Material_files/material.min.js"></script>
-        <script src="./Bootstrap Material_files/snackbar.min.js"></script>
-        <script type="text/javascript" src="mousewheel.js"></script>
-        <script src="script.js"></script>
-
-
         <script src="./Bootstrap Material_files/jquery.nouislider.min.js"></script>
         <script>
             $(function() {
