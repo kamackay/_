@@ -1,4 +1,4 @@
-package sample;
+package com.keithmackay.mdreader;
 
 import javafx.application.Application;
 import javafx.concurrent.Task;
@@ -116,77 +116,7 @@ public class Main extends Application {
 
         @Override
         protected String call() throws Exception {
-            StringBuilder sb = new StringBuilder("<div id='mainDiv' style='color:white;height:100vh;width:100vw;'>");
-            String[] lines = markdownString.split("[\\r\\n]+");
-            FormatState state = new FormatState();
-            for (int i = 0; i < lines.length; i++) {
-                String fLine = lines[i];
-                formatting:
-                {
-                    if (fLine.matches("\\s*")){
-                        break formatting;
-                    }
-                    if (fLine.matches("^#+\\s.*")) {
-                        if (fLine.startsWith("# "))
-                            fLine = "<h1>" + fLine.replaceAll("^#+\\s", "") + "</h1>";
-                        else if (fLine.startsWith("## "))
-                            fLine = "<h2>" + fLine.replaceAll("^#+\\s", "") + "</h2>";
-                        else if (fLine.startsWith("### "))
-                            fLine = "<h3>" + fLine.replaceAll("^#+\\s", "") + "</h3>";
-                        else if (fLine.startsWith("#### "))
-                            fLine = "<h4>" + fLine.replaceAll("^#+\\s", "") + "</h4>";
-                        else if (fLine.startsWith("##### "))
-                            fLine = "<h5>" + fLine.replaceAll("^#+\\s", "") + "</h5>";
-                        else if (fLine.startsWith("###### "))
-                            fLine = "<h6>" + fLine.replaceAll("^#+\\s", "") + "</h6>";
-                    }
-                    if (fLine.matches("^\\d+\\.\\s.*")) {
-                        //Numbered list, like 1.
-                        String[] sStr = fLine.split("\\.\\s", 2);
-                        if (sStr.length == 2) {
-                            if (state.ol) {
-                                fLine = String.format(Locale.getDefault(), "<li>%s</li>", sStr[1]);
-                            } else {
-                                state.ol = true;
-                                fLine = String.format(Locale.getDefault(),
-                                        "<ol start='%s'><li>%s", sStr[0], sStr[1]);
-                            }
-                        }
-                    } else if (state.ol){
-                        state.ol = false;
-                        fLine = "</ol>" + fLine;
-                    }
-                    if (fLine.matches("^\\s*[-⋅*+]\\s.*")){
-                        //Unordered List
-                        String lineText = fLine.replaceAll("^\\s*[-⋅*+]\\s", "");
-                        if (state.ul){
-                            fLine = String.format(Locale.getDefault(),
-                                    "<li>%s</li>", lineText);
-                        } else {
-                            state.ol = true;
-                            fLine = String.format(Locale.getDefault(),
-                                    "<ul><li>%s</li>", lineText);
-                        }
-                    } else if (state.ul){
-                        state.ul = false;
-                        fLine = "</ul>" + fLine;
-                    }
-                }
-                lines[i] = fLine;
-            }
-            for (String t : lines) sb.append(t);
-            sb.append("</div>");
-            return sb.toString();
-        }
-    }
-
-    private class FormatState {
-        public boolean ol, ul, code, table;
-
-        public FormatState() {
-            ol = false;
-            ul = false;
-            code = false;table = false;
+            return Md2Html.convert(markdownString);
         }
     }
 
