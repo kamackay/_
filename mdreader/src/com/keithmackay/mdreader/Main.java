@@ -22,18 +22,6 @@ import java.util.Scanner;
 public class Main extends Application {
     private final WebView browser = new WebView();
 
-    /*
-     * TODO:
-         * Tables
-         * "-------" => Line
-         * Line Underlined with "=====" => <h1>
-         * Line Underlined with "-----" => <h2>
-         * "*" => strong
-         * "**" or "__" => much stronger
-         * "_" => italics
-         * "~" => strike through
-         * Lists, numbered and un-numbered
-     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         GridPane grid = new GridPane();
