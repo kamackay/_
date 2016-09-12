@@ -54,7 +54,7 @@
         const K = {}
         K.charsToDemo = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '=', '[]', '{}', '()', '!', '@', '#', '$', '%', '^', '&', '*', '-', '_', '\\', ':', ';', '.', ',', '<', '>', '?', '|', '/', '"', '\'']
         K.fontDemoText = '';
-        K.fontElementFormat = "<div class='row well font-element' style='font-family:!!n!!'><h3 class='col-md-3' style='font-family:inherit'>!!fontname!!</h3><div class='col-md-9' style='font-family:inherit;word-wrap:normal;'>!!demotext!!</div></div>";
+        K.fontElementFormat = "<div class='row well font-element' style='display:none;font-family:!!n!!'><h3 class='col-md-3' style='font-family:inherit'>!!fontname!!</h3><div class='col-md-9' style='font-family:inherit;word-wrap:normal;'>!!demotext!!</div></div>";
         K.formatIntoFontDiv = function(font) {
             const n = font.file.replace(".ttf", "-keithFont")
             const el = K.fontElementFormat.replace("!!demotext!!", K.fontDemoText).replace("!!n!!", n).replace('!!fontname!!', font.name)
@@ -72,7 +72,7 @@
                             try {
                                 const group = data.groups[a],
                                     id = "fontElement-" + idVar.toString();
-                                var groupEl = "<div class='font-group row well'><button style='float:right;' class='btn btn-raised' data-toggle='collapse' data-target='#" +
+                                var groupEl = "<div class='font-group row well' style='display:none;'><button style='float:right;' class='btn btn-raised' data-toggle='collapse' data-target='#" +
                                     id + "'>Toggle</button><h2 style='border-bottom:thin black solid;'>" + group.name +
                                     "</h2><div class='collapse in' id='" + id + "'>";
                                 for (var b = 0; b < group.fonts.length; b++) {
@@ -92,6 +92,29 @@
                                 console.log("current element = " + data.fonts[a])
                             }
                         }
+                        setTimeout(function() {
+                            $.each($('body').find('.font-element, .font-group'), function(n, o) {
+                                var $this = $(this);
+                                $this.fadeIn(4000);
+                                $this.mouseover(function() {
+                                    $this.animate({
+                                        backgroundColor: "blue"
+                                    }, {
+                                        queue: false,
+                                        duration: 500,
+                                        easing: "linear"
+                                    })
+                                }).mouseout(function() {
+                                    $this.animate({
+                                        backgroundColor: "white"
+                                    }, {
+                                        queue: false,
+                                        duration: 500,
+                                        easing: "linear"
+                                    })
+                                })
+                            });
+                        }, 1000);
                     } catch (err) {
                         console.log("Error Location 2")
                         console.log(err)
