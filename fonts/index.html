@@ -58,11 +58,11 @@
         const K = {}
         K.charsToDemo = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '=', '[]', '{}', '()', '!', '@', '#', '$', '%', '^', '&', '*', '-', '_', '\\', ':', ';', '.', ',', '<', '>', '?', '|', '/', '"', '\'', '~', '`']
         K.fontDemoText = '';
-        K.fontElementFormat = "<div class='row well font-element' style='display:none;font-family:!!n!!'><h3 class='col-md-3' style='font-family:inherit;color:inherit;'>!!fontname!!</h3><div class='col-md-9' style='font-family:inherit;word-wrap:normal;color:inherit;'>!!demotext!!</div></div>";
+        K.fontElementFormat = "<div class='row well font-element' style='display:none;font-family:!!n!!'><span style='display:inline;font-family:inherit;'><h3 class='col-md-3' style='font-family:inherit;color:inherit;'>!!fontname!!</h3><div class='col-md-9' style='font-family:inherit;word-wrap:normal;color:inherit;'>!!demotext!!</div></span><a href='./!!filename!!'><i class='material-icons'>get_app</i></a></div>";
         K.formatIntoFontDiv = function(font) {
             try {
                 const n = font.file.replace(".ttf", "-keithFont")
-                const el = K.fontElementFormat.replace("!!demotext!!", K.fontDemoText).replace("!!n!!", n).replace('!!fontname!!', font.name)
+                const el = K.fontElementFormat.replace("!!demotext!!", K.fontDemoText).replace("!!n!!", n).replace('!!fontname!!', font.name).replace('!!filename!!', font.file);
                 $('#styles').append("<style>@font-face{font-family:" + n + ";src:url(http://keithmackay.com/fonts/" + font.file + ")}</style>")
                 return el;
             } catch (err) {
@@ -71,7 +71,6 @@
                 return '';
             }
         }
-
         $(document).ready(function() {
             try {
                 var mainDiv = $("#mainDiv")
@@ -114,7 +113,7 @@
                                     console.log(err3)
                                 }
                             });
-                        }, 1000);
+                        }, 200);
                     } catch (err) {
                         console.log("Error Location 2")
                         console.log(err)
