@@ -44,15 +44,22 @@
                 {
                     "name": "Arial",
                     "file": "arial.ttf"
-                },{
+                },
+                {
                     "name": "Arial Bold",
                     "file": "arial_b.ttf"
-                },{
+                },
+                {
                     "name": "Arial Bold Italics",
                     "file": "arial_bi.ttf"
-                },{
+                },
+                {
                     "name": "Arial Italics",
                     "file": "arial_i.ttf"
+                },
+                {
+                    "name": "Arial Unicode",
+                    "file": "arial_uni.ttf"
                 }
             ]
         }
