@@ -1,0 +1,37 @@
+{
+    "groups": [{
+        "name": "Hack",
+        "fonts": [{
+            "name": "Hack",
+            "file": "hack.ttf"
+        }, {
+            "name": "Hack Bold",
+            "file": "hack_b.ttf"
+        }, {
+            "name": "Hack Bold Italics",
+            "file": "hack_bi.ttf"
+        }, {
+            "name": "Hack Italics",
+            "file": "hack_i.ttf"
+        }]
+    }, {
+        "name": "Roboto",
+        "fonts": [{
+            "name": "Roboto",
+            "file": "roboto.ttf"
+        }, {
+            "name": "Roboto Bold",
+            "file": "roboto_b.ttf"
+        }, {
+            "name": "Roboto Black",
+            "file": "robotoBlack.ttf"
+        }]
+    }],
+    "fonts": [{
+        "name": "Print Clearly",
+        "file": "printClearly.ttf"
+    }, {
+        "name": "Product Sans",
+        "fonts": ["productSans.ttf"]
+    }]
+}
