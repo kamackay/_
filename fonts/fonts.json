@@ -32,6 +32,6 @@
         "file": "printClearly.ttf"
     }, {
         "name": "Product Sans",
-        "fonts": ["productSans.ttf"]
+        "file": "productSans.ttf"
     }]
 }

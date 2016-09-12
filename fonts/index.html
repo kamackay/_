@@ -15,7 +15,24 @@
     <link rel="stylesheet" href="http://keithmackay.com/devfiles/ripples.css">
     <link rel="stylesheet" href="http://keithmackay.com/devfiles/style.css">
     <link rel="stylesheet" href="http://keithmackay.com/devfiles/snackbar.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.020/css/hack-extended.min.css">
+    <style>
+        @font-face {
+            font-family: robotoFont;
+            src: url(http://keithmackay.com/fonts/roboto.ttf) format("truetype")
+        }
+        
+        #page * {
+            font-family: robotoFont
+        }
+        
+        #page .font-group div.font-element {
+            display: inline-block;
+        }
+        
+        #page h1 {
+            font-size: 75px;
+        }
+    </style>
     <script type="text/javascript" src="http://keithmackay.com/devfiles/jquery.js"></script>
     <script type="text/javascript" src="http://keithmackay.com/devfiles/tether.js"></script>
     <script type="text/javascript" src="http://keithmackay.com/devfiles/bootstrap.js"></script>
@@ -24,19 +41,36 @@
     <script type="text/javascript" src="http://keithmackay.com/devfiles/ripples.js"></script>
     <script type="text/javascript" src="http://keithmackay.com/devfiles/script.js"></script>
     <script>
+        const K = {}
+        K.fontDemoText = "<br>abcdefghijklmnopqrstuvwxyz<br>ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>" +
+            "&Alpha;&Beta;&Gamma;&Delta;&Epsilon;&Zeta;";
+        K.formatIntoFontDiv = function(font) {
+            var n = font.file.replace(".ttf", "-keithFont")
+            const el = "<style>@font-face{font-family:" + n + ";src:url(http://keithmackay.com/fonts/" + font.file +
+                ")}</style><div class='well font-element' style='font-family:" + n + "'><h3>" + font.name + "</h3>" +
+                K.fontDemoText + "</div>";
+            return el;
+        }
+
         $(document).ready(function() {
             try {
                 var mainDiv = $("#mainDiv")
-                $.get("./fonts.json", function(data) {
+                $.get("http://keithmackay.com/fonts/fonts.json", function(data) {
                     try {
                         for (var a = 0; a < data.groups.length; a++) {
-                            mainDiv.append(data.groups[a].name)
+                            const group = data.groups[a];
+                            var groupEl = "<div class='font-group row well'><h2 style='border-bottom:thin black solid;'>" + group.name + "</h2>";
+                            for (var b = 0; b < group.fonts.length; b++) {
+                                groupEl += K.formatIntoFontDiv(group.fonts[b]);
+                            }
+                            groupEl += "</div>";
+                            mainDiv.append(groupEl);
                         }
                         for (var a = 0; a < data.fonts.length; a++) {
-
+                            mainDiv.append(K.formatIntoFontDiv(data.fonts[a]))
                         }
                     } catch (err) {
-                        console.log("Error Location 1")
+                        console.log("Error Location 2")
                         console.log(err)
                     }
                 })
@@ -49,9 +83,9 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" id="page">
         <center>
-            <h1>Fonts available at <a href="http://keithmackay.com">keithmackay.com</a></h1></center>
+            <h1><img src="http://keithmackay.com/images/icons/favicon.ico" style="margin-left:15px;max-height:75px;"/> Fonts available at <a href="http://keithmackay.com">keithmackay.com</a></h1></center>
         <div id="mainDiv"></div>
     </div>
 </body>

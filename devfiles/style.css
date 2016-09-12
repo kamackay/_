@@ -46,7 +46,7 @@ div.full {
 
 @font-face {
     font-family: myfont;
-    src: url(https://googledrive.com/host/0B6vDuBGkfv-HaEh3Z0hBNUJuc1U/ProductSans.ttf) format("truetype")
+    src: url(http://keithmackay.com/fonts/roboto.ttf) format("truetype")
 }
 
 .product-sans {
@@ -159,7 +159,7 @@ img.full-stretch {
     color: #222222;
 }
 
-#settings>span{
+#settings>span {
     margin-left: 15px;
 }
 
@@ -211,116 +211,124 @@ img.full-stretch {
     margin-bottom: 15px;
 }
 
-ul.dropdown-menu.materialDrop li>a:hover, div ul.dropdown-menu.materialDrop li>a:hover {
+ul.dropdown-menu.materialDrop li>a:hover,
+div ul.dropdown-menu.materialDrop li>a:hover {
     color: '#1D62AC';
 }
 
-#popupFormDiv>i:hover{
-    color:red;
+#popupFormDiv>i:hover {
+    color: red;
     cursor: pointer;
 }
 
 .spinner {
-  -webkit-animation: rotator 1.4s linear infinite;
-          animation: rotator 1.4s linear infinite;
+    -webkit-animation: rotator 1.4s linear infinite;
+    animation: rotator 1.4s linear infinite;
 }
+
 @-webkit-keyframes rotator {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(270deg);
-            transform: rotate(270deg);
-  }
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(270deg);
+        transform: rotate(270deg);
+    }
 }
 
 @keyframes rotator {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(270deg);
-            transform: rotate(270deg);
-  }
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(270deg);
+        transform: rotate(270deg);
+    }
 }
+
 .path {
-  stroke-dasharray: 187;
-  stroke-dashoffset: 0;
-  -webkit-transform-origin: center;
-          transform-origin: center;
-  -webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
-          animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+    stroke-dasharray: 187;
+    stroke-dashoffset: 0;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+    animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
 }
 
 @-webkit-keyframes colors {
-  0% {
-    stroke: #4285F4;
-  }
-  25% {
-    stroke: #DE3E35;
-  }
-  50% {
-    stroke: #F7C223;
-  }
-  75% {
-    stroke: #1B9A59;
-  }
-  100% {
-    stroke: #4285F4;
-  }
+    0% {
+        stroke: #4285F4;
+    }
+    25% {
+        stroke: #DE3E35;
+    }
+    50% {
+        stroke: #F7C223;
+    }
+    75% {
+        stroke: #1B9A59;
+    }
+    100% {
+        stroke: #4285F4;
+    }
 }
 
 @keyframes colors {
-  0% {
-    stroke: #4285F4;
-  }
-  25% {
-    stroke: #DE3E35;
-  }
-  50% {
-    stroke: #F7C223;
-  }
-  75% {
-    stroke: #1B9A59;
-  }
-  100% {
-    stroke: #4285F4;
-  }
-}
-@-webkit-keyframes dash {
-  0% {
-    stroke-dashoffset: 187;
-  }
-  50% {
-    stroke-dashoffset: 46.75;
-    -webkit-transform: rotate(135deg);
-            transform: rotate(135deg);
-  }
-  100% {
-    stroke-dashoffset: 187;
-    -webkit-transform: rotate(450deg);
-            transform: rotate(450deg);
-  }
-}
-@keyframes dash {
-  0% {
-    stroke-dashoffset: 187;
-  }
-  50% {
-    stroke-dashoffset: 46.75;
-    -webkit-transform: rotate(135deg);
-            transform: rotate(135deg);
-  }
-  100% {
-    stroke-dashoffset: 187;
-    -webkit-transform: rotate(450deg);
-            transform: rotate(450deg);
-  }
+    0% {
+        stroke: #4285F4;
+    }
+    25% {
+        stroke: #DE3E35;
+    }
+    50% {
+        stroke: #F7C223;
+    }
+    75% {
+        stroke: #1B9A59;
+    }
+    100% {
+        stroke: #4285F4;
+    }
 }
 
-button.btn, *.btn, div.btn, a.btn {
+@-webkit-keyframes dash {
+    0% {
+        stroke-dashoffset: 187;
+    }
+    50% {
+        stroke-dashoffset: 46.75;
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+    }
+    100% {
+        stroke-dashoffset: 187;
+        -webkit-transform: rotate(450deg);
+        transform: rotate(450deg);
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dashoffset: 187;
+    }
+    50% {
+        stroke-dashoffset: 46.75;
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+    }
+    100% {
+        stroke-dashoffset: 187;
+        -webkit-transform: rotate(450deg);
+        transform: rotate(450deg);
+    }
+}
+
+button.btn,
+*.btn,
+div.btn,
+a.btn {
     word-break: normal;
     word-wrap: break-word;
     white-space: normal;
