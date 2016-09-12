@@ -4,6 +4,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="icon" href="images/icon.ico">
     <title>Online Calculator</title>
     <link rel="stylesheet" href="./Bootstrap Material_files/css" type="text/css">
@@ -35,7 +37,7 @@
         <div id="calculator" class="well calculator">
             <div class="console" id="console">
                 <div class="row">
-                    <button id="formatButton" data-toggle="tooltip" data-placement="right" title="Format" onclick="formatFonts()" class="btn btn-raised btn-small btn-primary" style="width:5%;height:100%;font-size:30px;padding:10px;border-radius:5px">&#x0192;</button>
+                    <button id="formatButton" data-toggle="tooltip" data-placement="right" title="Format" onclick="formatFonts()" class="hidden btn btn-raised btn-small btn-primary" style="width:5%;height:100%;font-size:30px;padding:10px;border-radius:5px">&#x0192;</button>
                     <input type="text" id="numberIn" autofocus>
                 </div>
                 <div id="numberStore"></div>

@@ -148,7 +148,8 @@ body {
     text-align: right;
     border: none;
     border-bottom: thin black solid;
-    width: 90%;
+    width: 100%;
+    /*90%;*/
     overflow-x: auto;
 }
 

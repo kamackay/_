@@ -72,16 +72,18 @@ var f = function () {
     con = $('#numberIn');
     store = $('#numberStore');
     removeContextMenu();
-    con.on('blur', function () {
-        con.focus();
-    });
+
     /**/
     if (isMobileDevice()) {
+        con.removeAttr('autofocus')
         var elems = $('body').find('.calculator.well');
         $.each(elems, function (n, o) {
             $(this).removeClass('well');
         });
     } else {
+        con.on('blur', function () {
+            con.focus();
+        });
         //showWatermark();
         //Watermark is intrusive on the right, maybe move it to the left?
     } /**/
