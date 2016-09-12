@@ -15,13 +15,14 @@
     <link rel="stylesheet" href="http://keithmackay.com/devfiles/ripples.css">
     <link rel="stylesheet" href="http://keithmackay.com/devfiles/style.css">
     <link rel="stylesheet" href="http://keithmackay.com/devfiles/snackbar.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         @font-face {
             font-family: robotoFont;
             src: url(http://keithmackay.com/fonts/roboto.ttf) format("truetype")
         }
         
-        #page * {
+        * {
             font-family: robotoFont
         }
         
@@ -30,7 +31,15 @@
         }
         
         #page h1 {
-            font-size: 75px;
+            font-size: 60px;
+        }
+        
+        #page .font-element>h3 {
+            font-size: 50px;
+        }
+        
+        #page .font-element {
+            font-size: 25px;
         }
     </style>
     <script type="text/javascript" src="http://keithmackay.com/devfiles/jquery.js"></script>
@@ -42,13 +51,20 @@
     <script type="text/javascript" src="http://keithmackay.com/devfiles/script.js"></script>
     <script>
         const K = {}
-        K.fontDemoText = "<br>abcdefghijklmnopqrstuvwxyz<br>ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>" +
-            "&Alpha;&Beta;&Gamma;&Delta;&Epsilon;&Zeta;";
+        K.charsToDemo = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'L', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '<br>',
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'L', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+        ]
+        K.fontDemoText = ''
+            /*"A&nbsp;B&nbsp;C&nbsp;D&nbsp;E&nbsp;F&nbsp;G&nbsp;H&nbsp;I&nbsp;J&nbsp;K&nbsp;L&nbsp;M&nbsp;N&nbsp;O&nbsp;P&nbsp;Q&nbsp;R&nbsp;S&nbsp;T&nbsp;U&nbsp;V&nbsp;W&nbsp;X&nbsp;Y&nbsp;Z " +
+                       "a&nbsp;b&nbsp;c&nbsp;d&nbsp;e&nbsp;f&nbsp;g&nbsp;h&nbsp;i&nbsp;j&nbsp;k&nbsp;l&nbsp;m&nbsp;n&nbsp;o&nbsp;p&nbsp;q&nbsp;r&nbsp;s&nbsp;t&nbsp;u&nbsp;v&nbsp;w&nbsp;x&nbsp;y&nbsp;z" +
+                       "&Alpha;&Beta;&Gamma;&Delta;&Epsilon;&Zeta;&Eta;&Theta;&Iota;&Kappa;&Lambda;&Mu;&Nu;&Xi;&Omicron;&Pi;&Rho;&Sigma;&Tau;";/**/
         K.formatIntoFontDiv = function(font) {
-            var n = font.file.replace(".ttf", "-keithFont")
-            const el = "<style>@font-face{font-family:" + n + ";src:url(http://keithmackay.com/fonts/" + font.file +
-                ")}</style><div class='well font-element' style='font-family:" + n + "'><h3>" + font.name + "</h3>" +
-                K.fontDemoText + "</div>";
+            const n = font.file.replace(".ttf", "-keithFont")
+            const el = "<div class='row well font-element' style='font-family:" + n + "'><h3 class='col-md-3' style='font-family:inherit'>" + font.name +
+                "</h3><div class='col-md-9' style='font-family:inherit;word-wrap:normal;'>" +
+                K.fontDemoText + "</div></div>";
+            $('#styles').append("<style>@font-face{font-family:" + n + ";src:url(http://keithmackay.com/fonts/" + font.file +
+                ")}</style>")
             return el;
         }
 
@@ -57,23 +73,35 @@
                 var mainDiv = $("#mainDiv")
                 $.get("http://keithmackay.com/fonts/fonts.json", function(data) {
                     try {
-                        for (var a = 0; a < data.groups.length; a++) {
-                            const group = data.groups[a];
-                            var groupEl = "<div class='font-group row well'><h2 style='border-bottom:thin black solid;'>" + group.name + "</h2>";
+                        var idVar = 0
+                        for (var a = 0; a < data.groups.length; a++, idVar++) {
+                            const group = data.groups[a],
+                                id = "fontElement-" + idVar.toString();
+                            var groupEl = "<div class='font-group row well'><button style='float:right;' class='btn btn-raised' data-toggle='collapse' data-target='#" +
+                                id + "'>Toggle</button><h2 style='border-bottom:thin black solid;'>" + group.name +
+                                "</h2><div class='collapse in' id='" + id + "'>";
                             for (var b = 0; b < group.fonts.length; b++) {
                                 groupEl += K.formatIntoFontDiv(group.fonts[b]);
                             }
-                            groupEl += "</div>";
+                            groupEl += "</div></div>";
                             mainDiv.append(groupEl);
                         }
                         for (var a = 0; a < data.fonts.length; a++) {
-                            mainDiv.append(K.formatIntoFontDiv(data.fonts[a]))
+                            try {
+                                mainDiv.append(K.formatIntoFontDiv(data.fonts[a]))
+                            } catch (err2) {
+                                console.log(err2)
+                                console.log("current element = " + data.fonts[a])
+                            }
                         }
                     } catch (err) {
                         console.log("Error Location 2")
                         console.log(err)
                     }
                 })
+                for (var x = 0; x < K.charsToDemo.length; x++) {
+                    K.fontDemoText += K.charsToDemo[x] + " ";
+                }
             } catch (err) {
                 console.log("Error Location 1")
                 console.log(err)
@@ -85,7 +113,8 @@
 <body>
     <div class="container" id="page">
         <center>
-            <h1><img src="http://keithmackay.com/images/icons/favicon.ico" style="margin-left:15px;max-height:75px;"/> Fonts available at <a href="http://keithmackay.com">keithmackay.com</a></h1></center>
+            <h1><img src="http://keithmackay.com/images/icons/favicon.ico" style="margin-left:15px;max-height:90px;"/> Fonts available at <a href="http://keithmackay.com">keithmackay.com</a></h1></center>
+        <div id="styles"></div>
         <div id="mainDiv"></div>
     </div>
 </body>
