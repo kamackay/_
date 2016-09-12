@@ -56,10 +56,16 @@
         K.fontDemoText = '';
         K.fontElementFormat = "<div class='row well font-element' style='display:none;font-family:!!n!!'><h3 class='col-md-3' style='font-family:inherit'>!!fontname!!</h3><div class='col-md-9' style='font-family:inherit;word-wrap:normal;'>!!demotext!!</div></div>";
         K.formatIntoFontDiv = function(font) {
-            const n = font.file.replace(".ttf", "-keithFont")
-            const el = K.fontElementFormat.replace("!!demotext!!", K.fontDemoText).replace("!!n!!", n).replace('!!fontname!!', font.name)
-            $('#styles').append("<style>@font-face{font-family:" + n + ";src:url(http://keithmackay.com/fonts/" + font.file + ")}</style>")
-            return el;
+            try {
+                const n = font.file.replace(".ttf", "-keithFont")
+                const el = K.fontElementFormat.replace("!!demotext!!", K.fontDemoText).replace("!!n!!", n).replace('!!fontname!!', font.name)
+                $('#styles').append("<style>@font-face{font-family:" + n + ";src:url(http://keithmackay.com/fonts/" + font.file + ")}</style>")
+                return el;
+            } catch (err) {
+                console.log(font);
+                console.log(err)
+                return '';
+            }
         }
 
         $(document).ready(function() {
@@ -94,25 +100,31 @@
                         }
                         setTimeout(function() {
                             $.each($('body').find('.font-element, .font-group'), function(n, o) {
-                                var $this = $(this);
-                                $this.fadeIn(4000);
-                                $this.mouseover(function() {
-                                    $this.animate({
-                                        backgroundColor: "blue"
-                                    }, {
-                                        queue: false,
-                                        duration: 500,
-                                        easing: "linear"
-                                    })
-                                }).mouseout(function() {
-                                    $this.animate({
-                                        backgroundColor: "white"
-                                    }, {
-                                        queue: false,
-                                        duration: 500,
-                                        easing: "linear"
-                                    })
-                                })
+                                try {
+                                    var $this = $(this);
+                                    $this.fadeIn(4000);
+                                    if ($this.hasClass('font-element')) {
+                                        $this.mouseover(function() {
+                                            $this.animate({
+                                                backgroundColor: "blue"
+                                            }, {
+                                                queue: false,
+                                                duration: 500,
+                                                easing: "linear"
+                                            })
+                                        }).mouseout(function() {
+                                            $this.animate({
+                                                backgroundColor: "white"
+                                            }, {
+                                                queue: false,
+                                                duration: 500,
+                                                easing: "linear"
+                                            })
+                                        })
+                                    }
+                                } catch (err3) {
+                                    console.log(err3)
+                                }
                             });
                         }, 1000);
                     } catch (err) {
@@ -134,7 +146,7 @@
 <body>
     <div class="container" id="page">
         <center>
-            <h1><img src="http://keithmackay.com/images/icons/favicon.ico" style="margin-left:15px;max-height:90px;"/> Fonts available at <a href="http://keithmackay.com">keithmackay.com</a></h1></center>
+            <h1 class="hidden"><img src="http://keithmackay.com/images/icons/favicon.ico" style="margin-left:15px;max-height:90px;"/> Fonts available at <a href="http://keithmackay.com">keithmackay.com</a></h1></center>
         <div id="styles"></div>
         <div id="mainDiv"></div>
     </div>
