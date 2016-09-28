@@ -170,7 +170,7 @@ function drawPixel(imagedata, x, y, color) {
 // get the input spheres from the standard class URL
 function getInputSpheres() {
     const INPUT_SPHERES_URL =
-        './spheres.json';
+        'https://ncsucgclass.github.io/prog1/spheres.json';
     // load the spheres file
     var httpReq = new XMLHttpRequest() // a new http request
     httpReq.open('GET', INPUT_SPHERES_URL, false) // init the request
