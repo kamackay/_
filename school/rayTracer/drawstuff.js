@@ -25,7 +25,7 @@ var calcLighting = true;
 class Color {
     constructor(r, g, b, a) {
             try {
-                if ((typeof(r) !== 'number') || (typeof(g) !== 'number') || (typeof(b) !== 'number') || (typeof(a) !== 'number'))
+                if ((typeof (r) !== 'number') || (typeof (g) !== 'number') || (typeof (b) !== 'number') || (typeof (a) !== 'number'))
                     throw 'color component not a number'
                 else if ((r < 0) || (g < 0) || (b < 0) || (a < 0))
                     throw 'color component less than 0'
@@ -46,7 +46,7 @@ class Color {
     // Color change method
     change(r, g, b, a) {
             try {
-                if ((typeof(r) !== 'number') || (typeof(g) !== 'number') || (typeof(b) !== 'number') || (typeof(a) !== 'number'))
+                if ((typeof (r) !== 'number') || (typeof (g) !== 'number') || (typeof (b) !== 'number') || (typeof (a) !== 'number'))
                     throw 'color component not a number'
                 else if ((r < 0) || (g < 0) || (b < 0) || (a < 0))
                     throw 'color component less than 0'
@@ -69,7 +69,7 @@ class Color {
 
 //Math Functions that can be performed on Vecors
 const vm = {
-    dot: function(v1, v2) {
+    dot: function (v1, v2) {
         if (v1 == undefined || v2 == undefined) throw "undefined Vector";
         if (v1.x != undefined) return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
         else {
@@ -80,7 +80,7 @@ const vm = {
             return v;
         }
     },
-    mag: function(v) {
+    mag: function (v) {
         if (v.x != undefined) {
             return Math.sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
         } else {
@@ -90,7 +90,7 @@ const vm = {
             return Math.sqrt(v);
         }
     },
-    sub: function(v1, v2) {
+    sub: function (v1, v2) {
         if (v1.x != undefined) return {
             x: v1.x - v2.x,
             y: v1.y - v2.y,
@@ -103,7 +103,7 @@ const vm = {
             return v;
         }
     },
-    add: function(v1, v2) {
+    add: function (v1, v2) {
         if (v1.x != undefined) return {
             x: v1.x + v2.x,
             y: v1.y + v2.y,
@@ -116,7 +116,7 @@ const vm = {
             return v;
         }
     },
-    xScal: function(v, s) {
+    xScal: function (v, s) {
         if (v.x != undefined) return {
             x: v.x * s,
             y: v.y * s,
@@ -129,7 +129,7 @@ const vm = {
             return vx;
         }
     },
-    norm: function(v) {
+    norm: function (v) {
         if (v.x != undefined) {
             const m = 1 / this.mag(v);
             return normV = {
@@ -149,7 +149,7 @@ const vm = {
 // draw a pixel at x,y using color
 function drawPixel(imagedata, x, y, color) {
     try {
-        if ((typeof(x) !== 'number') || (typeof(y) !== 'number'))
+        if ((typeof (x) !== 'number') || (typeof (y) !== 'number'))
             throw 'drawpixel location not a number'
         else if ((x < 0) || (y < 0) || (x >= imagedata.width) || (y >= imagedata.height))
             throw 'drawpixel location outside of image'
@@ -170,7 +170,7 @@ function drawPixel(imagedata, x, y, color) {
 // get the input spheres from the standard class URL
 function getInputSpheres() {
     const INPUT_SPHERES_URL =
-        'https://ncsucgclass.github.io/prog1/spheres.json';
+        'http://keithmackay.com/school/rayTracer/spheres.json';
     // load the spheres file
     var httpReq = new XMLHttpRequest() // a new http request
     httpReq.open('GET', INPUT_SPHERES_URL, false) // init the request
@@ -208,7 +208,7 @@ function drawAllPixels(context, calcLight) {
         for (var y = 0; y < dim; y++) {
             //n++;
             pixels[x] = [];
-            inputSpheres.forEach(function(cir) {
+            inputSpheres.forEach(function (cir) {
                 const calc = {
                     x: x,
                     y: y,
@@ -265,7 +265,7 @@ function drawAllPixels(context, calcLight) {
                         I.V = vm.norm(vm.sub(calc.inter, E));
                         I.n = cir.n * nFactor;
                         I.n_dot_l = vm.dot(I.nNorm, I.lNorm);
-                        [0, 1, 2].forEach(function(a) {
+                        [0, 1, 2].forEach(function (a) {
                             I.val[a] += Math.max((I.La[a] * I.Ka[a]), 0) +
                                 Math.max(I.Ld[a] * I.Kd[a] * I.n_dot_l, 0) +
                                 Math.max(I.Ls[a] * I.Ks[a] * Math.pow(vm.dot(vm.norm(I.R), I.V), I.n), 0);
@@ -307,7 +307,7 @@ function updateN() {
 }
 
 function updateLights() {
-    ['x', 'y', 'z'].forEach(function(v) {
+    ['x', 'y', 'z'].forEach(function (v) {
         lights[0].location[v] = parseFloat(document.getElementById('light' + v.toUpperCase()).value);
     });
     draw();
@@ -330,7 +330,7 @@ function draw() {
 
 function main() {
     document.getElementById('nVal').value = nFactor;
-    ['x', 'y', 'z'].forEach(function(v) {
+    ['x', 'y', 'z'].forEach(function (v) {
         document.getElementById('light' + v.toUpperCase()).value = lights[0].location[v];
     });
     document.getElementById('calcLighting').checked = calcLighting;
