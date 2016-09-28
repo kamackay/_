@@ -168,128 +168,145 @@ function drawPixel(imagedata, x, y, color) {
 } // end drawPixel
 
 // get the input spheres from the standard class URL
-function getInputSpheres() {
-    const INPUT_SPHERES_URL =
-        'http://keithmackay.com/school/rayTracer/spheres.json';
-    // load the spheres file
-    var httpReq = new XMLHttpRequest() // a new http request
-    httpReq.open('GET', INPUT_SPHERES_URL, false) // init the request
-    httpReq.send(null) // send the request
-    var startTime = Date.now()
-    while ((httpReq.status !== 200) && (httpReq.readyState !== XMLHttpRequest.DONE)) {
-        if ((Date.now() - startTime) > 3000)
-            break
-    } // until its loaded or we time out after three seconds
-    if ((httpReq.status !== 200) || (httpReq.readyState !== XMLHttpRequest.DONE)) {
-        console.log * ('Unable to open input spheres file!')
-        return String.null
-    } else
-        return JSON.parse(httpReq.response)
+function getInputSpheres(complete) {
+    $.get('http://keithmackay.com/school/rayTracer/spheres.json', function (data) {
+        if (typeof complete === 'function') complete(data);
+    });
+    /*
+        // load the spheres file
+        var httpReq = new XMLHttpRequest() // a new http request
+        httpReq.open('GET', INPUT_SPHERES_URL, false) // init the request
+        httpReq.send(null) // send the request
+        var startTime = Date.now()
+        while ((httpReq.status !== 200) && (httpReq.readyState !== XMLHttpRequest.DONE)) {
+            if ((Date.now() - startTime) > 3000)
+                break
+        } // until its loaded or we time out after three seconds
+        if ((httpReq.status !== 200) || (httpReq.readyState !== XMLHttpRequest.DONE)) {
+            console.log * ('Unable to open input spheres file!')
+            return String.null
+        } else
+            return JSON.parse(httpReq.response)/* Removed this and replaced it with the jQuery get */
 } // end get input spheres
 
 var pixels = [];
-
+var doLog = true;
 /**
  * Draws the circles using ray tracing
  * 
  * calcLight parameter, if set to true, will determine the color based on the lights in the environment
  */
 function drawAllPixels(context, calcLight) {
-    var inputSpheres = getInputSpheres();
-    const dim = context.canvas.width;
-    //Scaled Value of dim to test runtime
-    const dinv = 1 / dim;
-    var c = new Color(0, 0, 0, 255);
-    var imagedata = context.createImageData(dim, dim);
-    const startTime = new Date().getTime();
-    var n = 0,
-        f = 0;
-    for (var x = 0; x < dim; x++) {
-        for (var y = 0; y < dim; y++) {
-            //n++;
-            pixels[x] = [];
-            inputSpheres.forEach(function (cir) {
-                const calc = {
-                    x: x,
-                    y: y,
-                    circle: cir,
-                    r: cir.r,
-                    C: {
-                        x: cir.x,
-                        y: cir.y,
-                        z: cir.z
-                    },
-                    P: {
-                        x: x / dim,
-                        y: 1 - (y * dinv),
-                        z: 0
+    getInputSpheres(function (inputSpheres) {
+        console.log(inputSpheres);
+        const dim = context.canvas.width;
+        doLog = true;
+        //Scaled Value of dim to test runtime
+        const dinv = 1 / dim;
+        var c = new Color(0, 0, 0, 255);
+        var imagedata = context.createImageData(dim, dim);
+        const startTime = new Date().getTime();
+        var n = 0,
+            f = 0;
+        for (var x = 0; x < dim; x++) {
+            for (var y = 0; y < dim; y++) {
+                //n++;
+                pixels[x] = [];
+                inputSpheres.forEach(function (cir) {
+                    const calc = {
+                        x: x,
+                        y: y,
+                        circle: cir,
+                        r: cir.r,
+                        C: {
+                            x: cir.x,
+                            y: cir.y,
+                            z: cir.z
+                        },
+                        P: {
+                            x: x / dim,
+                            y: 1 - (y / dim),
+                            z: 0
+                        }
+                        //y = 1 - y/h in order to render the world right-side up
                     }
-                    //y = 1 - y/h in order to render the world right-side up
-                }
-                calc.D = vm.sub(calc.P, E);
-                calc.e_min_c = vm.sub(E, calc.C);
-                calc.a = vm.dot(calc.D, calc.D);
-                calc.b = 2 * vm.dot(calc.D, calc.e_min_c);
-                calc.c = vm.dot(calc.e_min_c, calc.e_min_c) - calc.r * calc.r;
-                calc.dis = calc.b * calc.b - 4 * calc.a * calc.c;
-                if (calc.dis >= 0) {
-                    //Calculate the value of t at this intersection
-                    var t = quadForm(calc.a, calc.b, calc.c);
-                    //Discard anything where t is less than 1
-                    if (t <= 1 || pixels[x][y]) return; /*|| (typeof pixels[x][y] != 'undefined' && pixels[x][y].t > t)*/
-                    /*pixels[x][y] = {
-                        t: t
-                    };*/
-                    calc.inter = vm.add(E, vm.xScal(calc.D, t));
-                    if (calcLight) {
-                        //Use the lights to calculate the lighting
+                    calc.D = vm.sub(calc.P, E);
+                    calc.e_min_c = vm.sub(E, calc.C);
+                    calc.a = vm.dot(calc.D, calc.D);
+                    calc.b = 2 * vm.dot(calc.D, calc.e_min_c);
+                    calc.c = vm.dot(calc.e_min_c, calc.e_min_c) - calc.r * calc.r;
+                    calc.dis = calc.b * calc.b - 4 * calc.a * calc.c;
+                    if (calc.dis >= 0) {
+                        //Calculate the value of t at this intersection
+                        var t = quadForm(calc.a, calc.b, calc.c);
+                        //Discard anything where t is less than 1
+                        if (t <= 1 || pixels[x][y]) return; /*|| (typeof pixels[x][y] != 'undefined' && pixels[x][y].t > t)*/
+                        /*pixels[x][y] = {
+                            t: t
+                        };*/
+                        calc.inter = vm.add(E, vm.xScal(calc.D, t));
+                        if (calcLight) {
+                            //Use the lights to calculate the lighting
 
-                        // For each light, trace from the center of the light to this point
-                        const light = lights[0];
-                        const I = {
-                            val: [0, 0, 0],
-                            La: light.ambient,
-                            Ld: light.diffuse,
-                            Ls: light.specular,
-                            Ka: cir.ambient,
-                            Kd: cir.diffuse,
-                            Ks: cir.specular
-                        };
-                        /* N = Vector Normal to the surface */
-                        I.nNorm = vm.norm(vm.sub(calc.C, calc.inter));
-                        /*L = Vector From the Surface to the light source */
-                        I.lNorm = vm.norm(vm.sub(calc.inter, light.location));
-                        //R = 2N(N*L)-L
-                        I.R = vm.sub(vm.xScal(I.nNorm, 2 * vm.dot(I.nNorm, I.lNorm)), I.lNorm);
-                        /* V = Vector from the Surface to the eye */
-                        I.V = vm.norm(vm.sub(calc.inter, E));
-                        I.n = cir.n * nFactor;
-                        I.n_dot_l = vm.dot(I.nNorm, I.lNorm);
-                        [0, 1, 2].forEach(function (a) {
-                            I.val[a] += Math.max((I.La[a] * I.Ka[a]), 0) +
-                                Math.max(I.Ld[a] * I.Kd[a] * I.n_dot_l, 0) +
-                                Math.max(I.Ls[a] * I.Ks[a] * Math.pow(vm.dot(vm.norm(I.R), I.V), I.n), 0);
-                        });
-                        c.change(
-                            255 * I.val[0],
-                            255 * I.val[1],
-                            255 * I.val[2],
-                            255);
-                    } else {
-                        c.change(
-                            cir.diffuse[0] * 255,
-                            cir.diffuse[1] * 255,
-                            cir.diffuse[2] * 255,
-                            255);
+                            // For each light, trace from the center of the light to this point
+                            const light = lights[0];
+                            const I = {
+                                val: [0, 0, 0],
+                                La: light.ambient,
+                                Ld: light.diffuse,
+                                Ls: light.specular,
+                                Ka: cir.ambient,
+                                Kd: cir.diffuse,
+                                Ks: cir.specular
+                            };
+                            /* N = Vector Normal to the surface */
+                            I.nNorm = vm.norm(vm.sub(calc.C, calc.inter));
+                            /*L = Vector From the Surface to the light source */
+                            I.lNorm = vm.norm(vm.sub(calc.inter, light.location));
+                            //R = 2N(N*L)-L
+                            I.R = vm.sub(vm.xScal(I.nNorm, 2 * vm.dot(I.nNorm, I.lNorm)), I.lNorm);
+                            /* V = Vector from the Surface to the eye */
+                            I.V = vm.norm(vm.sub(calc.inter, E));
+                            I.n = cir.n * nFactor;
+                            I.n_dot_l = vm.dot(I.nNorm, I.lNorm);
+                            [0, 1, 2].forEach(function (a) {
+                                I.val[a] += Math.max((I.La[a] * I.Ka[a]), 0) +
+                                    Math.max(I.Ld[a] * I.Kd[a] * I.n_dot_l, 0) +
+                                    Math.max(I.Ls[a] * I.Ks[a] * Math.pow(vm.dot(vm.norm(I.R), I.V), I.n), 0);
+                            });
+                            c.change(
+                                255 * I.val[0],
+                                255 * I.val[1],
+                                255 * I.val[2],
+                                255);
+                            if (doLog) {
+                                console.log(I);
+                                console.log(typeof nFactor);
+                                doLog = false;
+                            }
+                            drawPixel(imagedata, x, y, c);
+                        } else {
+                            c.change(
+                                cir.diffuse[0] * 255,
+                                cir.diffuse[1] * 255,
+                                cir.diffuse[2] * 255,
+                                255);
+                            drawPixel(imagedata, x, y, c);
+                        }
                     }
-                    drawPixel(imagedata, x, y, c);
-                }
-            });
+                });
+            }
         }
-    }
-    context.putImageData(imagedata, 0, 0);
-    console.log('Draw in ' + (new Date().getTime() - startTime).toString() + ' milliseconds');
-    // console.log('O(' + n + ')');
+        for (var q = 0; q < Number.MAX_VALUE; q++) {
+            if (imagedata.data[q] != 0) {
+                console.log('something');
+                break;
+            }
+        }
+        document.getElementById('viewport').getContext('2d').putImageData(imagedata, 0, 0);
+        console.log('Draw in ' + (new Date().getTime() - startTime).toString() + ' milliseconds');
+        // console.log('O(' + n + ')');
+    });
 }
 
 function quadForm(a, b, c) {
