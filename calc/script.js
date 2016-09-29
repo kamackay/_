@@ -20,7 +20,7 @@ function showInOutput(str, newLn = true, tab = 0) {
 }
 const win = $(window);
 
-var f = function () {
+var f = function() {
     var size = win.height() / 10;
     var mobile = isMobileDevice();
     var calc = $('body').find('.calculator');
@@ -33,7 +33,7 @@ var f = function () {
         calc.css('width', n);
     }
     var w = (numbers.width() / 4) - 1;
-    $.each(buttons, function (n, o) {
+    $.each(buttons, function(n, o) {
         var t = $(this);
         t.css('width', w).css('font-size', Math.max(size / 2, 30));
         t.css('height', Math.max(75, size));
@@ -43,10 +43,10 @@ var f = function () {
     $('#bottomButtons').css('height', size * 3);
 };
 
-($(document).ready(function () {
+($(document).ready(function() {
     loadJSAsync('http://keithmackay.com/devfiles/math.js', 'mathScript');
     $('#output').html("Output:<br>");
-    $('#numberIn').on('keydown', function (e) {
+    $('#numberIn').on('keydown', function(e) {
         if (e.ctrlKey && e.which === 83) {
             showSnackbar('You can\'t save me...');
             e.preventDefault();
@@ -61,7 +61,7 @@ var f = function () {
                 break;
         }
     });
-    var scrollHorizontal = function (event, delta) {
+    var scrollHorizontal = function(event, delta) {
         this.scrollLeft -= (delta * 30);
         event.preventDefault();
     };
@@ -77,22 +77,17 @@ var f = function () {
     if (isMobileDevice()) {
         con.removeAttr('autofocus')
         var elems = $('body').find('.calculator.well');
-        $.each(elems, function (n, o) {
+        $.each(elems, function(n, o) {
             $(this).removeClass('well');
         });
     } else {
-        con.on('blur', function (e) {
-            try {
-                console.log(document.activeElement);
-            } catch (err) {
-                console.log(err);
-            }
+        con.on('blur', function() {
             con.focus();
         });
         //showWatermark();
         //Watermark is intrusive on the right, maybe move it to the left?
     } /**/
-    con.on('scrollwheel', function (e) {
+    con.on('scrollwheel', function(e) {
         e.preventDefault();
     });
     window.setInterval(f, 1000);
@@ -196,7 +191,7 @@ function parseMath() {
 }
 
 function scrollAnswerRight() {
-    setTimeout(function () {
+    setTimeout(function() {
         store.animate({
             scrollLeft: store.width() * 2
         }, {
