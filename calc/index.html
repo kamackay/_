@@ -16,7 +16,7 @@
     <link href="./Bootstrap Material_files/ripples.min.css" rel="stylesheet">
     <link href="./Bootstrap Material_files/snackbar.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel='stylesheet' href='//cdn.jsdelivr.net/font-hack/2.020/css/hack-extended.min.css'>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.020/css/hack-extended.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--http://keithmackay.com/devfiles/ Files-->
 
@@ -37,7 +37,8 @@
         <div id="calculator" class="well calculator">
             <div class="console" id="console">
                 <div class="row">
-                    <button id="formatButton" data-toggle="tooltip" data-placement="right" title="Format" onclick="formatFonts()" class="hidden btn btn-raised btn-small btn-primary" style="width:5%;height:100%;font-size:30px;padding:10px;border-radius:5px">&#x0192;</button>
+                    <button id="formatButton" data-toggle="tooltip" data-placement="right" title="Format" onclick="formatFonts()" class="hidden btn btn-raised btn-small btn-primary"
+                        style="width:5%;height:100%;font-size:30px;padding:10px;border-radius:5px">&#x0192;</button>
                     <input type="text" id="numberIn" autofocus>
                 </div>
                 <div id="numberStore"></div>
@@ -88,7 +89,9 @@
         <script>
             $(function() {
                 $.material.init();
-                $(".shor").noUiSlider({
+                var shor = $(".shor"), svert = $('.svert');
+                if (shor.length){
+                shor.noUiSlider({
                     start: 40,
                     connect: "lower",
                     range: {
@@ -96,8 +99,9 @@
                         max: 100
                     }
                 });
+                }
 
-                $(".svert").noUiSlider({
+                if (svert.length){svert.noUiSlider({
                     orientation: "vertical",
                     start: 40,
                     connect: "lower",
@@ -106,6 +110,7 @@
                         max: 100
                     }
                 });
+            }
             });
 
         </script>
