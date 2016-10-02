@@ -197,6 +197,7 @@ var doLog = true;
  * calcLight parameter, if set to true, will determine the color based on the lights in the environment
  */
 function drawAllPixels(context, calcLight) {
+    nFactor = (nFactor % 2 == 0) ? nFactor + 1 : nFactor;
     getInputSpheres(function (inputSpheres) {
         console.log(inputSpheres);
         const dim = context.canvas.width;
