@@ -10,7 +10,7 @@ const lights = [{
     location: {
         x: 2,
         y: 4,
-        z: -.5
+        z: -5
     },
     ambient: [1, 1, 1],
     diffuse: [1, 1, 1],
