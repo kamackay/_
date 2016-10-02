@@ -10,7 +10,7 @@ const lights = [{
     location: {
         x: 2,
         y: 4,
-        z: -5
+        z: -2
     },
     ambient: [1, 1, 1],
     diffuse: [1, 1, 1],
@@ -172,21 +172,6 @@ function getInputSpheres(complete) {
     $.get('http://keithmackay.com/school/rayTracer/spheres.json', function (data) {
         if (typeof complete === 'function') complete(data);
     });
-    /*
-        // load the spheres file
-        var httpReq = new XMLHttpRequest() // a new http request
-        httpReq.open('GET', INPUT_SPHERES_URL, false) // init the request
-        httpReq.send(null) // send the request
-        var startTime = Date.now()
-        while ((httpReq.status !== 200) && (httpReq.readyState !== XMLHttpRequest.DONE)) {
-            if ((Date.now() - startTime) > 3000)
-                break
-        } // until its loaded or we time out after three seconds
-        if ((httpReq.status !== 200) || (httpReq.readyState !== XMLHttpRequest.DONE)) {
-            console.log * ('Unable to open input spheres file!')
-            return String.null
-        } else
-            return JSON.parse(httpReq.response)/* Removed this and replaced it with the jQuery get */
 } // end get input spheres
 
 var pixels = [];
@@ -199,7 +184,6 @@ var doLog = true;
 function drawAllPixels(context, calcLight) {
     nFactor = (nFactor % 2 == 0) ? nFactor + 1 : nFactor;
     getInputSpheres(function (inputSpheres) {
-        console.log(inputSpheres);
         const dim = context.canvas.width;
         doLog = true;
         //Scaled Value of dim to test runtime
@@ -213,6 +197,11 @@ function drawAllPixels(context, calcLight) {
             for (var y = 0; y < dim; y++) {
                 //n++;
                 pixels[x] = [];
+                const pixel = {
+                    x: x * dinv,
+                    y: 1 - (y * dinv),
+                    z: 0
+                };
                 inputSpheres.forEach(function (cir) {
                     const calc = {
                         x: x,
@@ -224,12 +213,7 @@ function drawAllPixels(context, calcLight) {
                             y: cir.y,
                             z: cir.z
                         },
-                        P: {
-                            x: x / dim,
-                            y: 1 - (y / dim),
-                            z: 0
-                        }
-                        //y = 1 - y/h in order to render the world right-side up
+                        P: pixel
                     }
                     calc.D = vm.sub(calc.P, E);
                     calc.e_min_c = vm.sub(E, calc.C);
@@ -241,7 +225,7 @@ function drawAllPixels(context, calcLight) {
                         //Calculate the value of t at this intersection
                         var t = quadForm(calc.a, calc.b, calc.c);
                         //Discard anything where t is less than 1
-                        if (t <= 1 || pixels[x][y]) return; /*|| (typeof pixels[x][y] != 'undefined' && pixels[x][y].t > t)*/
+                        if (t <= 1) return; /*|| (typeof pixels[x][y] != 'undefined' && pixels[x][y].t > t)*/
                         /*pixels[x][y] = {
                             t: t
                         };*/
@@ -280,11 +264,12 @@ function drawAllPixels(context, calcLight) {
                                 255 * I.val[1],
                                 255 * I.val[2],
                                 255);
+                            /**
                             if (doLog) {
                                 console.log(I);
                                 console.log(typeof nFactor);
                                 doLog = false;
-                            }
+                            } /* Don't Really need this at the moment */
                             drawPixel(imagedata, x, y, c);
                         } else {
                             c.change(
@@ -296,12 +281,6 @@ function drawAllPixels(context, calcLight) {
                         }
                     }
                 });
-            }
-        }
-        for (var q = 0; q < Number.MAX_VALUE; q++) {
-            if (imagedata.data[q] != 0) {
-                console.log('something');
-                break;
             }
         }
         document.getElementById('viewport').getContext('2d').putImageData(imagedata, 0, 0);
