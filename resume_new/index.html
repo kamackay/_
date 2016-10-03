@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head id="head">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Keith MacKay">
+    <meta name="description" content="Keith MacKay's Webpage-based Resume">
+    <meta name="keywords" content="Keith MacKay, Interactive Resume, Web developer, Interactive CV, Resume, CV, NCSU, Software Engineer">
+    <link rel="icon" href="http://keithmackay.com/favicon.ico">
+    <title>Keith MacKay's Resume</title>
+    <script type="text/javascript" src="http://keithmackay.com/devfiles/get.js"></script>
+    <script type="text/javascript" src="./load.js" async defer></script>
+</head>
+
+<body id="body">
+    <div id="loading">
+        <style>
+            @col1: #990000;
+            @col2: #004d99;
+            @col3: #00994d;
+            #loadText {
+                position: absolute;
+                top: 0px;
+                z-index: 200;
+                font-size: 3vh;
+                width: 100%;
+                text-align: center;
+                color: #eee;
+                margin-top: .5vh;
+            }
+            
+            body {
+                margin: 0px;
+                padding: 0px;
+            }
+            
+            .load-bar {
+                position: relative;
+                margin-top: 0px;
+                width: 100%;
+                height: 5vh;
+                background-color: #900;
+            }
+            
+            .bar {
+                content: "";
+                display: inline;
+                position: absolute;
+                width: 0;
+                height: 100%;
+                left: 50%;
+                text-align: center;
+            }
+            
+            .bar:nth-child(1) {
+                background-color: #900;
+                animation: loading 3s linear infinite;
+            }
+            
+            .bar:nth-child(2) {
+                background-color: #004d99;
+                animation: loading 3s linear 1s infinite;
+            }
+            
+            .bar:nth-child(3) {
+                background-color: #00994d;
+                animation: loading 3s linear 2s infinite;
+            }
+            
+            @keyframes loading {
+                from {
+                    left: 50%;
+                    width: 0;
+                    z-index: 100;
+                }
+                33.3333% {
+                    left: 0;
+                    width: 100%;
+                    z-index: 10;
+                }
+                to {
+                    left: 0;
+                    width: 100%;
+                }
+            }
+
+        </style>
+        <div class="load-bar">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <span id="loadText">Loading...</span>
+    </div>
+</body>
+
+</html>

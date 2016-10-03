@@ -1,0 +1,11 @@
+{
+	"css": [
+		"http://keithmackay.com/devfiles/bootstrap.css",
+		"http://keithmackay.com/devfiles/material.css",
+		"http://keithmackay.com/devfiles/style.css"
+	],
+	"js": [
+		"http://keithmackay.com/devfiles/jquery.js",
+		"http://keithmackay.com/devfiles/script.js"
+	]
+}
