@@ -1,7 +1,7 @@
 {
 	"stylesheets": [
-		"//fonts.googleapis.com/css?family=Roboto:300,400,500,700",
-		"//fonts.googleapis.com/icon?family=Material+Icons",
+		"http://fonts.googleapis.com/css?family=Roboto:300,400,500,700",
+		"http://fonts.googleapis.com/icon?family=Material+Icons",
 		"./dist/css/bootstrap.css",
 		"http://keithmackay.com/devfiles/material.css",
 		"http://keithmackay.com/devfiles/ripples.css",
@@ -27,5 +27,5 @@
 		"./script/all.js",
 		"http://keithmackay.com/devfiles/script.js"
 	],
-	"html": ""
+	"htmlsrc": "http://keithmackay.com/resume/cont.html"
 }
