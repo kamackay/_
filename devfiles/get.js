@@ -7,7 +7,13 @@ function get(p) {
 			if (req.readyState == XMLHttpRequest.DONE) {
 				switch (req.status) {
 					case 200:
-						if (typeof p.done === 'function') p.done(JSON.parse(req.responseText))
+						var data;
+						try {
+							data = JSON.parse(req.responseText);
+						} catch (err) {
+							data = req.responseText;
+						}
+						if (typeof p.done === 'function') p.done(data);
 						break
 					default:
 						if (typeof p.fail === 'function') p.fail(req.status)
@@ -15,7 +21,7 @@ function get(p) {
 				}
 			}
 		}
-		req.send() // send the request
+		req.send();
 	} catch (err) {
 		console.log(err)
 	}
