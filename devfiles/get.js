@@ -1,1 +1,30 @@
-!function(){window._get=function(a){try{var b=new XMLHttpRequest;b.open("GET",a.url,!0),b.responseType="text",b.onreadystatechange=function(){if(b.readyState==XMLHttpRequest.DONE)switch(b.status){case 200:var c;try{c=JSON.parse(b.responseText)}catch(a){c=b.responseText}"function"==typeof a.done&&a.done(c);break;default:if("function"!=typeof a.fail)throw new Error("error "+b.status+" from server");a.fail(b.status)}},b.send()}catch(a){console.log(a)}},window._loadResource=function(a){_get({url:a,done:function(a){document.head.innerHTML+="<script defer>"+a+"</script>"}})}}();
+(function () {
+	window._get = function (p) {
+		try {
+			var req = new XMLHttpRequest()
+			req.open('GET', p.url, true)
+			req.responseType = 'text'
+			req.onreadystatechange = function () {
+				if (req.readyState == XMLHttpRequest.DONE) {
+					switch (req.status) {
+						case 200:
+							var data;
+							try {
+								data = JSON.parse(req.responseText);
+							} catch (err) {
+								data = req.responseText;
+							}
+							if (typeof p.done === 'function') p.done(data);
+							break
+						default:
+							if (typeof p.fail === 'function') p.fail(req.status)
+							else throw new Error('error ' + req.status + ' from server');
+					}
+				}
+			}
+			req.send();
+		} catch (err) {
+			console.log(err)
+		}
+	};
+})();
