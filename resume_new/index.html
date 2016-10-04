@@ -14,18 +14,30 @@
     <script type="text/javascript" src="./load.js" async defer></script>
 </head>
 
-<body id="body">
+<body id="body" style="background-repeat:no-repeat">
     <div id="loading">
         <style>
+            @font-face {
+                font-family: robo;
+                src: url(http://keithmackay.com/fonts/roboto.ttf) format("truetype")
+            }
+            
             #loadText {
                 position: absolute;
                 top: 0px;
+                font-family: robo, sans-serif;
                 z-index: 200;
                 font-size: 3vh;
                 width: 100%;
                 text-align: center;
                 color: #eee;
+                cursor: default;
                 margin-top: .5vh;
+                user-select: none;
+                -moz-user-select: none;
+                -khtml-user-select: none;
+                -webkit-user-select: none;
+                -o-user-select: none;
             }
             
             body {

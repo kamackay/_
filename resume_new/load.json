@@ -1,11 +1,19 @@
 {
-	"css": [
+    "css": [
 		"http://keithmackay.com/devfiles/bootstrap.css",
 		"http://keithmackay.com/devfiles/material.css",
-		"http://keithmackay.com/devfiles/style.css"
+		"http://keithmackay.com/devfiles/style.css",
+        "https://fonts.googleapis.com/icon?family=Material+Icons"
 	],
-	"js": [
+    "js": [
 		"http://keithmackay.com/devfiles/jquery.js",
-		"http://keithmackay.com/devfiles/script.js"
-	]
+		"http://keithmackay.com/devfiles/bootstrap.js",
+        "http://keithmackay.com/devfiles/ripples.js",
+        "http://keithmackay.com/devfiles/material.js",
+        "http://keithmackay.com/devfiles/snackbar.js", "http://keithmackay.com/devfiles/typer.js",
+        "http://keithmackay.com/devfiles/script.js",
+        "./script.js"
+	],
+    "html_src": "./cont.xml",
+    "background_src": "http://keithmackay.com/images/platinum-back.png"
 }
