@@ -22,7 +22,7 @@
                 done: function (a) {
                     var names = js[index].split('/');
                     var s = document.createElement('script');
-                    s.id = names[names.length - 1].split('.')[0];
+                    s.name = names[names.length - 1].split('.')[0];
                     s.type = 'text/javascript';
                     s.innerHTML = a;
                     document.head.appendChild(s);
