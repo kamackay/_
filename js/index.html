@@ -39,6 +39,16 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script type="text/javascript" src="script.js"></script>
     <link rel="stylesheet" href="./style.css">
+    <style>
+        @font-face {
+            font-family: hack;
+            src: url(http://keithmackay.com/fonts/hack.ttf) format("truetype")
+        }
+        
+        .hack {
+            font-family: hack;
+        }
+    </style>
     <!--http://keithmackay.com/devfiles/-->
 </head>
 
@@ -66,7 +76,8 @@
             <div onclick="showAvailableFrameworks()" class="option" data-toggle="tooltip" data-placement="right" title="Available JavaScript Frameworks and methods">
                 <center><i class="material-icons">view_quilt</i></center>
             </div>
-            <div style="position:fixed;bottom:5px;" id="settingsShortcut" onclick="expandSettings()" class="option" data-toggle="tooltip" data-placement="right" title="Settings">
+            <div style="position:fixed;bottom:5px;" id="settingsShortcut" onclick="expandSettings()" class="option" data-toggle="tooltip"
+                data-placement="right" title="Settings">
                 <center><i onclick="" class="material-icons">settings</i></center>
             </div>
         </div>
@@ -76,7 +87,7 @@
             </center>
             <div class="well label-floating">
                 <label class="control-label unselectable" for="jsCode">Enter your Javascript here and run it in this webpage in real-time</label>
-                <textarea class="form-control" style="max-width:100%;max-height:80vh;height:80vh;padding:10px;" id="jsCode"></textarea>
+                <textarea class="form-control hack" style="max-width:100%;max-height:80vh;height:70vh;padding:10px;" id="jsCode"></textarea>
                 <button onclick="runCode();" class="btn btn-raised btn-block btn-lg btn-primary">Run Code</button>
             </div>
         </div>
@@ -84,16 +95,19 @@
     <div id="settings" class="form-group input-group">
         <span class="togglebutton">
         <label>
-            <input type="checkbox" id="formatWhenSave" onclick="formatOnSave()" checked><span class="toggle"></span>Pretty Print Code on Save
+            <input type="checkbox" id="formatWhenSave" onclick="formatOnSave()" checked><span class="toggle"></span>Pretty
+        Print Code on Save
         </label>
         </span>
         <span class="togglebutton">
         <label>
-            <input type="checkbox" id="commentsOnMin" onclick="commentsOnMin()" checked><span class="toggle"></span>Keep Comments on minification
+            <input type="checkbox" id="commentsOnMin" onclick="commentsOnMin()" checked><span class="toggle"></span>Keep
+        Comments on minification
         </label>
         </span>
         <span class="togglebutton">
-            <label><input type="checkbox" id="autoSaveToggle" onclick="toggleAutoSave()" checked><span class="toggle"></span>Auto Save</label>
+            <label><input type="checkbox" id="autoSaveToggle" onclick="toggleAutoSave()" checked><span class="toggle"></span>Auto
+        Save</label>
         </span>
         <span style="display:inline;" id="autoSaveSpan"><span class="input-group-addon">Every</span>
         <input type="text" id="autoSaveTime" class="form-control" style="max-width:100px;">

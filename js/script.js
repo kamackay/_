@@ -48,7 +48,7 @@ $(document).ready(function () {
                 //alert(event.which);
         }
     });
-    showWatermark();
+    //showWatermark();
     usingMaterialLoading()
     $.each($('*'), function (n, o) {
         $(this).addClass('unselectable');
