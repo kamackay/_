@@ -5,16 +5,10 @@
         try {
             if (index >= js.length) {
                 console.log("scripts fully loaded");
-                if (html_src) {
-                    _get({
-                        url: html_src,
-                        done: function (html) {
-                            $('#loading').slideUp(1000, function () {
-                                document.body.innerHTML = html;
-                            })
-                        }
-                    });
-                }
+                $('#loading').slideUp(1000, function () {
+                    $('#loading').remove();
+                    $('#rootCont').fadeIn();
+                })
                 return;
             }
             _get({
@@ -44,7 +38,12 @@
                 head.innerHTML += '<link rel="stylesheet" href="' + a + '">'
             });
             loadJs(data.js, 0);
-            if (data.html_src) html_src = data.html_src;
+            _get({
+                url: data.html_src,
+                done: function (html) {
+                    document.body.innerHTML += '<div style="height:100vh;width:100vw;display:none;" id="rootCont">' + html + '</div>';
+                }
+            });
             if (data.background_src) document.body.style.backgroundImage = "url(" + data.background_src + ")";
         }
     })
