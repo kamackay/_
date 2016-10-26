@@ -169,7 +169,7 @@ function drawPixel(imagedata, x, y, color) {
 
 // get the input spheres from the standard class URL
 function getInputSpheres(complete) {
-    $.get('http://keithmackay.com/school/rayTracer/spheres.json', function (data) {
+    $.get('./spheres.json', function (data) {
         if (typeof complete === 'function') complete(data);
     });
 } // end get input spheres
@@ -226,9 +226,10 @@ function drawAllPixels(context, calcLight) {
                         var t = quadForm(calc.a, calc.b, calc.c);
                         //Discard anything where t is less than 1
                         if (t <= 1) return; /*|| (typeof pixels[x][y] != 'undefined' && pixels[x][y].t > t)*/
-                        /*pixels[x][y] = {
+                        if (typeof pixels[x][y] !== 'undefined' && pixels[x][y].t < t) return;
+                        pixels[x][y] = {
                             t: t
-                        };*/
+                        }; /**/
                         calc.inter = vm.add(E, vm.xScal(calc.D, t));
                         if (calcLight) {
                             //Use the lights to calculate the lighting
