@@ -1,8 +1,0 @@
-<div class="container">
-    <div class="well" style="background-color:rgba(255,255,255,.5);color:black;margin-top:40px;">
-        <h1 style="font-size:50px;"><span style="color:red;">Keith</span> MacKay</h1>
-        <h3 class="text-display mg-lg animated fadeInUp animDelay2">For when you need
-				<span data-typer-targets="an Android,a jQuery,an HTML,a C#,a Java,a JavaScript,a JSP,an SQL,a Python,a .NET,a PHP"></span> Developer
-			</h3>
-    </div>
-</div>
