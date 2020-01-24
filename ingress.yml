@@ -2,7 +2,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: webpage-ingress
+  name: old-webpage-ingress
   namespace: webpage
   annotations:
     kubernetes.io/ingress.class: "nginx"
