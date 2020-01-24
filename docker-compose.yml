@@ -1,0 +1,9 @@
+version: "3.1"
+
+services:
+  webpage:
+    image: kamackay/old-webpage
+    ports:
+      - "3456:8080"
+    environment:
+      - PORT=8080

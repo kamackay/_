@@ -73,7 +73,7 @@ public class RestServlet extends CrossDomainServlet {
 						response.setContentType("text/plain");
 						out.print("Unknown RESTful Request");
 						response.setStatus(400);
-						response.sendRedirect("http://keithmackay.com/rest/");
+						response.sendRedirect("./");
 						break;
 				}
 			} else {

@@ -38,7 +38,7 @@ public class HomepageServlet extends CrossDomainServlet {
         response.setContentType("text/html");
         out.write(readFileToString("/META-INF/home.html"));
       } else if (url == null)
-        response.sendRedirect("http://keithmackay.com/home/");
+        response.sendRedirect("./");
     } catch (Exception e) {
       handle(e);
     }
