@@ -7,19 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Keith MacKay">
     <meta name="description" content="Fonts available at keithmackay.com">
-    <link rel="icon" href="http://keithmackay.com/favicon.ico">
+    <link rel="icon" href="/favicon.ico">
     <title>Fonts</title>
-    <link rel="stylesheet" href="http://keithmackay.com/devfiles/bootstrap.css">
-    <link rel="stylesheet" href="http://keithmackay.com/devfiles/tether.css">
-    <link rel="stylesheet" href="http://keithmackay.com/devfiles/material.css">
-    <link rel="stylesheet" href="http://keithmackay.com/devfiles/ripples.css">
-    <link rel="stylesheet" href="http://keithmackay.com/devfiles/style.css">
-    <link rel="stylesheet" href="http://keithmackay.com/devfiles/snackbar.css">
+    <link rel="stylesheet" href="/devfiles/bootstrap.css">
+    <link rel="stylesheet" href="/devfiles/tether.css">
+    <link rel="stylesheet" href="/devfiles/material.css">
+    <link rel="stylesheet" href="/devfiles/ripples.css">
+    <link rel="stylesheet" href="/devfiles/style.css">
+    <link rel="stylesheet" href="/devfiles/snackbar.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         @font-face {
             font-family: robotoFont;
-            src: url(http://keithmackay.com/fonts/roboto.ttf) format("truetype")
+            src: url(/fonts/roboto.ttf) format("truetype")
         }
         
         * {
@@ -47,13 +47,13 @@
         }
 
     </style>
-    <script type="text/javascript" src="http://keithmackay.com/devfiles/jquery.js"></script>
-    <script type="text/javascript" src="http://keithmackay.com/devfiles/tether.js"></script>
-    <script type="text/javascript" src="http://keithmackay.com/devfiles/bootstrap.js"></script>
-    <script type="text/javascript" src="http://keithmackay.com/devfiles/material.js"></script>
-    <script type="text/javascript" src="http://keithmackay.com/devfiles/snackbar.js"></script>
-    <script type="text/javascript" src="http://keithmackay.com/devfiles/ripples.js"></script>
-    <script type="text/javascript" src="http://keithmackay.com/devfiles/script.js"></script>
+    <script type="text/javascript" src="/devfiles/jquery.js"></script>
+    <script type="text/javascript" src="/devfiles/tether.js"></script>
+    <script type="text/javascript" src="/devfiles/bootstrap.js"></script>
+    <script type="text/javascript" src="/devfiles/material.js"></script>
+    <script type="text/javascript" src="/devfiles/snackbar.js"></script>
+    <script type="text/javascript" src="/devfiles/ripples.js"></script>
+    <script type="text/javascript" src="/devfiles/script.js"></script>
     <script>
         const K = {}
         K.charsToDemo = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '=', '[]', '{}', '()', '!', '@', '#', '$', '%', '^', '&', '*', '-', '_', '\\', ':', ';', '.', ',', '<', '>', '?', '|', '/', '"', '\'', '~', '`']
@@ -63,7 +63,7 @@
             try {
                 const n = font.file.replace(".ttf", "-keithFont")
                 const el = K.fontElementFormat.replace("!!demotext!!", K.fontDemoText).replace("!!n!!", n).replace('!!fontname!!', font.name).replace('!!filename!!', font.file);
-                $('#styles').append("<style>@font-face{font-family:" + n + ";src:url(http://keithmackay.com/fonts/" + font.file + ")}</style>")
+                $('#styles').append("<style>@font-face{font-family:" + n + ";src:url(/fonts/" + font.file + ")}</style>")
                 return el;
             } catch (err) {
                 console.log(font);
@@ -74,7 +74,7 @@
         $(document).ready(function() {
             try {
                 var mainDiv = $("#mainDiv")
-                $.get("http://keithmackay.com/fonts/fonts.json", function(data) {
+                $.get("/fonts/fonts.json", function(data) {
                     try {
                         var idVar = 0
                         for (var a = 0; a < data.groups.length; a++, idVar++) {
@@ -122,7 +122,7 @@
                 for (var x = 0; x < K.charsToDemo.length; x++) {
                     K.fontDemoText += K.charsToDemo[x] + " ";
                 }
-                $('body').append("<img style='display:none;height:100vh;width:100vw;position:fixed;top:0px;left:0px;z-index:-10;' id='backgroundImage' src='http://keithmackay.com/images/platinum-back.png' />");
+                $('body').append("<img style='display:none;height:100vh;width:100vw;position:fixed;top:0px;left:0px;z-index:-10;' id='backgroundImage' src='/images/platinum-back.png' />");
                 $('#backgroundImage').fadeIn();
             } catch (err) {
                 console.log(err)
@@ -135,7 +135,7 @@
 <body>
     <div class="container" id="page">
         <center>
-            <h1 class=""><img src="http://keithmackay.com/images/icons/favicon.ico" style="margin-left:15px;max-height:90px;"/> Fonts available at <a href="http://keithmackay.com">keithmackay.com</a></h1></center>
+            <h1 class=""><img src="/images/icons/favicon.ico" style="margin-left:15px;max-height:90px;"/> Fonts available at <a href="">keithmackay.com</a></h1></center>
         <div id="styles"></div>
         <div id="mainDiv"></div>
     </div>
